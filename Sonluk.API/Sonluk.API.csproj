@@ -1,0 +1,2376 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{80F416A6-97F7-4A27-8045-BFDF6FC2A8BB}</ProjectGuid>
+    <ProjectTypeGuids>{E3E379DF-F4C6-4180-9B81-6769533ABE47};{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sonluk.API</RootNamespace>
+    <AssemblyName>Sonluk.API</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort>44345</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication>enabled</IISExpressAnonymousAuthentication>
+    <IISExpressWindowsAuthentication>disabled</IISExpressWindowsAuthentication>
+    <IISExpressUseClassicPipelineMode>false</IISExpressUseClassicPipelineMode>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+    <Use64BitIISExpress />
+    <UseGlobalApplicationHostFile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>2</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Oracle.DataAccess">
+      <HintPath>..\packages\Oracle.ODAC.11.2.0.4.0\Oracle.DataAccess.dll</HintPath>
+    </Reference>
+    <Reference Include="sapnco, Version=3.0.0.42, Culture=neutral, PublicKeyToken=50436dca5c7f7d23, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\SAP.NCO.3.0.16\sapnco.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="sapnco_utils, Version=3.0.0.42, Culture=neutral, PublicKeyToken=50436dca5c7f7d23, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\SAP.NCO.3.0.16\sapnco_utils.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Net.Http, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest, Version=2.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Net.Http.2.0.20710.0\lib\net40\System.Net.Http.WebRequest.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Entity">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.ApplicationServices">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Core">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data.DataSetExtensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml.Linq">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Extensions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Abstractions">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Routing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.EnterpriseServices">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Mvc.FixedDisplayModes, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.FixedDisplayModes.1.0.0\lib\net40\Microsoft.Web.Mvc.FixedDisplayModes.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http.Formatting, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Client.4.0.30506.0\lib\net40\System.Net.Http.Formatting.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Http, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.Core.4.0.30506.0\lib\net40\System.Web.Http.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Http.WebHost, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.AspNet.WebApi.WebHost.4.0.30506.0\lib\net40\System.Web.Http.WebHost.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.4.0.30506.0\lib\net40\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.2.0.30506.0\lib\net40\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=2.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.2.0.30506.0\lib\net40\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Areas\ApiModule.cs" />
+    <Compile Include="Areas\BARCODE\BARCODEAreaRegistration.cs" />
+    <Compile Include="Areas\BARCODE\Controllers\SYSTEMController.cs" />
+    <Compile Include="Areas\CRM\Controllers\OAController.cs" />
+    <Compile Include="Areas\Helper\Controllers\CryptController.cs" />
+    <Compile Include="Areas\Helper\Controllers\DicController.cs" />
+    <Compile Include="Areas\Helper\Controllers\ExcelController.cs" />
+    <Compile Include="Areas\Helper\Controllers\HtmlController.cs" />
+    <Compile Include="Areas\Helper\Controllers\ImageController.cs" />
+    <Compile Include="Areas\Helper\Controllers\InsightsController.cs" />
+    <Compile Include="Areas\Helper\Controllers\LoginController.cs" />
+    <Compile Include="Areas\Helper\Controllers\MsgController.cs" />
+    <Compile Include="Areas\Helper\HelperAreaRegistration.cs" />
+    <Compile Include="Areas\Helper\Models\ExcelModel.cs" />
+    <Compile Include="Areas\MES\Controllers\PMMController.cs" />
+    <Compile Include="Areas\MES\Controllers\SocketController.cs" />
+    <Compile Include="Areas\MES\Controllers\SystemController.cs" />
+    <Compile Include="Areas\MES\MESAreaRegistration.cs" />
+    <Compile Include="Areas\NamespaceHttpControllerSelector.cs" />
+    <Compile Include="BARCODE\SY_CODING.asmx.cs">
+      <DependentUpon>SY_CODING.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BC\WS_BC_DRF.asmx.cs">
+      <DependentUpon>WS_BC_DRF.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DocController.cs" />
+    <Compile Include="Controllers\MVCAuthorizeAttribute.cs" />
+    <Compile Include="CRM\COST_CBZX.asmx.cs">
+      <DependentUpon>COST_CBZX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_CJHDWD.asmx.cs">
+      <DependentUpon>COST_CJHDWD.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_CLFHX.asmx.cs">
+      <DependentUpon>COST_CLFHX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_CLFMX.asmx.cs">
+      <DependentUpon>COST_CLFMX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_CLFMX_CLFHX.asmx.cs">
+      <DependentUpon>COST_CLFMX_CLFHX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_CLFTT.asmx.cs">
+      <DependentUpon>COST_CLFTT.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_CLFTT_STAFF.asmx.cs">
+      <DependentUpon>COST_CLFTT_STAFF.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_CP.asmx.cs">
+      <DependentUpon>COST_CP.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_CPLX.asmx.cs">
+      <DependentUpon>COST_CPLX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_CXHD.asmx.cs">
+      <DependentUpon>COST_CXHD.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_CXHDPGHZ.asmx.cs">
+      <DependentUpon>COST_CXHDPGHZ.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_CXHDPGQD.asmx.cs">
+      <DependentUpon>COST_CXHDPGQD.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_CXHDTC.asmx.cs">
+      <DependentUpon>COST_CXHDTC.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_CXY.asmx.cs">
+      <DependentUpon>COST_CXY.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_CXYGZ.asmx.cs">
+      <DependentUpon>COST_CXYGZ.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_FI.asmx.cs">
+      <DependentUpon>COST_FI.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_GGGS.asmx.cs">
+      <DependentUpon>COST_GGGS.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_GSZCFS.asmx.cs">
+      <DependentUpon>COST_GSZCFS.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_ITEM.asmx.cs">
+      <DependentUpon>COST_ITEM.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_JXSHXDJMX.asmx.cs">
+      <DependentUpon>COST_JXSHXDJMX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_JXSHXDJMX_COST.asmx.cs">
+      <DependentUpon>COST_JXSHXDJMX_COST.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_JXSHXDJTT.asmx.cs">
+      <DependentUpon>COST_JXSHXDJTT.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_KADTDP.asmx.cs">
+      <DependentUpon>COST_KADTDP.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_KADTMX.asmx.cs">
+      <DependentUpon>COST_KADTMX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_KADTTT.asmx.cs">
+      <DependentUpon>COST_KADTTT.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_KAHXDJMX.asmx.cs">
+      <DependentUpon>COST_KAHXDJMX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_KAHXDJTT.asmx.cs">
+      <DependentUpon>COST_KAHXDJTT.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_KAHXZLMX.asmx.cs">
+      <DependentUpon>COST_KAHXZLMX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_KAHXZLMX_KAHXDJMX.asmx.cs">
+      <DependentUpon>COST_KAHXZLMX_KAHXDJMX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_KAHXZLTT.asmx.cs">
+      <DependentUpon>COST_KAHXZLTT.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_KATSCLMX.asmx.cs">
+      <DependentUpon>COST_KATSCLMX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_KATSCLTT.asmx.cs">
+      <DependentUpon>COST_KATSCLTT.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_KAXS.asmx.cs">
+      <DependentUpon>COST_KAXS.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_KAYEARCOST.asmx.cs">
+      <DependentUpon>COST_KAYEARCOST.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_KAYEARCOST_KAHXDJMX.asmx.cs">
+      <DependentUpon>COST_KAYEARCOST_KAHXDJMX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_KAYEARTT.asmx.cs">
+      <DependentUpon>COST_KAYEARTT.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_LKADTDP.asmx.cs">
+      <DependentUpon>COST_LKADTDP.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_LKAEachYEAR.asmx.cs">
+      <DependentUpon>COST_LKAEachYEAR.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_LKAFYMXDT.asmx.cs">
+      <DependentUpon>COST_LKAFYMXDT.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_LKAFYMXTSCL.asmx.cs">
+      <DependentUpon>COST_LKAFYMXTSCL.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_LKAFYTT.asmx.cs">
+      <DependentUpon>COST_LKAFYTT.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_LKAHXDJMX.asmx.cs">
+      <DependentUpon>COST_LKAHXDJMX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_LKAHXDJTT.asmx.cs">
+      <DependentUpon>COST_LKAHXDJTT.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_LKAHXZLMD.asmx.cs">
+      <DependentUpon>COST_LKAHXZLMD.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_LKAHXZLMX.asmx.cs">
+      <DependentUpon>COST_LKAHXZLMX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_LKAHXZLMX_LKAHXDJMX.asmx.cs">
+      <DependentUpon>COST_LKAHXZLMX_LKAHXDJMX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_LKAHXZLTT.asmx.cs">
+      <DependentUpon>COST_LKAHXZLTT.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_LKAPRODUCT.asmx.cs">
+      <DependentUpon>COST_LKAPRODUCT.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_LKAXS.asmx.cs">
+      <DependentUpon>COST_LKAXS.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_LKAYEARCOST.asmx.cs">
+      <DependentUpon>COST_LKAYEARCOST.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_LKAYEARCOST_LKAHXZLMX.asmx.cs">
+      <DependentUpon>COST_LKAYEARCOST_LKAHXZLMX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_LKAYEARLIST.asmx.cs">
+      <DependentUpon>COST_LKAYEARLIST.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_LKAYEARMD.asmx.cs">
+      <DependentUpon>COST_LKAYEARMD.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_LKAYEARTT.asmx.cs">
+      <DependentUpon>COST_LKAYEARTT.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_LKAYEARXS.asmx.cs">
+      <DependentUpon>COST_LKAYEARXS.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_MDBS.asmx.cs">
+      <DependentUpon>COST_MDBS.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_MDBSHX.asmx.cs">
+      <DependentUpon>COST_MDBSHX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_MDBS_KAHXDJMX.asmx.cs">
+      <DependentUpon>COST_MDBS_KAHXDJMX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_OTHER.asmx.cs">
+      <DependentUpon>COST_OTHER.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_OTHER_KAHXDJMX.asmx.cs">
+      <DependentUpon>COST_OTHER_KAHXDJMX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_PSF.asmx.cs">
+      <DependentUpon>COST_PSF.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_PSF_KAHXDJMX.asmx.cs">
+      <DependentUpon>COST_PSF_KAHXDJMX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_PUBLIC.asmx.cs">
+      <DependentUpon>COST_PUBLIC.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_TS.asmx.cs">
+      <DependentUpon>COST_TS.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_TSMX.asmx.cs">
+      <DependentUpon>COST_TSMX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_WDTC.asmx.cs">
+      <DependentUpon>COST_WDTC.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_ZZFMX.asmx.cs">
+      <DependentUpon>COST_ZZFMX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_ZZFSJT.asmx.cs">
+      <DependentUpon>COST_ZZFSJT.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_ZZFTT.asmx.cs">
+      <DependentUpon>COST_ZZFTT.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_ZZFTT_KAHXDJMX.asmx.cs">
+      <DependentUpon>COST_ZZFTT_KAHXDJMX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\COST_ZZFTT_LKAHXDJMX.asmx.cs">
+      <DependentUpon>COST_ZZFTT_LKAHXDJMX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\CRM_DRF.asmx.cs">
+      <DependentUpon>CRM_DRF.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\DuiBiReport.asmx.cs">
+      <DependentUpon>DuiBiReport.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\HG_STAFFDICT.asmx.cs">
+      <DependentUpon>HG_STAFFDICT.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\OA_OPINION.asmx.cs">
+      <DependentUpon>OA_OPINION.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\ORDER_SH.asmx.cs">
+      <DependentUpon>ORDER_SH.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\PRODUCT_HH.asmx.cs">
+      <DependentUpon>PRODUCT_HH.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\PRODUCT_KB.asmx.cs">
+      <DependentUpon>PRODUCT_KB.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\PRODUCT_KBMX.asmx.cs">
+      <DependentUpon>PRODUCT_KBMX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\PRODUCT_PRODUCT_HH.asmx.cs">
+      <DependentUpon>PRODUCT_PRODUCT_HH.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\QYJS_FILE.asmx.cs">
+      <DependentUpon>QYJS_FILE.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\QYJS_MENU.asmx.cs">
+      <DependentUpon>QYJS_MENU.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\WL_TT.asmx.cs">
+      <DependentUpon>WL_TT.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EM\EM_MISSION.asmx.cs">
+      <DependentUpon>EM_MISSION.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EM\FILE_PATH.asmx.cs">
+      <DependentUpon>FILE_PATH.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EM\SY_DEVICEDETAILDOC.asmx.cs">
+      <DependentUpon>SY_DEVICEDETAILDOC.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EM\SY_DEVICEQRJL.asmx.cs">
+      <DependentUpon>SY_DEVICEQRJL.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EM\SY_DEVICETYPE.asmx.cs">
+      <DependentUpon>SY_DEVICETYPE.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EM\SY_DEVICE_CONTRACT.asmx.cs">
+      <DependentUpon>SY_DEVICE_CONTRACT.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EM\SY_INFOREPORT.asmx.cs">
+      <DependentUpon>SY_INFOREPORT.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EM\SY_MANUAL.asmx.cs">
+      <DependentUpon>SY_MANUAL.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EM\SY_MANUALBB.asmx.cs">
+      <DependentUpon>SY_MANUALBB.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EM\SY_MANUALPATH.asmx.cs">
+      <DependentUpon>SY_MANUALPATH.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EM\SY_PB.asmx.cs">
+      <DependentUpon>SY_PB.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EM\SY_SBBHDEVICETYPE.asmx.cs">
+      <DependentUpon>SY_SBBHDEVICETYPE.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EM\SY_SBBHMANUAL.asmx.cs">
+      <DependentUpon>SY_SBBHMANUAL.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EM\SY_SBBINDPB.asmx.cs">
+      <DependentUpon>SY_SBBINDPB.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EM\SY_STAFFIDBINDPB.asmx.cs">
+      <DependentUpon>SY_STAFFIDBINDPB.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EM\SY_STAFF_EMTYPE.asmx.cs">
+      <DependentUpon>SY_STAFF_EMTYPE.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="EM\SY_XTBB.asmx.cs">
+      <DependentUpon>SY_XTBB.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FICO\FM_ElectricInvoice.asmx.cs">
+      <DependentUpon>FM_ElectricInvoice.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FIVES\CHECK_INFO.asmx.cs">
+      <DependentUpon>CHECK_INFO.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FIVES\CHECK_INFODETAIL.asmx.cs">
+      <DependentUpon>CHECK_INFODETAIL.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FIVES\STAFF_DEP.asmx.cs">
+      <DependentUpon>STAFF_DEP.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FIVES\SY_CHECKDETAILCATEGROY.asmx.cs">
+      <DependentUpon>SY_CHECKDETAILCATEGROY.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FIVES\SY_CHECKDETAILS.asmx.cs">
+      <DependentUpon>SY_CHECKDETAILS.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FIVES\SY_CHECKGROUP.asmx.cs">
+      <DependentUpon>SY_CHECKGROUP.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FIVES\SY_CHECKGROUP_DEPARTMENT.asmx.cs">
+      <DependentUpon>SY_CHECKGROUP_DEPARTMENT.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FIVES\SY_CHECKGROUP_STAFF.asmx.cs">
+      <DependentUpon>SY_CHECKGROUP_STAFF.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FIVES\SY_CHECKPOINT.asmx.cs">
+      <DependentUpon>SY_CHECKPOINT.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FIVES\SY_CHECKPOINTCATEGROY.asmx.cs">
+      <DependentUpon>SY_CHECKPOINTCATEGROY.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FIVES\SY_CHECKPOINT_CHECKDETAIL.asmx.cs">
+      <DependentUpon>SY_CHECKPOINT_CHECKDETAIL.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FIVES\SY_CHECKPOINT_POINTCATEGROY.asmx.cs">
+      <DependentUpon>SY_CHECKPOINT_POINTCATEGROY.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FIVES\SY_DEPTPUSHRY.asmx.cs">
+      <DependentUpon>SY_DEPTPUSHRY.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FIVES\SY_DICT.asmx.cs">
+      <DependentUpon>SY_DICT.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FIVES\SY_POINTCATEGROY_DETAIL.asmx.cs">
+      <DependentUpon>SY_POINTCATEGROY_DETAIL.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FIVES\SY_PRINCIPALCATEGROY.asmx.cs">
+      <DependentUpon>SY_PRINCIPALCATEGROY.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FIVES\SY_RELATIONSHIPBIND.asmx.cs">
+      <DependentUpon>SY_RELATIONSHIPBIND.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FIVES\SY_STAFF_DEP.asmx.cs">
+      <DependentUpon>SY_STAFF_DEP.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FIVES\SY_STATION.asmx.cs">
+      <DependentUpon>SY_STATION.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="FIVES\SY_TYPE.asmx.cs">
+      <DependentUpon>SY_TYPE.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Account\Access.asmx.cs">
+      <DependentUpon>Access.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Areas\BC\BCAreaRegistration.cs" />
+    <Compile Include="Areas\BC\Controllers\BarCodeController.cs" />
+    <Compile Include="Areas\CRM\CRMAreaRegistration.cs" />
+    <Compile Include="Areas\PS\Controllers\PsINFOController.cs" />
+    <Compile Include="Areas\PS\PSAreaRegistration.cs" />
+    <Compile Include="Areas\SSO\Controllers\UserController.cs" />
+    <Compile Include="Areas\SSO\SSOAreaRegistration.cs" />
+    <Compile Include="BC\BarCode.asmx.cs">
+      <DependentUpon>BarCode.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BC\User.asmx.cs">
+      <DependentUpon>User.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BC\Enqueue.asmx.cs">
+      <DependentUpon>Enqueue.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="CRM\BC_CHTT.asmx.cs">
+      <DependentUpon>BC_CHTT.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\BC_CHTT_FAKE.asmx.cs">
+      <DependentUpon>BC_CHTT_FAKE.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\BC_FXCH.asmx.cs">
+      <DependentUpon>BC_FXCH.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\BC_PMLIST.asmx.cs">
+      <DependentUpon>BC_PMLIST.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\BF_BF.asmx.cs">
+      <DependentUpon>BF_BF.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\BF_BFJHMX.asmx.cs">
+      <DependentUpon>BF_BFJHMX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\BF_BFQD.asmx.cs">
+      <DependentUpon>BF_BFQD.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\CRM_BF.asmx.cs">
+      <DependentUpon>CRM_BF.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\CRM_HD.asmx.cs">
+      <DependentUpon>CRM_HD.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\CRM_HG.asmx.cs">
+      <DependentUpon>CRM_HG.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\CRM_KH.asmx.cs">
+      <DependentUpon>CRM_KH.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\CRM_KQ.asmx.cs">
+      <DependentUpon>CRM_KQ.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\CRM_KQ_Report.asmx.cs">
+      <DependentUpon>CRM_KQ_Report.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\CRM_Login.asmx.cs">
+      <DependentUpon>CRM_Login.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\CRM_OA.asmx.cs">
+      <DependentUpon>CRM_OA.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\CRM_PENDING.asmx.cs">
+      <DependentUpon>CRM_PENDING.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\HD_NKAMD.asmx.cs">
+      <DependentUpon>HD_NKAMD.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\HD_NKAXT.asmx.cs">
+      <DependentUpon>HD_NKAXT.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\HD_ZDF.asmx.cs">
+      <DependentUpon>HD_ZDF.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\HD_ZYCXY.asmx.cs">
+      <DependentUpon>HD_ZYCXY.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\HG_BZGZSJ.asmx.cs">
+      <DependentUpon>HG_BZGZSJ.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\HG_DEPT.asmx.cs">
+      <DependentUpon>HG_DEPT.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\HG_DICT.asmx.cs">
+      <DependentUpon>HG_DICT.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\HG_DUTY.asmx.cs">
+      <DependentUpon>HG_DUTY.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\HG_KHLX.asmx.cs">
+      <DependentUpon>HG_KHLX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\HG_KQDZ.asmx.cs">
+      <DependentUpon>HG_KQDZ.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\HG_RIGHT.asmx.cs">
+      <DependentUpon>HG_RIGHT.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\HG_RIGHTGROUP.asmx.cs">
+      <DependentUpon>HG_RIGHTGROUP.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\HG_ROLE.asmx.cs">
+      <DependentUpon>HG_ROLE.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\HG_RYKQ.asmx.cs">
+      <DependentUpon>HG_RYKQ.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\HG_STAFF.asmx.cs">
+      <DependentUpon>HG_STAFF.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\HG_STAFFDUTY.asmx.cs">
+      <DependentUpon>HG_STAFFDUTY.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\HG_STAFFKHLX.asmx.cs">
+      <DependentUpon>HG_STAFFKHLX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\HG_TYPE.asmx.cs">
+      <DependentUpon>HG_TYPE.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\HG_WJJL.asmx.cs">
+      <DependentUpon>HG_WJJL.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\KH_BF.asmx.cs">
+      <DependentUpon>KH_BF.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\KH_DZ.asmx.cs">
+      <DependentUpon>KH_DZ.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\KH_GROUP.asmx.cs">
+      <DependentUpon>KH_GROUP.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\KH_GROUP_KH.asmx.cs">
+      <DependentUpon>KH_GROUP_KH.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\KH_GROUP_STAFF.asmx.cs">
+      <DependentUpon>KH_GROUP_STAFF.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\KH_GROUP_XSQY.asmx.cs">
+      <DependentUpon>KH_GROUP_XSQY.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\KH_GXQY.asmx.cs">
+      <DependentUpon>KH_GXQY.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\KH_HD.asmx.cs">
+      <DependentUpon>KH_HD.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\KH_HZHB.asmx.cs">
+      <DependentUpon>KH_HZHB.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\KH_KH.asmx.cs">
+      <DependentUpon>KH_KH.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\KH_KHBF.asmx.cs">
+      <DependentUpon>KH_KHBF.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\KH_KHQTXX.asmx.cs">
+      <DependentUpon>KH_KHQTXX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\KH_KHXS.asmx.cs">
+      <DependentUpon>KH_KHXS.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\KH_KHZZ.asmx.cs">
+      <DependentUpon>KH_KHZZ.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\KH_LXR.asmx.cs">
+      <DependentUpon>KH_LXR.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\KH_XSYWJZ.asmx.cs">
+      <DependentUpon>KH_XSYWJZ.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\KQ_CC.asmx.cs">
+      <DependentUpon>KQ_CC.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\KQ_GZRL.asmx.cs">
+      <DependentUpon>KQ_GZRL.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\KQ_GZRLMX.asmx.cs">
+      <DependentUpon>KQ_GZRLMX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\KQ_QD.asmx.cs">
+      <DependentUpon>KQ_QD.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\KQ_YCKQSM.asmx.cs">
+      <DependentUpon>KQ_YCKQSM.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\KQ_YGQJ.asmx.cs">
+      <DependentUpon>KQ_YGQJ.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\MSG_INVOICE.asmx.cs">
+      <DependentUpon>MSG_INVOICE.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\MSG_NOTICE.asmx.cs">
+      <DependentUpon>MSG_NOTICE.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\OA_TRANSMIT.asmx.cs">
+      <DependentUpon>OA_TRANSMIT.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\ORDER_TT.asmx.cs">
+      <DependentUpon>ORDER_TT.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\PRODUCT_GROUP.asmx.cs">
+      <DependentUpon>PRODUCT_GROUP.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\PRODUCT_KHGROUP.asmx.cs">
+      <DependentUpon>PRODUCT_KHGROUP.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\PRODUCT_PRODUCT.asmx.cs">
+      <DependentUpon>PRODUCT_PRODUCT.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\PRODUCT_PRODUCTGROUP.asmx.cs">
+      <DependentUpon>PRODUCT_PRODUCTGROUP.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\PRODUCT_WARN.asmx.cs">
+      <DependentUpon>PRODUCT_WARN.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\SAP_ORDER.asmx.cs">
+      <DependentUpon>SAP_ORDER.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\SAP_Report.asmx.cs">
+      <DependentUpon>SAP_Report.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\SYS_CS.asmx.cs">
+      <DependentUpon>SYS_CS.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CRM\WX_OPENID.asmx.cs">
+      <DependentUpon>WX_OPENID.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DEV\Log.asmx.cs">
+      <DependentUpon>Log.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="DEV\Table.asmx.cs">
+      <DependentUpon>Table.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\BOOK_BOOKINFO.asmx.cs">
+      <DependentUpon>BOOK_BOOKINFO.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\DA_DAINFO.asmx.cs">
+      <DependentUpon>DA_DAINFO.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\GS_LY.asmx.cs">
+      <DependentUpon>GS_LY.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\PX_PXZT.asmx.cs">
+      <DependentUpon>PX_PXZT.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\RY_RYINFO.asmx.cs">
+      <DependentUpon>RY_RYINFO.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\RY_RYINFO_RSDA.asmx.cs">
+      <DependentUpon>RY_RYINFO_RSDA.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\SY_DEPT.asmx.cs">
+      <DependentUpon>SY_DEPT.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\SY_DUTY.asmx.cs">
+      <DependentUpon>SY_DUTY.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\SY_GS.asmx.cs">
+      <DependentUpon>SY_GS.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\SY_TYPE.asmx.cs">
+      <DependentUpon>SY_TYPE.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\SY_TYPEMX.asmx.cs">
+      <DependentUpon>SY_TYPEMX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\SY_ZJH.asmx.cs">
+      <DependentUpon>SY_ZJH.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_ADMINISTRATION_DORM.asmx.cs">
+      <DependentUpon>WS_HR_ADMINISTRATION_DORM.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_ADMINISTRATION_YHRY.asmx.cs">
+      <DependentUpon>WS_HR_ADMINISTRATION_YHRY.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_GS_GSSL.asmx.cs">
+      <DependentUpon>WS_HR_GS_GSSL.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_KQ_BD.asmx.cs">
+      <DependentUpon>WS_HR_KQ_BD.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_KQ_BZ.asmx.cs">
+      <DependentUpon>WS_HR_KQ_BZ.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_KQ_BZ_BDID.asmx.cs">
+      <DependentUpon>WS_HR_KQ_BZ_BDID.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_KQ_DEPTID_FZID.asmx.cs">
+      <DependentUpon>WS_HR_KQ_DEPTID_FZID.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_KQ_DEPTKQ.asmx.cs">
+      <DependentUpon>WS_HR_KQ_DEPTKQ.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_KQ_GSKQ.asmx.cs">
+      <DependentUpon>WS_HR_KQ_GSKQ.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_KQ_JQGL.asmx.cs">
+      <DependentUpon>WS_HR_KQ_JQGL.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_KQ_JQGLMX.asmx.cs">
+      <DependentUpon>WS_HR_KQ_JQGLMX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_KQ_KQINFO.asmx.cs">
+      <DependentUpon>WS_HR_KQ_KQINFO.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_KQ_PBFZ.asmx.cs">
+      <DependentUpon>WS_HR_KQ_PBFZ.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_KQ_PBFZ_BZID.asmx.cs">
+      <DependentUpon>WS_HR_KQ_PBFZ_BZID.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_KQ_QJ.asmx.cs">
+      <DependentUpon>WS_HR_KQ_QJ.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_KQ_RYID_BZID.asmx.cs">
+      <DependentUpon>WS_HR_KQ_RYID_BZID.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_KQ_WCDJ.asmx.cs">
+      <DependentUpon>WS_HR_KQ_WCDJ.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_KQ_YCKQ.asmx.cs">
+      <DependentUpon>WS_HR_KQ_YCKQ.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_ROLE_DEPT.asmx.cs">
+      <DependentUpon>WS_HR_ROLE_DEPT.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_RY_BANKNO.asmx.cs">
+      <DependentUpon>WS_HR_RY_BANKNO.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_SY_CHANGEINFO.asmx.cs">
+      <DependentUpon>WS_HR_SY_CHANGEINFO.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_SY_MYINFO.asmx.cs">
+      <DependentUpon>WS_HR_SY_MYINFO.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_XZGL_FFJL.asmx.cs">
+      <DependentUpon>WS_HR_XZGL_FFJL.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_XZGL_FFJLMX.asmx.cs">
+      <DependentUpon>WS_HR_XZGL_FFJLMX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_XZGL_FFJLZD.asmx.cs">
+      <DependentUpon>WS_HR_XZGL_FFJLZD.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_XZGL_FLDA.asmx.cs">
+      <DependentUpon>WS_HR_XZGL_FLDA.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_XZGL_FLDATZ.asmx.cs">
+      <DependentUpon>WS_HR_XZGL_FLDATZ.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_XZGL_FLDATZMX.asmx.cs">
+      <DependentUpon>WS_HR_XZGL_FLDATZMX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_XZGL_FLFA.asmx.cs">
+      <DependentUpon>WS_HR_XZGL_FLFA.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_XZGL_FLFAMX.asmx.cs">
+      <DependentUpon>WS_HR_XZGL_FLFAMX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_XZGL_JJFL_HEAD.asmx.cs">
+      <DependentUpon>WS_HR_XZGL_JJFL_HEAD.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_XZGL_JJFL_HEARNAME.asmx.cs">
+      <DependentUpon>WS_HR_XZGL_JJFL_HEARNAME.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_XZGL_JJFL_MX.asmx.cs">
+      <DependentUpon>WS_HR_XZGL_JJFL_MX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_XZGL_KKGL.asmx.cs">
+      <DependentUpon>WS_HR_XZGL_KKGL.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_XZGL_KKGLMX.asmx.cs">
+      <DependentUpon>WS_HR_XZGL_KKGLMX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_XZGL_MBGL.asmx.cs">
+      <DependentUpon>WS_HR_XZGL_MBGL.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_XZGL_MBGLMX.asmx.cs">
+      <DependentUpon>WS_HR_XZGL_MBGLMX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_XZGL_XZDA.asmx.cs">
+      <DependentUpon>WS_HR_XZGL_XZDA.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_XZGL_XZDA_GZLB.asmx.cs">
+      <DependentUpon>WS_HR_XZGL_XZDA_GZLB.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_XZGL_ZDGLGL.asmx.cs">
+      <DependentUpon>WS_HR_XZGL_ZDGLGL.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="HR\WS_HR_XZGL_ZXFJKC.asmx.cs">
+      <DependentUpon>WS_HR_XZGL_ZXFJKC.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="KQ\KQinfo.asmx.cs">
+      <DependentUpon>KQinfo.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LE\TRA\Carrier.asmx.cs">
+      <DependentUpon>Carrier.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LE\TRA\City.asmx.cs">
+      <DependentUpon>City.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LE\TRA\Complaint.asmx.cs">
+      <DependentUpon>Complaint.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LE\TRA\Destination.asmx.cs">
+      <DependentUpon>Destination.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LE\TRA\Feedback.asmx.cs">
+      <DependentUpon>Feedback.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LE\TRA\Goods.asmx.cs">
+      <DependentUpon>Goods.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LE\TRA\Package.asmx.cs">
+      <DependentUpon>Package.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LE\TRA\Price.asmx.cs">
+      <DependentUpon>Price.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LE\TRA\Receiver.asmx.cs">
+      <DependentUpon>Receiver.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LE\TRA\Route.asmx.cs">
+      <DependentUpon>Route.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LE\TRA\Sender.asmx.cs">
+      <DependentUpon>Sender.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LE\TRA\Unit.asmx.cs">
+      <DependentUpon>Unit.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Master\Customer.asmx.cs">
+      <DependentUpon>Customer.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="LE\TRA\ConsignmentNote.asmx.cs">
+      <DependentUpon>ConsignmentNote.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="LE\OutboundDelivery.asmx.cs">
+      <DependentUpon>OutboundDelivery.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Master\Material.asmx.cs">
+      <DependentUpon>Material.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\BAT_PACKAGE.asmx.cs">
+      <DependentUpon>BAT_PACKAGE.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\BAT_QLTY.asmx.cs">
+      <DependentUpon>BAT_QLTY.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\BAT_REPORT.asmx.cs">
+      <DependentUpon>BAT_REPORT.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\BAT_SPECS.asmx.cs">
+      <DependentUpon>BAT_SPECS.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\BAT_SPECS_PERFOR.asmx.cs">
+      <DependentUpon>BAT_SPECS_PERFOR.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\BAT_SPECS_SAMP.asmx.cs">
+      <DependentUpon>BAT_SPECS_SAMP.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\MES_FJ.asmx.cs">
+      <DependentUpon>MES_FJ.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\MES_Login.asmx.cs">
+      <DependentUpon>MES_Login.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\MES_MM.asmx.cs">
+      <DependentUpon>MES_MM.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\MES_SYNC.asmx.cs">
+      <DependentUpon>MES_SYNC.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\MES_TPM.asmx.cs">
+      <DependentUpon>MES_TPM.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\MES_WLKCBS.asmx.cs">
+      <DependentUpon>MES_WLKCBS.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\MM_CK.asmx.cs">
+      <DependentUpon>MM_CK.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\PD_GD.asmx.cs">
+      <DependentUpon>PD_GD.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\PD_GD_BOM.asmx.cs">
+      <DependentUpon>PD_GD_BOM.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\PD_SCRW.asmx.cs">
+      <DependentUpon>PD_SCRW.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\PD_TL.asmx.cs">
+      <DependentUpon>PD_TL.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\PD_TLGL.asmx.cs">
+      <DependentUpon>PD_TLGL.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\PD_TL_ERROR.asmx.cs">
+      <DependentUpon>PD_TL_ERROR.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\PMM_MOULD.asmx.cs">
+      <DependentUpon>PMM_MOULD.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\PMM_MTC.asmx.cs">
+      <DependentUpon>PMM_MTC.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\PMM_QR.asmx.cs">
+      <DependentUpon>PMM_QR.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\PMM_STAFF.asmx.cs">
+      <DependentUpon>PMM_STAFF.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\PMM_SYS.asmx.cs">
+      <DependentUpon>PMM_SYS.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\PUBLIC_FUNC.asmx.cs">
+      <DependentUpon>PUBLIC_FUNC.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\RIGHT_ROLE.asmx.cs">
+      <DependentUpon>RIGHT_ROLE.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\ROLE_ASSEMBLE.asmx.cs">
+      <DependentUpon>ROLE_ASSEMBLE.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\ROLE_CK.asmx.cs">
+      <DependentUpon>ROLE_CK.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\ROLE_GC.asmx.cs">
+      <DependentUpon>ROLE_GC.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\ROLE_GZZX.asmx.cs">
+      <DependentUpon>ROLE_GZZX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\ROLE_RY_ASSEMBLE.asmx.cs">
+      <DependentUpon>ROLE_RY_ASSEMBLE.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\ROLR_GZZX_GW.asmx.cs">
+      <DependentUpon>ROLR_GZZX_GW.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\SY_CHANGEINFO.asmx.cs">
+      <DependentUpon>SY_CHANGEINFO.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\SY_DCXH_COUNT.asmx.cs">
+      <DependentUpon>SY_DCXH_COUNT.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\SY_GC.asmx.cs">
+      <DependentUpon>SY_GC.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\SY_GZZX.asmx.cs">
+      <DependentUpon>SY_GZZX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\SY_GZZX_SBH.asmx.cs">
+      <DependentUpon>SY_GZZX_SBH.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\SY_GZZX_SBH_WLLB.asmx.cs">
+      <DependentUpon>SY_GZZX_SBH_WLLB.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\SY_GZZX_WLLB.asmx.cs">
+      <DependentUpon>SY_GZZX_WLLB.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\SY_MACBB.asmx.cs">
+      <DependentUpon>SY_MACBB.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\SY_MACHINEINFO.asmx.cs">
+      <DependentUpon>SY_MACHINEINFO.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\SY_MATERIAL.asmx.cs">
+      <DependentUpon>SY_MATERIAL.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\SY_MATERIAL_BZCOUNT.asmx.cs">
+      <DependentUpon>SY_MATERIAL_BZCOUNT.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\SY_MATERIAL_GROUP.asmx.cs">
+      <DependentUpon>SY_MATERIAL_GROUP.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\SY_PFDH.asmx.cs">
+      <DependentUpon>SY_PFDH.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\SY_PFDH_CHILD.asmx.cs">
+      <DependentUpon>SY_PFDH_CHILD.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\SY_PFDH_WL.asmx.cs">
+      <DependentUpon>SY_PFDH_WL.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\SY_PLDH.asmx.cs">
+      <DependentUpon>SY_PLDH.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\SY_SCDATE_TH.asmx.cs">
+      <DependentUpon>SY_SCDATE_TH.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\SY_STAFF.asmx.cs">
+      <DependentUpon>SY_STAFF.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\SY_TYPE.asmx.cs">
+      <DependentUpon>SY_TYPE.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\SY_TYPEMX.asmx.cs">
+      <DependentUpon>SY_TYPEMX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\SY_TYPEMX_CHILD.asmx.cs">
+      <DependentUpon>SY_TYPEMX_CHILD.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\SY_XTBB.asmx.cs">
+      <DependentUpon>SY_XTBB.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\SY_YERACOUNT.asmx.cs">
+      <DependentUpon>SY_YERACOUNT.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\TM_CZR.asmx.cs">
+      <DependentUpon>TM_CZR.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\TM_TMINFO.asmx.cs">
+      <DependentUpon>TM_TMINFO.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\TM_ZFDCMX.asmx.cs">
+      <DependentUpon>TM_ZFDCMX.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\WS_MES_FB_QMP.asmx.cs">
+      <DependentUpon>WS_MES_FB_QMP.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\WS_MES_SY_LANGUAGE_RETURN.asmx.cs">
+      <DependentUpon>WS_MES_SY_LANGUAGE_RETURN.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\WS_MES_SY_LANGUAGE_YM.asmx.cs">
+      <DependentUpon>WS_MES_SY_LANGUAGE_YM.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\WS_MES_SY_RYGH.asmx.cs">
+      <DependentUpon>WS_MES_SY_RYGH.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\WS_MES_TM_GL.asmx.cs">
+      <DependentUpon>WS_MES_TM_GL.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\WS_MES_ZS_QJ_QJJL.asmx.cs">
+      <DependentUpon>WS_MES_ZS_QJ_QJJL.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\WS_MES_ZS_SY_CLPB.asmx.cs">
+      <DependentUpon>WS_MES_ZS_SY_CLPB.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\WS_MES_ZS_SY_JL.asmx.cs">
+      <DependentUpon>WS_MES_ZS_SY_JL.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\WS_MES_ZS_SY_KU.asmx.cs">
+      <DependentUpon>WS_MES_ZS_SY_KU.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MES\WS_MES_ZS_SY_TL.asmx.cs">
+      <DependentUpon>WS_MES_ZS_SY_TL.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MM\PurchaseOrder.asmx.cs">
+      <DependentUpon>PurchaseOrder.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MM\ScheduleRequisition.asmx.cs">
+      <DependentUpon>ScheduleRequisition.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Models\AccountModels.cs" />
+    <Compile Include="Models\DEVModels.cs" />
+    <Compile Include="Models\BCModels.cs" />
+    <Compile Include="Models\FIModels.cs" />
+    <Compile Include="Models\HelperModels.cs" />
+    <Compile Include="Models\HRModels.cs" />
+    <Compile Include="Models\KQModels.cs" />
+    <Compile Include="Models\LETRAModels.cs" />
+    <Compile Include="Models\LEModels.cs" />
+    <Compile Include="Models\MasterModels.cs" />
+    <Compile Include="Models\MESModels.cs" />
+    <Compile Include="Models\MMModels.cs" />
+    <Compile Include="Models\MSGModels.cs" />
+    <Compile Include="Models\PSModels.cs" />
+    <Compile Include="Models\PublicModel.cs" />
+    <Compile Include="Models\RMSModels.cs" />
+    <Compile Include="Models\OAModels.cs" />
+    <Compile Include="Models\PrintModels.cs" />
+    <Compile Include="Models\QMModels.cs" />
+    <Compile Include="Models\SettingModels.cs" />
+    <Compile Include="Models\SDModels.cs" />
+    <Compile Include="Models\SSOModels.cs" />
+    <Compile Include="MSG\MSGTYPE_WAY.asmx.cs">
+      <DependentUpon>MSGTYPE_WAY.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MSG\MSG_SENDWAY.asmx.cs">
+      <DependentUpon>MSG_SENDWAY.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MSG\MSG_TYPE.asmx.cs">
+      <DependentUpon>MSG_TYPE.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MSG\SEND_INFO.asmx.cs">
+      <DependentUpon>SEND_INFO.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MSG\SYS_STAFF.asmx.cs">
+      <DependentUpon>SYS_STAFF.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="MSG\SYS_SYSINFO.asmx.cs">
+      <DependentUpon>SYS_SYSINFO.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="OA\Authority.asmx.cs">
+      <DependentUpon>Authority.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="OA\Flow.asmx.cs">
+      <DependentUpon>Flow.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="OA\Pending.asmx.cs">
+      <DependentUpon>Pending.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Print\Layout.asmx.cs">
+      <DependentUpon>Layout.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PS\CNFH.asmx.cs">
+      <DependentUpon>CNFH.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PS\ComponentMove.asmx.cs">
+      <DependentUpon>ComponentMove.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PS\NetWork.asmx.cs">
+      <DependentUpon>NetWork.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="PS\ZPSFUG.asmx.cs">
+      <DependentUpon>ZPSFUG.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Public\PrintService.asmx.cs">
+      <DependentUpon>PrintService.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="QM\Ingredient.asmx.cs">
+      <DependentUpon>Ingredient.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="QM\QualityNotification.asmx.cs">
+      <DependentUpon>QualityNotification.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="QM\WS_QM_ZSL_QMFG_RFC.asmx.cs">
+      <DependentUpon>WS_QM_ZSL_QMFG_RFC.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RMS\Battery.asmx.cs">
+      <DependentUpon>Battery.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="RMS\Product.asmx.cs">
+      <DependentUpon>Product.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SD\Report.asmx.cs">
+      <DependentUpon>Report.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SD\SalesOrder.asmx.cs">
+      <DependentUpon>SalesOrder.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Setting\Version.asmx.cs">
+      <DependentUpon>Version.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SonlukRegex\Sonluk.asmx.cs">
+      <DependentUpon>Sonluk.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SSO\User.asmx.cs">
+      <DependentUpon>User.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SSO\UserToken.asmx.cs">
+      <DependentUpon>UserToken.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="SSO\WS_SSO_TOKEN_TOKENIDINFO.asmx.cs">
+      <DependentUpon>WS_SSO_TOKEN_TOKENIDINFO.asmx</DependentUpon>
+      <SubType>Component</SubType>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="BARCODE\SY_CODING.asmx" />
+    <Content Include="BC\WS_BC_DRF.asmx" />
+    <Content Include="CRM\COST_CBZX.asmx" />
+    <Content Include="CRM\COST_CJHDWD.asmx" />
+    <Content Include="CRM\COST_CLFHX.asmx" />
+    <Content Include="CRM\COST_CLFMX.asmx" />
+    <Content Include="CRM\COST_CLFMX_CLFHX.asmx" />
+    <Content Include="CRM\COST_CLFTT.asmx" />
+    <Content Include="CRM\COST_CLFTT_STAFF.asmx" />
+    <Content Include="CRM\COST_CP.asmx" />
+    <Content Include="CRM\COST_CPLX.asmx" />
+    <Content Include="CRM\COST_CXHD.asmx" />
+    <Content Include="CRM\COST_CXHDPGHZ.asmx" />
+    <Content Include="CRM\COST_CXHDPGQD.asmx" />
+    <Content Include="CRM\COST_CXHDTC.asmx" />
+    <Content Include="CRM\COST_CXY.asmx" />
+    <Content Include="CRM\COST_CXYGZ.asmx" />
+    <Content Include="CRM\COST_FI.asmx" />
+    <Content Include="CRM\COST_GGGS.asmx" />
+    <Content Include="CRM\COST_GSZCFS.asmx" />
+    <Content Include="CRM\COST_ITEM.asmx" />
+    <Content Include="CRM\COST_JXSHXDJMX.asmx" />
+    <Content Include="CRM\COST_JXSHXDJMX_COST.asmx" />
+    <Content Include="CRM\COST_JXSHXDJTT.asmx" />
+    <Content Include="CRM\COST_KADTDP.asmx" />
+    <Content Include="CRM\COST_KADTMX.asmx" />
+    <Content Include="CRM\COST_KADTTT.asmx" />
+    <Content Include="CRM\COST_KAHXDJMX.asmx" />
+    <Content Include="CRM\COST_KAHXDJTT.asmx" />
+    <Content Include="CRM\COST_KAHXZLMX.asmx" />
+    <Content Include="CRM\COST_KAHXZLMX_KAHXDJMX.asmx" />
+    <Content Include="CRM\COST_KAHXZLTT.asmx" />
+    <Content Include="CRM\COST_KATSCLMX.asmx" />
+    <Content Include="CRM\COST_KATSCLTT.asmx" />
+    <Content Include="CRM\COST_KAXS.asmx" />
+    <Content Include="CRM\COST_KAYEARCOST.asmx" />
+    <Content Include="CRM\COST_KAYEARCOST_KAHXDJMX.asmx" />
+    <Content Include="CRM\COST_KAYEARTT.asmx" />
+    <Content Include="CRM\COST_LKADTDP.asmx" />
+    <Content Include="CRM\COST_LKAEachYEAR.asmx" />
+    <Content Include="CRM\COST_LKAFYMXDT.asmx" />
+    <Content Include="CRM\COST_LKAFYMXTSCL.asmx" />
+    <Content Include="CRM\COST_LKAFYTT.asmx" />
+    <Content Include="CRM\COST_LKAHXDJMX.asmx" />
+    <Content Include="CRM\COST_LKAHXDJTT.asmx" />
+    <Content Include="CRM\COST_LKAHXZLMD.asmx" />
+    <Content Include="CRM\COST_LKAHXZLMX.asmx" />
+    <Content Include="CRM\COST_LKAHXZLMX_LKAHXDJMX.asmx" />
+    <Content Include="CRM\COST_LKAHXZLTT.asmx" />
+    <Content Include="CRM\COST_LKAPRODUCT.asmx" />
+    <Content Include="CRM\COST_LKAXS.asmx" />
+    <Content Include="CRM\COST_LKAYEARCOST.asmx" />
+    <Content Include="CRM\COST_LKAYEARCOST_LKAHXZLMX.asmx" />
+    <Content Include="CRM\COST_LKAYEARLIST.asmx" />
+    <Content Include="CRM\COST_LKAYEARMD.asmx" />
+    <Content Include="CRM\COST_LKAYEARTT.asmx" />
+    <Content Include="CRM\COST_LKAYEARXS.asmx" />
+    <Content Include="CRM\COST_MDBS.asmx" />
+    <Content Include="CRM\COST_MDBSHX.asmx" />
+    <Content Include="CRM\COST_MDBS_KAHXDJMX.asmx" />
+    <Content Include="CRM\COST_OTHER.asmx" />
+    <Content Include="CRM\COST_OTHER_KAHXDJMX.asmx" />
+    <Content Include="CRM\COST_PSF.asmx" />
+    <Content Include="CRM\COST_PSF_KAHXDJMX.asmx" />
+    <Content Include="CRM\COST_PUBLIC.asmx" />
+    <Content Include="CRM\COST_TS.asmx" />
+    <Content Include="CRM\COST_TSMX.asmx" />
+    <Content Include="CRM\COST_WDTC.asmx" />
+    <Content Include="CRM\COST_ZZFMX.asmx" />
+    <Content Include="CRM\COST_ZZFSJT.asmx" />
+    <Content Include="CRM\COST_ZZFTT.asmx" />
+    <Content Include="CRM\COST_ZZFTT_KAHXDJMX.asmx" />
+    <Content Include="CRM\COST_ZZFTT_LKAHXDJMX.asmx" />
+    <Content Include="CRM\CRM_DRF.asmx" />
+    <Content Include="CRM\DuiBiReport.asmx" />
+    <Content Include="CRM\HG_STAFFDICT.asmx" />
+    <Content Include="CRM\OA_OPINION.asmx" />
+    <Content Include="CRM\ORDER_SH.asmx" />
+    <Content Include="CRM\PRODUCT_HH.asmx" />
+    <Content Include="CRM\PRODUCT_KB.asmx" />
+    <Content Include="CRM\PRODUCT_KBMX.asmx" />
+    <Content Include="CRM\PRODUCT_PRODUCT_HH.asmx" />
+    <Content Include="CRM\QYJS_FILE.asmx" />
+    <Content Include="CRM\QYJS_MENU.asmx" />
+    <Content Include="CRM\WL_TT.asmx" />
+    <Content Include="EM\EM_MISSION.asmx" />
+    <Content Include="EM\FILE_PATH.asmx" />
+    <Content Include="EM\SY_DEVICEDETAILDOC.asmx" />
+    <Content Include="EM\SY_DEVICEQRJL.asmx" />
+    <Content Include="EM\SY_DEVICETYPE.asmx" />
+    <Content Include="EM\SY_DEVICE_CONTRACT.asmx" />
+    <Content Include="EM\SY_INFOREPORT.asmx" />
+    <Content Include="EM\SY_MANUAL.asmx" />
+    <Content Include="EM\SY_MANUALBB.asmx" />
+    <Content Include="EM\SY_MANUALPATH.asmx" />
+    <Content Include="EM\SY_PB.asmx" />
+    <Content Include="EM\SY_SBBHDEVICETYPE.asmx" />
+    <Content Include="EM\SY_SBBHMANUAL.asmx" />
+    <Content Include="EM\SY_SBBINDPB.asmx" />
+    <Content Include="EM\SY_STAFFIDBINDPB.asmx" />
+    <Content Include="EM\SY_STAFF_EMTYPE.asmx" />
+    <Content Include="EM\SY_XTBB.asmx" />
+    <Content Include="FICO\FM_ElectricInvoice.asmx" />
+    <Content Include="FIVES\CHECK_INFO.asmx">
+      <BrowseToURL>~/FIVES/CHECK_INFO.asmx</BrowseToURL>
+    </Content>
+    <Content Include="FIVES\CHECK_INFODETAIL.asmx" />
+    <Content Include="FIVES\STAFF_DEP.asmx" />
+    <Content Include="FIVES\SY_CHECKDETAILCATEGROY.asmx" />
+    <Content Include="FIVES\SY_CHECKDETAILS.asmx" />
+    <Content Include="FIVES\SY_CHECKGROUP.asmx" />
+    <Content Include="FIVES\SY_CHECKGROUP_DEPARTMENT.asmx" />
+    <Content Include="FIVES\SY_CHECKGROUP_STAFF.asmx" />
+    <Content Include="FIVES\SY_CHECKPOINT.asmx" />
+    <Content Include="FIVES\SY_CHECKPOINTCATEGROY.asmx" />
+    <Content Include="FIVES\SY_CHECKPOINT_CHECKDETAIL.asmx" />
+    <Content Include="FIVES\SY_CHECKPOINT_POINTCATEGROY.asmx" />
+    <Content Include="FIVES\SY_DEPTPUSHRY.asmx" />
+    <Content Include="FIVES\SY_DICT.asmx" />
+    <Content Include="FIVES\SY_POINTCATEGROY_DETAIL.asmx" />
+    <Content Include="FIVES\SY_PRINCIPALCATEGROY.asmx" />
+    <Content Include="FIVES\SY_RELATIONSHIPBIND.asmx" />
+    <Content Include="FIVES\SY_STAFF_DEP.asmx" />
+    <Content Include="FIVES\SY_STATION.asmx" />
+    <Content Include="FIVES\SY_TYPE.asmx" />
+    <Content Include="Account\Access.asmx" />
+    <Content Include="BC\BarCode.asmx" />
+    <Content Include="BC\User.asmx" />
+    <Content Include="BC\Enqueue.asmx" />
+    <Content Include="Content\images\logo-po.png" />
+    <Content Include="CRM\BC_CHTT.asmx" />
+    <Content Include="CRM\BC_CHTT_FAKE.asmx" />
+    <Content Include="CRM\BC_FXCH.asmx" />
+    <Content Include="CRM\BC_PMLIST.asmx" />
+    <Content Include="CRM\BF_BF.asmx" />
+    <Content Include="CRM\BF_BFJHMX.asmx" />
+    <Content Include="CRM\BF_BFQD.asmx" />
+    <Content Include="CRM\CRM_BF.asmx" />
+    <Content Include="CRM\CRM_HD.asmx" />
+    <Content Include="CRM\CRM_HG.asmx" />
+    <Content Include="CRM\CRM_KH.asmx" />
+    <Content Include="CRM\CRM_KQ.asmx" />
+    <Content Include="CRM\CRM_KQ_Report.asmx" />
+    <Content Include="CRM\CRM_Login.asmx" />
+    <Content Include="CRM\CRM_OA.asmx" />
+    <Content Include="CRM\CRM_PENDING.asmx" />
+    <Content Include="CRM\HD_NKAMD.asmx" />
+    <Content Include="CRM\HD_NKAXT.asmx" />
+    <Content Include="CRM\HD_ZDF.asmx" />
+    <Content Include="CRM\HD_ZYCXY.asmx" />
+    <Content Include="CRM\HG_BZGZSJ.asmx" />
+    <Content Include="CRM\HG_DEPT.asmx" />
+    <Content Include="CRM\HG_DICT.asmx" />
+    <Content Include="CRM\HG_DUTY.asmx" />
+    <Content Include="CRM\HG_KHLX.asmx" />
+    <Content Include="CRM\HG_KQDZ.asmx" />
+    <Content Include="CRM\HG_RIGHT.asmx" />
+    <Content Include="CRM\HG_RIGHTGROUP.asmx" />
+    <Content Include="CRM\HG_ROLE.asmx" />
+    <Content Include="CRM\HG_RYKQ.asmx" />
+    <Content Include="CRM\HG_STAFF.asmx" />
+    <Content Include="CRM\HG_STAFFDUTY.asmx" />
+    <Content Include="CRM\HG_STAFFKHLX.asmx" />
+    <Content Include="CRM\HG_TYPE.asmx" />
+    <Content Include="CRM\HG_WJJL.asmx" />
+    <Content Include="CRM\KH_BF.asmx" />
+    <Content Include="CRM\KH_DZ.asmx" />
+    <Content Include="CRM\KH_GROUP.asmx" />
+    <Content Include="CRM\KH_GROUP_KH.asmx" />
+    <Content Include="CRM\KH_GROUP_STAFF.asmx" />
+    <Content Include="CRM\KH_GROUP_XSQY.asmx" />
+    <Content Include="CRM\KH_GXQY.asmx" />
+    <Content Include="CRM\KH_HD.asmx" />
+    <Content Include="CRM\KH_HZHB.asmx" />
+    <Content Include="CRM\KH_KH.asmx" />
+    <Content Include="CRM\KH_KHBF.asmx" />
+    <Content Include="CRM\KH_KHQTXX.asmx" />
+    <Content Include="CRM\KH_KHXS.asmx" />
+    <Content Include="CRM\KH_KHZZ.asmx" />
+    <Content Include="CRM\KH_LXR.asmx" />
+    <Content Include="CRM\KH_XSYWJZ.asmx" />
+    <Content Include="CRM\KQ_CC.asmx" />
+    <Content Include="CRM\KQ_GZRL.asmx" />
+    <Content Include="CRM\KQ_GZRLMX.asmx" />
+    <Content Include="CRM\KQ_QD.asmx" />
+    <Content Include="CRM\KQ_YCKQSM.asmx" />
+    <Content Include="CRM\KQ_YGQJ.asmx" />
+    <Content Include="CRM\MSG_INVOICE.asmx" />
+    <Content Include="CRM\MSG_NOTICE.asmx" />
+    <Content Include="CRM\OA_TRANSMIT.asmx" />
+    <Content Include="CRM\ORDER_TT.asmx" />
+    <Content Include="CRM\PRODUCT_GROUP.asmx" />
+    <Content Include="CRM\PRODUCT_KHGROUP.asmx" />
+    <Content Include="CRM\PRODUCT_PRODUCT.asmx" />
+    <Content Include="CRM\PRODUCT_PRODUCTGROUP.asmx" />
+    <Content Include="CRM\PRODUCT_WARN.asmx" />
+    <Content Include="CRM\SAP_ORDER.asmx" />
+    <Content Include="CRM\SAP_Report.asmx" />
+    <Content Include="CRM\SYS_CS.asmx" />
+    <Content Include="CRM\WX_OPENID.asmx" />
+    <Content Include="DEV\Log.asmx" />
+    <Content Include="DEV\Table.asmx" />
+    <Content Include="HR\BOOK_BOOKINFO.asmx" />
+    <Content Include="HR\DA_DAINFO.asmx" />
+    <Content Include="HR\GS_LY.asmx" />
+    <Content Include="HR\PX_PXZT.asmx" />
+    <Content Include="HR\RY_RYINFO.asmx" />
+    <Content Include="HR\RY_RYINFO_RSDA.asmx" />
+    <Content Include="HR\SY_DEPT.asmx" />
+    <Content Include="HR\SY_DUTY.asmx" />
+    <Content Include="HR\SY_GS.asmx" />
+    <Content Include="HR\SY_TYPE.asmx" />
+    <Content Include="HR\SY_TYPEMX.asmx" />
+    <Content Include="HR\SY_ZJH.asmx" />
+    <Content Include="HR\WS_HR_ADMINISTRATION_DORM.asmx" />
+    <Content Include="HR\WS_HR_ADMINISTRATION_YHRY.asmx" />
+    <Content Include="HR\WS_HR_GS_GSSL.asmx" />
+    <Content Include="HR\WS_HR_KQ_BD.asmx" />
+    <Content Include="HR\WS_HR_KQ_BZ.asmx" />
+    <Content Include="HR\WS_HR_KQ_BZ_BDID.asmx" />
+    <Content Include="HR\WS_HR_KQ_DEPTID_FZID.asmx" />
+    <Content Include="HR\WS_HR_KQ_DEPTKQ.asmx" />
+    <Content Include="HR\WS_HR_KQ_GSKQ.asmx" />
+    <Content Include="HR\WS_HR_KQ_JQGL.asmx" />
+    <Content Include="HR\WS_HR_KQ_JQGLMX.asmx" />
+    <Content Include="HR\WS_HR_KQ_KQINFO.asmx" />
+    <Content Include="HR\WS_HR_KQ_PBFZ.asmx" />
+    <Content Include="HR\WS_HR_KQ_PBFZ_BZID.asmx" />
+    <Content Include="HR\WS_HR_KQ_QJ.asmx" />
+    <Content Include="HR\WS_HR_KQ_RYID_BZID.asmx" />
+    <Content Include="HR\WS_HR_KQ_WCDJ.asmx" />
+    <Content Include="HR\WS_HR_KQ_YCKQ.asmx" />
+    <Content Include="HR\WS_HR_ROLE_DEPT.asmx" />
+    <Content Include="HR\WS_HR_RY_BANKNO.asmx" />
+    <Content Include="HR\WS_HR_SY_CHANGEINFO.asmx" />
+    <Content Include="HR\WS_HR_SY_MYINFO.asmx" />
+    <Content Include="HR\WS_HR_XZGL_FFJL.asmx" />
+    <Content Include="HR\WS_HR_XZGL_FFJLMX.asmx" />
+    <Content Include="HR\WS_HR_XZGL_FFJLZD.asmx" />
+    <Content Include="HR\WS_HR_XZGL_FLDA.asmx" />
+    <Content Include="HR\WS_HR_XZGL_FLDATZ.asmx" />
+    <Content Include="HR\WS_HR_XZGL_FLDATZMX.asmx" />
+    <Content Include="HR\WS_HR_XZGL_FLFA.asmx" />
+    <Content Include="HR\WS_HR_XZGL_FLFAMX.asmx" />
+    <Content Include="HR\WS_HR_XZGL_JJFL_HEAD.asmx" />
+    <Content Include="HR\WS_HR_XZGL_JJFL_HEARNAME.asmx" />
+    <Content Include="HR\WS_HR_XZGL_JJFL_MX.asmx" />
+    <Content Include="HR\WS_HR_XZGL_KKGL.asmx" />
+    <Content Include="HR\WS_HR_XZGL_KKGLMX.asmx" />
+    <Content Include="HR\WS_HR_XZGL_MBGL.asmx" />
+    <Content Include="HR\WS_HR_XZGL_MBGLMX.asmx" />
+    <Content Include="HR\WS_HR_XZGL_XZDA.asmx" />
+    <Content Include="HR\WS_HR_XZGL_XZDA_GZLB.asmx" />
+    <Content Include="HR\WS_HR_XZGL_ZDGLGL.asmx" />
+    <Content Include="HR\WS_HR_XZGL_ZXFJKC.asmx" />
+    <Content Include="KQ\KQinfo.asmx" />
+    <Content Include="LE\TRA\Carrier.asmx" />
+    <Content Include="LE\TRA\City.asmx" />
+    <Content Include="LE\TRA\Complaint.asmx" />
+    <Content Include="LE\TRA\Destination.asmx" />
+    <Content Include="LE\TRA\Feedback.asmx" />
+    <Content Include="LE\TRA\Goods.asmx" />
+    <Content Include="LE\TRA\Package.asmx" />
+    <Content Include="LE\TRA\Price.asmx" />
+    <Content Include="LE\TRA\Receiver.asmx" />
+    <Content Include="LE\TRA\Route.asmx" />
+    <Content Include="LE\TRA\Sender.asmx" />
+    <Content Include="LE\TRA\Unit.asmx" />
+    <Content Include="Master\Customer.asmx" />
+    <Content Include="Global.asax" />
+    <Content Include="LE\TRA\ConsignmentNote.asmx" />
+    <Content Include="LE\OutboundDelivery.asmx" />
+    <Content Include="Master\Material.asmx" />
+    <Content Include="MES\BAT_PACKAGE.asmx" />
+    <Content Include="MES\BAT_QLTY.asmx" />
+    <Content Include="MES\BAT_REPORT.asmx" />
+    <Content Include="MES\BAT_SPECS.asmx" />
+    <Content Include="MES\BAT_SPECS_PERFOR.asmx" />
+    <Content Include="MES\BAT_SPECS_SAMP.asmx" />
+    <Content Include="MES\MES_FJ.asmx" />
+    <Content Include="MES\MES_Login.asmx" />
+    <Content Include="MES\MES_MM.asmx" />
+    <Content Include="MES\MES_SYNC.asmx" />
+    <Content Include="MES\MES_TPM.asmx" />
+    <Content Include="MES\MES_WLKCBS.asmx" />
+    <Content Include="MES\MM_CK.asmx" />
+    <Content Include="MES\PD_GD.asmx" />
+    <Content Include="MES\PD_GD_BOM.asmx" />
+    <Content Include="MES\PD_SCRW.asmx" />
+    <Content Include="MES\PD_TL.asmx" />
+    <Content Include="MES\PD_TLGL.asmx" />
+    <Content Include="MES\PD_TL_ERROR.asmx" />
+    <Content Include="MES\PMM_MOULD.asmx" />
+    <Content Include="MES\PMM_MTC.asmx" />
+    <Content Include="MES\PMM_QR.asmx" />
+    <Content Include="MES\PMM_STAFF.asmx" />
+    <Content Include="MES\PMM_SYS.asmx" />
+    <Content Include="MES\PUBLIC_FUNC.asmx" />
+    <Content Include="MES\RIGHT_ROLE.asmx" />
+    <Content Include="MES\ROLE_ASSEMBLE.asmx" />
+    <Content Include="MES\ROLE_CK.asmx" />
+    <Content Include="MES\ROLE_GC.asmx" />
+    <Content Include="MES\ROLE_GZZX.asmx" />
+    <Content Include="MES\ROLE_RY_ASSEMBLE.asmx" />
+    <Content Include="MES\ROLR_GZZX_GW.asmx" />
+    <Content Include="MES\SY_CHANGEINFO.asmx" />
+    <Content Include="MES\SY_DCXH_COUNT.asmx" />
+    <Content Include="MES\SY_GC.asmx" />
+    <Content Include="MES\SY_GZZX.asmx" />
+    <Content Include="MES\SY_GZZX_SBH.asmx" />
+    <Content Include="MES\SY_GZZX_SBH_WLLB.asmx" />
+    <Content Include="MES\SY_GZZX_WLLB.asmx" />
+    <Content Include="MES\SY_MACBB.asmx" />
+    <Content Include="MES\SY_MACHINEINFO.asmx" />
+    <Content Include="MES\SY_MATERIAL.asmx" />
+    <Content Include="MES\SY_MATERIAL_BZCOUNT.asmx" />
+    <Content Include="MES\SY_MATERIAL_GROUP.asmx" />
+    <Content Include="MES\SY_PFDH.asmx" />
+    <Content Include="MES\SY_PFDH_CHILD.asmx" />
+    <Content Include="MES\SY_PFDH_WL.asmx" />
+    <Content Include="MES\SY_PLDH.asmx" />
+    <Content Include="MES\SY_SCDATE_TH.asmx" />
+    <Content Include="MES\SY_STAFF.asmx" />
+    <Content Include="MES\SY_TYPE.asmx" />
+    <Content Include="MES\SY_TYPEMX.asmx" />
+    <Content Include="MES\SY_TYPEMX_CHILD.asmx" />
+    <Content Include="MES\SY_XTBB.asmx" />
+    <Content Include="MES\SY_YERACOUNT.asmx" />
+    <Content Include="MES\TM_CZR.asmx" />
+    <Content Include="MES\TM_TMINFO.asmx" />
+    <Content Include="MES\TM_ZFDCMX.asmx" />
+    <Content Include="MES\WS_MES_FB_QMP.asmx" />
+    <Content Include="MES\WS_MES_SY_LANGUAGE_RETURN.asmx" />
+    <Content Include="MES\WS_MES_SY_LANGUAGE_YM.asmx" />
+    <Content Include="MES\WS_MES_SY_RYGH.asmx" />
+    <Content Include="MES\WS_MES_TM_GL.asmx" />
+    <Content Include="MES\WS_MES_ZS_QJ_QJJL.asmx" />
+    <Content Include="MES\WS_MES_ZS_SY_CLPB.asmx" />
+    <Content Include="MES\WS_MES_ZS_SY_JL.asmx" />
+    <Content Include="MES\WS_MES_ZS_SY_KU.asmx" />
+    <Content Include="MES\WS_MES_ZS_SY_TL.asmx" />
+    <Content Include="MM\PurchaseOrder.asmx" />
+    <Content Include="MM\ScheduleRequisition.asmx" />
+    <Content Include="MSG\MSGTYPE_WAY.asmx" />
+    <Content Include="MSG\MSG_SENDWAY.asmx" />
+    <Content Include="MSG\MSG_TYPE.asmx" />
+    <Content Include="MSG\SEND_INFO.asmx" />
+    <Content Include="MSG\SYS_STAFF.asmx" />
+    <Content Include="MSG\SYS_SYSINFO.asmx" />
+    <Content Include="OA\Authority.asmx" />
+    <Content Include="OA\Flow.asmx" />
+    <Content Include="OA\Pending.asmx" />
+    <Content Include="Print\Layout.asmx" />
+    <Content Include="PS\CNFH.asmx" />
+    <Content Include="PS\ComponentMove.asmx" />
+    <Content Include="PS\NetWork.asmx" />
+    <Content Include="PS\ZPSFUG.asmx" />
+    <Content Include="Public\PrintService.asmx" />
+    <Content Include="QM\Ingredient.asmx" />
+    <Content Include="QM\QualityNotification.asmx" />
+    <Content Include="QM\WS_QM_ZSL_QMFG_RFC.asmx" />
+    <Content Include="RMS\Battery.asmx" />
+    <Content Include="RMS\Product.asmx" />
+    <Content Include="Scripts\layui\css\treeTable.css" />
+    <Content Include="Scripts\layui\font\iconfont.eot" />
+    <Content Include="Scripts\layui\font\iconfont.ttf" />
+    <Content Include="Scripts\layui\font\iconfont.woff" />
+    <Content Include="Scripts\layui\font\iconfont.woff2" />
+    <Content Include="Content\doc\Standard.json" />
+    <Content Include="Content\doc\系统名称（演示）\模块名称（演示）\功能名称（演示）.json" />
+    <Content Include="Content\doc\MES\PMM\DeleteStaff.json" />
+    <Content Include="Content\doc\MES\PMM\UpdateStaff.json" />
+    <Content Include="Content\doc\MES\PMM\ReadStaffs.json" />
+    <Content Include="Areas\Helper\Views\Web.config" />
+    <Content Include="Content\doc\Helper\Image\ReadImage.json" />
+    <Content Include="Content\doc\Helper\Excel\ReadExcelByData.json" />
+    <Content Include="Content\doc\Download.json" />
+    <Content Include="Content\doc\Helper\Crypt\Encrypt.json" />
+    <Content Include="Content\doc\Helper\Crypt\Decrypt.json" />
+    <Content Include="Content\doc\Helper\Image\ReadQRCode.json" />
+    <Content Include="Content\doc\Helper\Html\ReadTag.json" />
+    <Content Include="Content\doc\Helper\Html\ReadTag%28POST%29.json" />
+    <Content Include="Content\doc\CRM\OA\CreateFlow.json" />
+    <Content Include="Content\doc\CRM\OA\CreateFlows.json" />
+    <Content Include="Content\doc\CRM\OA\CreateFlow%28ByData%29.json" />
+    <Content Include="Content\doc\CRM\OA\ReadTemplate.json" />
+    <Content Include="Content\doc\Helper\Dic\ReadTypemxs.json" />
+    <Content Include="Areas\BARCODE\Views\Web.config" />
+    <Content Include="Content\doc\BARCODE\SYSTEM\Create.json" />
+    <Content Include="Content\doc\BARCODE\SYSTEM\CreateList.json" />
+    <Content Include="Content\doc\BARCODE\SYSTEM\ReadByParam.json" />
+    <Content Include="Content\doc\Helper\Image\CreateQRCode.json" />
+    <None Include="Scripts\_references.js" />
+    <Content Include="Scripts\layui\css\layui.css" />
+    <Content Include="Scripts\layui\css\layui.mobile.css" />
+    <Content Include="Scripts\layui\css\modules\code.css" />
+    <Content Include="Scripts\layui\css\modules\laydate\default\laydate.css" />
+    <Content Include="Scripts\layui\css\modules\layer\default\icon-ext.png" />
+    <Content Include="Scripts\layui\css\modules\layer\default\icon.png" />
+    <Content Include="Scripts\layui\css\modules\layer\default\layer.css" />
+    <Content Include="Scripts\layui\css\modules\layer\default\loading-0.gif" />
+    <Content Include="Scripts\layui\css\modules\layer\default\loading-1.gif" />
+    <Content Include="Scripts\layui\css\modules\layer\default\loading-2.gif" />
+    <Content Include="Scripts\layui\font\iconfont.svg" />
+    <Content Include="Scripts\layui\images\face\0.gif" />
+    <Content Include="Scripts\layui\images\face\1.gif" />
+    <Content Include="Scripts\layui\images\face\10.gif" />
+    <Content Include="Scripts\layui\images\face\11.gif" />
+    <Content Include="Scripts\layui\images\face\12.gif" />
+    <Content Include="Scripts\layui\images\face\13.gif" />
+    <Content Include="Scripts\layui\images\face\14.gif" />
+    <Content Include="Scripts\layui\images\face\15.gif" />
+    <Content Include="Scripts\layui\images\face\16.gif" />
+    <Content Include="Scripts\layui\images\face\17.gif" />
+    <Content Include="Scripts\layui\images\face\18.gif" />
+    <Content Include="Scripts\layui\images\face\19.gif" />
+    <Content Include="Scripts\layui\images\face\2.gif" />
+    <Content Include="Scripts\layui\images\face\20.gif" />
+    <Content Include="Scripts\layui\images\face\21.gif" />
+    <Content Include="Scripts\layui\images\face\22.gif" />
+    <Content Include="Scripts\layui\images\face\23.gif" />
+    <Content Include="Scripts\layui\images\face\24.gif" />
+    <Content Include="Scripts\layui\images\face\25.gif" />
+    <Content Include="Scripts\layui\images\face\26.gif" />
+    <Content Include="Scripts\layui\images\face\27.gif" />
+    <Content Include="Scripts\layui\images\face\28.gif" />
+    <Content Include="Scripts\layui\images\face\29.gif" />
+    <Content Include="Scripts\layui\images\face\3.gif" />
+    <Content Include="Scripts\layui\images\face\30.gif" />
+    <Content Include="Scripts\layui\images\face\31.gif" />
+    <Content Include="Scripts\layui\images\face\32.gif" />
+    <Content Include="Scripts\layui\images\face\33.gif" />
+    <Content Include="Scripts\layui\images\face\34.gif" />
+    <Content Include="Scripts\layui\images\face\35.gif" />
+    <Content Include="Scripts\layui\images\face\36.gif" />
+    <Content Include="Scripts\layui\images\face\37.gif" />
+    <Content Include="Scripts\layui\images\face\38.gif" />
+    <Content Include="Scripts\layui\images\face\39.gif" />
+    <Content Include="Scripts\layui\images\face\4.gif" />
+    <Content Include="Scripts\layui\images\face\40.gif" />
+    <Content Include="Scripts\layui\images\face\41.gif" />
+    <Content Include="Scripts\layui\images\face\42.gif" />
+    <Content Include="Scripts\layui\images\face\43.gif" />
+    <Content Include="Scripts\layui\images\face\44.gif" />
+    <Content Include="Scripts\layui\images\face\45.gif" />
+    <Content Include="Scripts\layui\images\face\46.gif" />
+    <Content Include="Scripts\layui\images\face\47.gif" />
+    <Content Include="Scripts\layui\images\face\48.gif" />
+    <Content Include="Scripts\layui\images\face\49.gif" />
+    <Content Include="Scripts\layui\images\face\5.gif" />
+    <Content Include="Scripts\layui\images\face\50.gif" />
+    <Content Include="Scripts\layui\images\face\51.gif" />
+    <Content Include="Scripts\layui\images\face\52.gif" />
+    <Content Include="Scripts\layui\images\face\53.gif" />
+    <Content Include="Scripts\layui\images\face\54.gif" />
+    <Content Include="Scripts\layui\images\face\55.gif" />
+    <Content Include="Scripts\layui\images\face\56.gif" />
+    <Content Include="Scripts\layui\images\face\57.gif" />
+    <Content Include="Scripts\layui\images\face\58.gif" />
+    <Content Include="Scripts\layui\images\face\59.gif" />
+    <Content Include="Scripts\layui\images\face\6.gif" />
+    <Content Include="Scripts\layui\images\face\60.gif" />
+    <Content Include="Scripts\layui\images\face\61.gif" />
+    <Content Include="Scripts\layui\images\face\62.gif" />
+    <Content Include="Scripts\layui\images\face\63.gif" />
+    <Content Include="Scripts\layui\images\face\64.gif" />
+    <Content Include="Scripts\layui\images\face\65.gif" />
+    <Content Include="Scripts\layui\images\face\66.gif" />
+    <Content Include="Scripts\layui\images\face\67.gif" />
+    <Content Include="Scripts\layui\images\face\68.gif" />
+    <Content Include="Scripts\layui\images\face\69.gif" />
+    <Content Include="Scripts\layui\images\face\7.gif" />
+    <Content Include="Scripts\layui\images\face\70.gif" />
+    <Content Include="Scripts\layui\images\face\71.gif" />
+    <Content Include="Scripts\layui\images\face\8.gif" />
+    <Content Include="Scripts\layui\images\face\9.gif" />
+    <Content Include="Scripts\layui\layui.all.js" />
+    <Content Include="Scripts\layui\treeTable.js" />
+    <Content Include="SD\Report.asmx" />
+    <Content Include="SD\SalesOrder.asmx" />
+    <Content Include="Setting\Version.asmx" />
+    <Content Include="sonluk.ico" />
+    <Content Include="SonlukRegex\Sonluk.asmx" />
+    <Content Include="SSO\User.asmx" />
+    <Content Include="SSO\UserToken.asmx" />
+    <Content Include="SSO\WS_SSO_TOKEN_TOKENIDINFO.asmx" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\Doc\Specification.cshtml" />
+    <Content Include="Views\Doc\Index.cshtml" />
+    <Content Include="Views\Doc\Code.cshtml" />
+    <Content Include="Views\Home\SignIn.cshtml" />
+    <Content Include="Views\Doc\ApiData.cshtml" />
+    <Content Include="Views\Doc\OAInfor.cshtml" />
+    <Content Include="Views\Shared\Partial_WS.cshtml" />
+    <Content Include="Views\Doc\WebService.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Areas\BARCODE\Models\" />
+    <Folder Include="Areas\BARCODE\Views\Shared\" />
+    <Folder Include="Areas\BC\Models\" />
+    <Folder Include="Areas\BC\Views\Shared\" />
+    <Folder Include="Areas\CRM\Models\" />
+    <Folder Include="Areas\CRM\Views\Shared\" />
+    <Folder Include="Areas\Helper\Views\Shared\" />
+    <Folder Include="Areas\MES\Models\" />
+    <Folder Include="Areas\MES\Views\Shared\" />
+    <Folder Include="Areas\PS\Models\" />
+    <Folder Include="Areas\PS\Views\Shared\" />
+    <Folder Include="Areas\SSO\Models\" />
+    <Folder Include="Areas\SSO\Views\Shared\" />
+    <Folder Include="Content\doc\Helper\Insights\" />
+    <Folder Include="Content\doc\Helper\Msg\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sonluk.BusinessLogic\Sonluk.BusinessLogic.csproj">
+      <Project>{fac1ed24-2132-4e5a-9fa8-fbef5ef88c64}</Project>
+      <Name>Sonluk.BusinessLogic</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sonluk.DataAccess.KQ\Sonluk.DataAccess.KQ.csproj">
+      <Project>{ddd635fa-5bf0-4e6e-8e02-583269f5de77}</Project>
+      <Name>Sonluk.DataAccess.KQ</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sonluk.DataAccess.LE.TRA\Sonluk.DataAccess.LE.TRA.csproj">
+      <Project>{c36e9a19-dea7-49a1-8ec6-c06a08210f18}</Project>
+      <Name>Sonluk.DataAccess.LE.TRA</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sonluk.DataAccess.OA\Sonluk.DataAccess.OA.csproj">
+      <Project>{cb263856-d97e-4670-ae0a-2a87e9511fb1}</Project>
+      <Name>Sonluk.DataAccess.OA</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sonluk.DataAccess.Oracle\Sonluk.DataAccess.Oracle.csproj">
+      <Project>{1c90108d-3313-4656-9b9f-da8218b94980}</Project>
+      <Name>Sonluk.DataAccess.Oracle</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sonluk.DataAccess.RMS\Sonluk.DataAccess.RMS.csproj">
+      <Project>{e1c269cf-e5a0-481e-8659-513c549bf398}</Project>
+      <Name>Sonluk.DataAccess.RMS</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sonluk.DataAccess.SAP\Sonluk.DataAccess.SAP.csproj">
+      <Project>{fe5537e4-71ee-4ee9-b680-7a9918a76fb8}</Project>
+      <Name>Sonluk.DataAccess.SAP</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sonluk.DataAccess.SQLServer\Sonluk.DataAccess.SQLServer.csproj">
+      <Project>{c91ddc60-9ab8-4c6b-b7f9-cbb6361a49ba}</Project>
+      <Name>Sonluk.DataAccess.SQLServer</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sonluk.DataAccess.Utility\Sonluk.DataAccess.Utility.csproj">
+      <Project>{49944ca9-1f47-4255-a5ec-23d61811a112}</Project>
+      <Name>Sonluk.DataAccess.Utility</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sonluk.Entities\Sonluk.Entities.csproj">
+      <Project>{55640e0b-7959-42c3-8c14-cfd3aafb46c4}</Project>
+      <Name>Sonluk.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sonluk.Utility\Sonluk.Utility.csproj">
+      <Project>{7de29cdc-77e2-48ad-8494-a2785e1833de}</Project>
+      <Name>Sonluk.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="OperationManual\供应商交货管理系统2.7-操作手册-供应商-3.2.pdf" />
+    <Content Include="OperationManual\供应商交货管理系统2.7-操作手册-生产计划员-1.0.pdf" />
+    <Content Include="OperationManual\供应商交货管理系统2.7-操作手册-生产计划管理员-1.0.pdf" />
+    <Content Include="OperationManual\供应商交货管理系统2.7-操作手册-采购员-1.2.pdf" />
+    <Content Include="Config\AppSettings.config" />
+    <Content Include="Config\ConnectionStrings.config" />
+    <Content Include="Config\_AppSettings.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Config\_ConnectionStrings.config" />
+    <Content Include="Areas\BC\Views\Web.config" />
+    <Content Include="Areas\SSO\Views\Web.config" />
+    <Content Include="Areas\PS\Views\Web.config" />
+    <Content Include="ClassDiagram1.cd" />
+    <Content Include="Areas\CRM\Views\Web.config" />
+    <Content Include="Areas\MES\Views\Web.config" />
+    <None Include="Properties\PublishProfiles\API.pubxml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Templet\PurchaseOrderListPurchaser.xls" />
+    <Content Include="Templet\PurchaseOrderListVendor.xls" />
+    <Content Include="Templet\PurchaseOrderListUpdateDeliveryDate.xls" />
+    <Content Include="Templet\PurchaseOrderListSync.xls" />
+    <Content Include="Templet\OutboundDelivery.xls" />
+    <Content Include="Templet\ConsignmentNote.xls" />
+    <Content Include="Templet\ConsignmentNoteReport.xls" />
+    <Content Include="Templet\ConsignmentNoteComplaint.xls" />
+    <Content Include="Templet\ConsignmentNoteComplaintReport.xls" />
+    <Content Include="Templet\ConsignmentNoteFeedback.xls" />
+    <Content Include="Templet\ConsignmentNoteFeedbackReport.xls" />
+    <Content Include="Templet\book10.xls" />
+    <Content Include="Templet\ConsignmentNoteMsg.xls" />
+    <Content Include="Templet\ConsignmentNoteCost.xls" />
+    <Content Include="Templet\PurchaseOrderListPlanExport.xls" />
+    <Content Include="Views\Doc\List.cshtml" />
+    <Content Include="Views\Doc\Explain.cshtml" />
+    <Content Include="Views\Shared\_Doc.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <COMReference Include="MSXML2">
+      <Guid>{F5078F18-C551-11D3-89B9-0000F81FE221}</Guid>
+      <VersionMajor>3</VersionMajor>
+      <VersionMinor>0</VersionMinor>
+      <Lcid>0</Lcid>
+      <WrapperTool>tlbimp</WrapperTool>
+      <Isolated>False</Isolated>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </COMReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>False</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>20597</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:20597/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

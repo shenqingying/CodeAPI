@@ -1,0 +1,35 @@
+﻿using Sonluk.Entities.MES;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+
+namespace Sonluk.IDataAccess.MES
+{
+    public interface ITM_TMINFO
+    {
+        SELECT_MES_TM_TMINFO_BYTM SELECT_BYTM(MES_TM_TMINFO model, int LB);
+        MES_RETURN INSERT(MES_TM_TMINFO model);
+        MES_RETURN INSERT_FB(MES_TM_TMINFO model);
+        SELECT_MES_TM_TMINFO_BYTM SELECT_TL_LAST(string RWBH);
+        SELECT_MES_TM_TMINFO_BYTM SELECT(MES_TM_TMINFO model, int CXLB);
+        MES_RETURN DELETE(string TM);
+        MES_RETURN DELETE_LOG(MES_TM_TMINFO_DELETE_IN model);
+        SELECT_MES_TM_TMINFO_BYTM SELECT_GLSELECT(DataTable dt);
+        SELECT_MES_TM_TMINFO_BYTM SELECT_GLSELECT_ALL(DataTable dt);
+        MES_RETURN UPDATE(MES_TM_TMINFO model, int LB);
+        SELECT_MES_TM_TMINFO_BYTM SELECT_BY_STAFFID(MES_TM_TMINFO model, int CXLB);
+        SELECT_MES_TM_TMINFO_BYTM SELECT_BY_KCDDLimit(MES_TM_TMINFO model);
+        MES_RETURN INSERT_OLD(MES_TM_TMINFO model);
+        SELECT_MES_TM_TMINFO_BYTM SELECT_ALL(MES_TM_TMINFO model, int CXLB);
+        MES_TM_TMINFO_SELECT_TL_GL_CC SELECT_TL_GL_CC(MES_TM_TMINFO model);
+        MES_RETURN SELECT_TM_LASTTIME(MES_TM_TMINFO model);
+        SELECT_MES_TM_TMINFO_BYTM SELECT_KC_TT(MES_TM_TMINFO model);
+        SELECT_MES_TM_TMINFO_BYTM SELECT_GLSELECT_ALL_ZS_TL(DataTable dt);
+        SELECT_MES_TM_TMINFO_BYTM SELECT_LIST(DataTable dt, MES_TM_TMINFO model, int LB);
+        SELECT_MES_TM_TMINFO_BYTM SELECT_LIST_datatable(DataTable dt, MES_TM_TMINFO model);
+        SELECT_MES_TM_TMINFO_BYTM SELECT_LB(MES_TM_TMINFO model);
+        MES_RETURN UPDATE_CF(MES_TM_TMINFO model, string NTM);
+    }
+}

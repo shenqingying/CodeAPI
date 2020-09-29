@@ -1,0 +1,28 @@
+{
+  "inQuery": {
+    "message": "发给服务器的消息（演示）"
+  },
+  "inBody": {
+    "token": "string|想要解析的token（演示）",
+    "code": "int|发送的代码（演示）"
+  },
+  "outBody": {
+    "id": "int|返回的id（演示）",
+    "object": {
+      "a": "any|结构体中的a（演示）",
+      "b": {
+        "c_1": "any|b中的c_1（演示）",
+        "c_2": "any|b中的c_2（演示）"
+      }
+    },
+    "uid": "string|返回的uid（演示）"
+  },
+  "title": "非标准API（演示）",
+  "method": "PUT（演示）",
+  "sms": "该示例的Json文本包含了所有key，以供参考（演示）",
+  "lms": "该示例的Json文本包含了所有key，以供参考。（演示）",
+  "creator": "xur（演示）",
+  "address": "/d/demo（演示）",
+  "unique": "true",
+  "date": "2020/5/6"
+}

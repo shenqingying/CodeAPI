@@ -1,0 +1,29 @@
+﻿{
+  "inQuery": {
+    "ptoken": "【标准地址栏参数】发送请求时附带的token，优先验证并无视请求头的token"
+  },
+  "inHeader": {
+    "Sonluk-Token": "【标准额外头参数】发送请求时附带的token，如果地址栏token不存在则验证该token"
+  },
+  "inBody": {},
+  "outHeader": {},
+  "outBody": {
+    "data": "any|【标准主体参数】返回数据",
+    "success": "bool|【标准主体参数】返回是否成功",
+    "type": "string|【标准主体参数】返回所有消息中最严重的状态",
+    "messages": [
+      {
+        "code": "string|【标准主体参数】返回消息代码",
+        "supply": "List|【标准主体参数】用于完善返回消息内容，作为响应参数时为空值",
+        "type": "string|【标准主体参数】返回消息类型：S（成功，无信息），I（成功，带信息），W（警告，带信息），E（失败，带信息）",
+        "message": "string|【标准主体参数】返回消息内容"
+      }
+    ]
+  },
+  "sms": "该请求为标准格式，大部分请求都遵循此格式",
+  "lms": "该请求为标准格式，大部分请求都遵循此格式！",
+  "method": "GET 或 POST",
+  "date": "2020/4/17 12:00",
+  "title": "标准请求格式",
+  "temp": {}
+}

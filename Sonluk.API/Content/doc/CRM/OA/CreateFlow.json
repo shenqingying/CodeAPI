@@ -1,0 +1,18 @@
+{
+  "inQuery": {
+    "code": "模板号",
+    "id": "查询数据的id"
+  },
+  "outBody": {
+    "ID": "int|",
+    "Success": "bool|",
+    "Key": "string|",
+    "Value": "string|",
+    "Status": "int|"
+  },
+  "sms": "通过ID查询数据并发起流程",
+  "lms": "通过ID查询数据并发起流程。",
+  "creator": "sqy",
+  "method": "GET",
+  "date": "2020/5/19 11:30"
+}

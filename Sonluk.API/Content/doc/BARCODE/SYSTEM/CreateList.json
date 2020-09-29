@@ -1,0 +1,29 @@
+{
+  "inBody": {
+    "BARCODE": "string|条形码",
+    "DESCRIPTION": "string|描述",
+    "PP": "int|品牌",
+    "CPZL": "int|产品种类",
+    "XH": "int|型号",
+    "QUANTITY": "int|数量",
+    "BZXS": "int|包装形式",
+    "BZSL": "string|包装数量",
+    "SERIES": "int|产品系列",
+    "VERSION": "string|版本",
+    "YWY": "string|业务员",
+    "SQR": "string|申请人",
+    "BEGINNING": "int|是否期初导入数据",
+    "PIPECODE": "string|五位流水码",
+    "BEIZ": "string|备注",
+    "ISACTIVE": "int|状态",
+    "CJR": "int|创建人",
+    "CJSJ": "string|创建时间",
+    "XGR": "int|修改人",
+    "XGSJ": "string|修改时间"
+  },
+  "sms": "导入期初数据创建条形码",
+  "lms": "导入期初数据创建条形码创建条形码。",
+  "creator": "sqy",
+  "method": "POST",
+  "date": "2020/6/8 16:20"
+}

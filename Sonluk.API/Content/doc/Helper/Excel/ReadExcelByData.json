@@ -1,0 +1,18 @@
+﻿{
+    "inBody": {
+        "data": "List&lt;string&gt;|总数据",
+        "dataName": "List&lt;string&gt;|需要使用的数据名",
+        "title": [ { "int": "string|列名" } ],
+        "sep": "char|分隔符，默认为“|”",
+        "sepChild": "char|分隔符，默认为“,”",
+        "sheetTitle": "string|表名",
+        "downloadName": "string|下载的文件名"
+    },
+    "outBody": { 
+        "data": "FileStream|下载文件流"
+    },
+    "sms": "生成Excel",
+    "lms": "生成Excel",
+    "creator": "xur",
+    "unique": true
+}

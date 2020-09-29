@@ -1,0 +1,11 @@
+{
+  "inQuery": {
+    "code": "模板号"
+  },
+  "outBody": "string|XML模板字符串",
+  "sms": "通过模板号查询XML模板",
+  "lms": "通过模板号查询XML模板。",
+  "creator": "xur",
+  "method": "GET",
+  "date": "2020/5/22 10:30"
+}

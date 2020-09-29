@@ -1,0 +1,410 @@
+﻿@{
+    Layout = "~/Views/Shared/_Doc.cshtml";
+}
+
+<div class="sl-block layui-form">
+    <h1>API日志</h1>
+    <input type="checkbox" lay-skin="switch" lay-filter="activate" id="activate" lay-text="启用|停用">
+</div>
+
+<div class="sl-block layui-form">
+    <div class="layui-inline">
+        <div class="layui-input-inline" style="width:100px;">
+            <select id="searchType0">
+                <option value="DateCreate">调用时间</option>
+                <option value="DateModify">响应时间</option>
+            </select>
+        </div>
+        <div class="layui-input-inline">
+            <input type="text" id="searchDateS" class="layui-input" placeholder="起始日期">
+        </div>
+        <div class="layui-input-inline">
+            &nbsp;—&nbsp;
+        </div>
+        <div class="layui-input-inline">
+            <input type="text" id="searchDateE" class="layui-input" placeholder="结束日期">
+        </div>
+        <div class="layui-btn-group">
+            <button class="layui-btn" onclick="setSearchHour()">最近一小时</button>
+            <button class="layui-btn" onclick="setSearchDay()">当天</button>
+            <button class="layui-btn" onclick="setSearchWeek()">本周</button>
+            <button class="layui-btn" onclick="setSearchMonth()">当月</button>
+            <button class="layui-btn" onclick="setSearchYear()">今年</button>
+            <button class="layui-btn" onclick="setSearchEmpty()">清空</button>
+        </div>
+    </div>
+</div>
+
+<div class="sl-block">
+    <table class="layui-table layui-hide" id="apiRecord" lay-filter="apiRecord"></table>
+</div>
+
+<div class="sl-block">
+    <a class="layui-btn" href="@ViewBag.back">返回列表</a>
+</div>
+
+<script type="text/html" id="toolbar">
+    <button class="layui-btn" onclick="reset()">重置查询</button>
+    <button class="layui-btn" onclick="tableReload()">条件查询</button>
+    <div class="layui-input-inline">
+        <input type="text" id="searchCondition1" class="layui-input" placeholder="查询条件1" disabled>
+    </div>
+    <div class="layui-input-inline" style="width:100px;">
+        <select id="searchType1" lay-filter="searchType1"></select>
+    </div>
+    <div class="layui-input-inline">
+        <input type="text" id="searchCondition2" class="layui-input" placeholder="查询条件2" disabled>
+    </div>
+    <div class="layui-input-inline" style="width:100px;">
+        <select id="searchType2" lay-filter="searchType2"></select>
+    </div>
+    <div class="layui-input-inline">
+        <input type="text" id="searchCondition3" class="layui-input" placeholder="查询条件3" disabled>
+    </div>
+    <div class="layui-input-inline" style="width:100px;">
+        <select id="searchType3" lay-filter="searchType3"></select>
+    </div>
+</script>
+
+<script type="text/html" id="apiRecordContent">
+    {{# if(d.Content)  {   }}
+    <a class="layui-btn layui-btn-sm" lay-event="readBody" style="cursor:pointer;">查看</a>
+    {{# } else { }}
+    <a>无</a>
+    {{# } }}
+</script>
+
+<script type="text/html" id="apiErrorContent">
+    {{# if(d.ErrorTag != null && d.ErrorTag != "")  {   }}
+    <a class="layui-btn layui-btn-sm" lay-event="readError" style="cursor:pointer;">查看</a>
+    {{# } else { }}
+    <a>无</a>
+    {{# } }}
+</script>
+
+@section scripts{
+    <script>
+        var $ = layui.jquery;
+        var cache = {
+            condition: {
+                select: ["", "", "", ""],
+                input: ["", "", "", ""]
+            },
+            list: {
+                ID: "ID",
+                ApiName: "API名称",
+                ApiAdress: "API地址",
+                Operation: "方法",
+                Host: "主机地址",
+                Client: "用户地址",
+                StaffID: "用户ID",
+                Content: "请求主体",
+                Access: "登陆情况",
+                Status: "响应结果",
+                ErrorTag: "错误概要"
+            }
+        };
+
+        reset();
+
+
+        var aa = new Date().getTime();
+        var bb = new Date(aa);
+
+        layui.laydate.render({ elem: '#searchDateS', type: 'datetime' });
+        layui.laydate.render({ elem: '#searchDateE', type: 'datetime' });
+
+        layui.form.on('switch(activate)', function (data) {
+            var index = layui.layer.load(1, { shade: 0.3 });
+            $.ajax({
+                url: "../API/Helper/Insights/UpdateConfig?ptoken=" + getCookies("token") + "&Name=ApiRequest_Action&Value=" + (data.elem.checked ? "1" : "0"),
+                type: "GET",
+                success: function (data) {
+                    if (data.success) layui.layer.msg("设置成功！");
+                    else layui.layer.msg("设置失败！");
+                }
+            }).always(function () { switchInit(function () { layui.layer.close(index); }); });
+        });
+        layui.form.on('select(searchType1)', function (data) {
+            if (data.value == "") typeListInit(1, cache.condition.select[1]);
+            else typeListInit(1, data.value, true);
+        });
+        layui.form.on('select(searchType2)', function (data) {
+            if (data.value == "") typeListInit(2, cache.condition.select[2]);
+            else typeListInit(2, data.value, true);
+
+        });
+        layui.form.on('select(searchType3)', function (data) {
+            if (data.value == "") typeListInit(3, cache.condition.select[3]);
+            else typeListInit(3, data.value, true);
+        });
+        layui.table.on('tool(apiRecord)', function (obj) {
+            var apiRecordBody = document.createElement("div");
+            apiRecordBody.setAttribute("style", "padding:20px;");
+            if (obj.event === 'readBody') {
+                apiRecordBody.innerText = obj.data.Content;
+                layui.layer.open({
+                    skin: 'select_out',
+                    type: 1,
+                    shade: 0,
+                    btn: ['关闭'],
+                    area: ['800px', '500px'],
+                    content: apiRecordBody.outerHTML,
+                    title: "请求主体（" + obj.data.DateCreate.split("T")[0] + " " + obj.data.DateCreate.split("T")[1].split(".")[0] +"）",
+                    moveOut: true,
+                });
+            }
+            else if (obj.event === 'readError') {
+                var ErrorTable = document.createElement("table");
+                ErrorTable.setAttribute("id", "apiRecordErrorMsgs");
+                ErrorTable.setAttribute("lay-filter", "apiRecordErrorMsgs");
+                apiRecordBody.append(ErrorTable);
+                layui.layer.open({
+                    skin: 'select_out',
+                    type: 1,
+                    shade: 0,
+                    btn: ['关闭'],
+                    area: ['800px', '500px'],
+                    content: apiRecordBody.outerHTML,
+                    title: obj.data.ID + " 详细错误（" + obj.data.DateCreate.split("T")[0] + " " + obj.data.DateCreate.split("T")[1].split(".")[0] + "）",
+                    moveOut: true,
+                    success: function () {
+                        var loading = layui.layer.load(1, { shade: 0.3 });
+                        $.ajax({
+                            url: "../API/Helper/Insights/ReadApiRequestErrorMsgs?ptoken=" + getCookies("token"),
+                            data: JSON.stringify({ AID : obj.data.ID }),
+                            type: "POST",
+                            contentType: "application/json",
+                            success: function (data) {
+                                if (data.success) {
+                                    layui.table.render({
+                                        elem: "#apiRecordErrorMsgs",
+                                        data: data.data,
+                                        height:'340',
+                                        cols: [[
+                                            { field: 'ID', title: 'ID', width: 90, align: "center"},
+                                            { field: 'Code', title: '消息代码', width: 90, align: "center"},
+                                            { field: 'Type', title: '消息类型', width: 90, align: "center" },
+                                            { field: 'Message', title: '消息内容', minWidth: 90 },
+                                        ]]
+                                    });
+                                }
+                            }
+                        }).always(function () { layui.layer.close(loading); });
+                    }
+                });
+            }
+        });
+
+        function typeListInit(typeNum, condition, remove) {
+            typeNum = typeNum || 0;
+            condition = condition || "";
+            if (remove === undefined) remove = false;
+            if (typeNum != 0 && condition != "") {
+                if (remove) {
+                    for (var i = 1; i < cache.condition.select.length; i++) {
+                        cache.condition["c" + i][cache.condition.select[typeNum]] = true;
+                        if (i != typeNum) cache.condition["c" + i][condition] = false;
+                    }
+                    cache.condition.select[typeNum] = condition;
+                }
+                else {
+                    for (var i = 1; i < cache.condition.select.length; i++) {
+                        if (i != typeNum) cache.condition["c" + i][condition] = true;
+                        cache.condition.select[typeNum] = "";
+                    }
+                }
+            }
+            for (var i = 1; i < cache.condition.select.length; i++) {
+                if (document.getElementById("searchType" + i).childNodes.length != 0) document.getElementById("searchType" + i).innerHTML = "";
+                document.getElementById("searchType" + i).options.add(new Option("全部", ""));
+                for (let key in cache.condition["c" + i]) {
+                    if (cache.condition["c" + i][key]) document.getElementById("searchType" + i).options.add(new Option(cache.list[key], key));
+                }
+                document.getElementById("searchType" + i).value = cache.condition.select[i];
+                if (cache.condition.select[i] != "") $("#searchCondition" + i).removeAttr("disabled");
+                else $("#searchCondition" + i).attr("disabled", "");
+            }
+            layui.form.render();
+        }
+
+        function reset() {
+            switchInit();
+            setSearchHour();
+            for (let key in cache.condition.input) {
+                cache.condition.input[key] = "";
+            }
+            for (let key in cache.condition.select) {
+                cache.condition.select[key] = "";
+            }
+            for (var i = 1; i < cache.condition.select.length; i++) {
+                cache.condition["c" + i] = {
+                    ID: true,
+                    ApiName: true,
+                    ApiAdress: true,
+                    Operation: true,
+                    Host: true,
+                    Client: true,
+                    StaffID: true,
+                    Content: true,
+                    Access: true,
+                    Status: true,
+                    ErrorTag: true
+                };
+            }
+            tableInit();
+            tableReload();
+            layui.form.render();
+        };
+
+        function tableInit(input) {
+            input = input || [];
+            layui.table.render({
+                elem: '#apiRecord',
+                height: 'full-380',
+                data: input,
+                toolbar: '#toolbar',
+                cols: [[
+                    { field: 'ID', title: 'ID', width: 80, align: "center", fixed:'left' },
+                    { field: 'ApiName', title: 'API名称', width: 240, fixed: 'left' },
+                    { field: 'ApiAdress', title: 'API地址', minWidth: 300 },
+                    { field: 'Operation', title: '方法', width: 80, align: "center" },
+                    { field: 'Host', title: '主机地址', width: 140, align: "center" },
+                    { field: 'Client', title: '用户地址', width: 140, align: "center" },
+                    { field: 'StaffID', title: '用户ID', width: 80, align: "center" },
+                    { title: '请求主体', width: 90, align: "center", templet: '#apiRecordContent' },
+                    { title: '调用时间', width: 170, align: "center", templet: '<div>{{d.DateCreate.split("T")[0] + " " + d.DateCreate.split("T")[1].split(".")[0]}}</div>' },
+                    { title: '响应时间', width: 170, align: "center", templet: '<div>{{d.DateModify.split("T")[0] + " " + d.DateModify.split("T")[1].split(".")[0]}}</div>' },
+                    { field: 'Access', title: '登陆情况', width: 110, align: "center" },
+                    { field: 'Status', title: '响应结果', width: 100, align: "center" },
+                    { field: 'ErrorTag', title: '错误概要', width: 90, fixed: 'right' },
+                    { title: '详细错误', width: 90, align: "center", templet: '#apiErrorContent', fixed: 'right' }
+                ]],
+                page: {
+                    limit: 10,
+                    limits: [10, 20, 30, 50, 100, 200, 300, 500, 1000]
+                }
+            });
+            typeListInit();
+            inputInit();
+        }
+
+        function tableReload() {
+            var model = {};
+            if ($("#searchType1").val() != "") model[$("#searchType1").val()] = $("#searchCondition1").val();
+            if ($("#searchType2").val() != "") model[$("#searchType2").val()] = $("#searchCondition2").val();
+            if ($("#searchType3").val() != "") model[$("#searchType3").val()] = $("#searchCondition3").val();
+            model[$("#searchType0").val()] = $("#searchDateS").val();
+            model[$("#searchType0").val() + "E"] = $("#searchDateE").val();
+            var index = layui.layer.load(1, { shade: 0.3 });
+            $.ajax({
+                url: "../API/Helper/Insights/ReadApiRequests?ptoken=" + getCookies("token"),
+                data: JSON.stringify(model),
+                type: "POST",
+                contentType: "application/json",
+                success: function (data) {
+                    if (data.success) {
+                        tableInit(data.data);
+                    }
+                }
+            }).always(function () { layui.layer.close(index) });
+        };
+
+        function inputInit() {
+            for (var i = 1; i < cache.condition.input.length; i++) {
+                $("#searchCondition" + i).val(cache.condition.input[i]);
+            }
+            $("#searchCondition1").on("change", function () {
+                cache.condition.input[1] = $("#searchCondition1").val();
+            });
+            $("#searchCondition2").on("change", function () {
+                cache.condition.input[2] = $("#searchCondition2").val();
+            });
+            $("#searchCondition3").on("change", function () {
+                cache.condition.input[3] = $("#searchCondition3").val();
+            });
+        }
+
+        function switchInit(callback) {
+            callback = callback || function () { };
+            $.ajax({
+                url: "../API/Helper/Insights/ReadConfig?ptoken=" + getCookies("token") + "&Name=ApiRequest_Action",
+                type: "GET",
+                success: function (data) {
+                    if (data.success) {
+                        if (data.data.Value == 1) $("#activate").attr("checked","");
+                        else $("#activate").removeAttr("checked");
+                    }
+                    else {
+                        layui.layer.msg("未查询到API日志状态！");
+                    }
+                    layui.form.render();
+                }
+            }).always(function () { callback(); });
+        }
+
+        function getCookies(cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        };
+
+        function now(date, hour, min, sec) {
+            date = date || new Date();
+            var month = date.getMonth() + 1;
+            var day = date.getDate();
+            hour = hour || date.getHours();
+            min = min || date.getMinutes();
+            sec = sec || date.getSeconds();
+            return date.getFullYear() + "-" + (month < 10 ? "0" + month : month) + "-" + (day < 10 ? "0" + day : day) + " " + (hour < 10 ? "0" + hour : hour) + ":" + (min < 10 ? "0" + min : min) + ":" + (sec < 10 ? "0" + sec : sec);
+        }
+
+        function setSearchEmpty() {
+            $("#searchDateS").val("");
+            $("#searchDateE").val("");
+        }
+        function setSearchHour() {
+            var eDate = new Date();
+            var sDate = new Date(eDate.getTime() - 60 * 60 * 1000);
+            $("#searchDateS").val(now(sDate));
+            $("#searchDateE").val(now(eDate));
+        }
+        function setSearchDay() {
+            var sDate = new Date();
+            var eDate = new Date(sDate.getTime() + 24 * 60 * 60 * 1000);
+            $("#searchDateS").val(now(sDate, "0", "0", "0"));
+            $("#searchDateE").val(now(eDate, "0", "0", "0"));
+        }
+        function setSearchWeek() {
+            var date = new Date();
+            var sDate = new Date(date.getTime() - 24 * 60 * 60 * 1000 * (date.getDay() - 1));
+            var eDate = new Date(date.getTime() - 24 * 60 * 60 * 1000 * (date.getDay() - 8));
+            $("#searchDateS").val(now(sDate, "0", "0", "0"));
+            $("#searchDateE").val(now(eDate, "0", "0", "0"));
+        }
+        function setSearchMonth() {
+            var date = new Date();
+            var sDate = new Date(date.getFullYear(), date.getMonth());
+            var eDate = new Date(date.getFullYear(), date.getMonth() + 1);
+            $("#searchDateS").val(now(sDate));
+            $("#searchDateE").val(now(eDate));
+        }
+        function setSearchYear() {
+            var date = new Date();
+            var sDate = new Date(date.getFullYear(), 0);
+            var eDate = new Date(date.getFullYear() + 1, 0);
+            $("#searchDateS").val(now(sDate));
+            $("#searchDateE").val(now(eDate));
+        }
+    </script>
+}

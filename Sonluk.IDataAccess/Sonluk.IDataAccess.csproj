@@ -1,0 +1,482 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{55A86883-8648-4A5A-92D9-2ED9FABDF9AA}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sonluk.IDataAccess</RootNamespace>
+    <AssemblyName>Sonluk.IDataAccess</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BARCODE\ISY_CODING.cs" />
+    <Compile Include="BC\IDRF.cs" />
+    <Compile Include="CRM\ICOST_CBZX.cs" />
+    <Compile Include="CRM\ICOST_CJHDWD.cs" />
+    <Compile Include="CRM\ICOST_CLFHX.cs" />
+    <Compile Include="CRM\ICOST_CLFMX.cs" />
+    <Compile Include="CRM\ICOST_CLFMX_CLFHX.cs" />
+    <Compile Include="CRM\ICOST_CLFTT.cs" />
+    <Compile Include="CRM\ICOST_CLFTT_STAFF.cs" />
+    <Compile Include="CRM\ICOST_CP.cs" />
+    <Compile Include="CRM\ICOST_CPLX.cs" />
+    <Compile Include="CRM\ICOST_CXHD.cs" />
+    <Compile Include="CRM\ICOST_CXHDPGHZ.cs" />
+    <Compile Include="CRM\ICOST_CXHDPGQD.cs" />
+    <Compile Include="CRM\ICOST_CXHDTC.cs" />
+    <Compile Include="CRM\ICOST_CXY.cs" />
+    <Compile Include="CRM\ICOST_CXYGZ.cs" />
+    <Compile Include="CRM\ICOST_FI.cs" />
+    <Compile Include="CRM\ICOST_GGGS.cs" />
+    <Compile Include="CRM\ICOST_GSZCFS.cs" />
+    <Compile Include="CRM\ICOST_ITEM.cs" />
+    <Compile Include="CRM\ICOST_JXSHXDJMX.cs" />
+    <Compile Include="CRM\ICOST_JXSHXDJMX_COST.cs" />
+    <Compile Include="CRM\ICOST_JXSHXDJTT.cs" />
+    <Compile Include="CRM\ICOST_KADTDP.cs" />
+    <Compile Include="CRM\ICOST_KADTMX.cs" />
+    <Compile Include="CRM\ICOST_KADTTT.cs" />
+    <Compile Include="CRM\ICOST_KAHXDJMX.cs" />
+    <Compile Include="CRM\ICOST_KAHXDJTT.cs" />
+    <Compile Include="CRM\ICOST_KAHXZLMX.cs" />
+    <Compile Include="CRM\ICOST_KAHXZLMX_KAHXDJMX.cs" />
+    <Compile Include="CRM\ICOST_KAHXZLTT.cs" />
+    <Compile Include="CRM\ICOST_KATSCLMX.cs" />
+    <Compile Include="CRM\ICOST_KATSCLTT.cs" />
+    <Compile Include="CRM\ICOST_KAXS.cs" />
+    <Compile Include="CRM\ICOST_KAYEARCOST.cs" />
+    <Compile Include="CRM\ICOST_KAYEARCOST_KAHXDJMX.cs" />
+    <Compile Include="CRM\ICOST_KAYEARTT.cs" />
+    <Compile Include="CRM\ICOST_LKADTDP.cs" />
+    <Compile Include="CRM\ICOST_LKAEachYEAR.cs" />
+    <Compile Include="CRM\ICOST_LKAFYMXDT.cs" />
+    <Compile Include="CRM\ICOST_LKAFYMXTSCL.cs" />
+    <Compile Include="CRM\ICOST_LKAFYTT.cs" />
+    <Compile Include="CRM\ICOST_LKAHXDJMX.cs" />
+    <Compile Include="CRM\ICOST_LKAHXDJTT.cs" />
+    <Compile Include="CRM\ICOST_LKAHXZLMD.cs" />
+    <Compile Include="CRM\ICOST_LKAHXZLMX.cs" />
+    <Compile Include="CRM\ICOST_LKAHXZLMX_LKAHXDJMX.cs" />
+    <Compile Include="CRM\ICOST_LKAHXZLTT.cs" />
+    <Compile Include="CRM\ICOST_LKAXS.cs" />
+    <Compile Include="CRM\ICOST_LKAPRODUCT.cs" />
+    <Compile Include="CRM\ICOST_LKAYEARCOST.cs" />
+    <Compile Include="CRM\ICOST_LKAYEARCOST_LKAHXZLMX.cs" />
+    <Compile Include="CRM\ICOST_LKAYEARLIST.cs" />
+    <Compile Include="CRM\ICOST_LKAYEARMD.cs" />
+    <Compile Include="CRM\ICOST_LKAYEARTT.cs" />
+    <Compile Include="CRM\ICOST_LKAYEARXS.cs" />
+    <Compile Include="CRM\ICOST_MDBS.cs" />
+    <Compile Include="CRM\ICOST_MDBSHX.cs" />
+    <Compile Include="CRM\ICOST_MDBS_KAHXDJMX.cs" />
+    <Compile Include="CRM\ICOST_OTHER.cs" />
+    <Compile Include="CRM\ICOST_OTHER_KAHXDJMX.cs" />
+    <Compile Include="CRM\ICOST_PSF.cs" />
+    <Compile Include="CRM\ICOST_PSF_KAHXDJMX.cs" />
+    <Compile Include="CRM\ICOST_TS.cs" />
+    <Compile Include="CRM\ICOST_TSMX.cs" />
+    <Compile Include="CRM\ICOST_WDTC.cs" />
+    <Compile Include="CRM\ICOST_ZZFMX.cs" />
+    <Compile Include="CRM\ICOST_ZZFSJT.cs" />
+    <Compile Include="CRM\ICOST_ZZFTT.cs" />
+    <Compile Include="CRM\ICOST_ZZFTT_KAHXDJMX.cs" />
+    <Compile Include="CRM\ICOST_ZZFTT_LKAHXDJMX.cs" />
+    <Compile Include="CRM\IDuiBiReport.cs" />
+    <Compile Include="CRM\IHG_STAFFDICT.cs" />
+    <Compile Include="CRM\IOA_OPINION.cs" />
+    <Compile Include="CRM\IORDER_SH.cs" />
+    <Compile Include="CRM\IPRODUCT_KB.cs" />
+    <Compile Include="CRM\IPRODUCT_KBMX.cs" />
+    <Compile Include="CRM\IPRODUCT_PRODUCT_HH.cs" />
+    <Compile Include="CRM\IQYJS_FILE.cs" />
+    <Compile Include="CRM\IQYJS_MENU.cs" />
+    <Compile Include="CRM\IPRODUCT_HH.cs" />
+    <Compile Include="CRM\IWL_TT.cs" />
+    <Compile Include="EM\IEM_MISSION.cs" />
+    <Compile Include="EM\IFILE_PATH.cs" />
+    <Compile Include="EM\ISY_BINDINGDEVICE.cs" />
+    <Compile Include="EM\ISY_DEVICEDETAILDOC.cs" />
+    <Compile Include="EM\ISY_DEVICEQRJL.cs" />
+    <Compile Include="EM\ISY_DEVICETYPE.cs" />
+    <Compile Include="EM\ISY_DEVICE_CONTRACT.cs" />
+    <Compile Include="EM\ISY_INFOREPORT.cs" />
+    <Compile Include="EM\ISY_MANUAL.cs" />
+    <Compile Include="EM\ISY_MANUALBB.cs" />
+    <Compile Include="EM\ISY_MANUALPATH.cs" />
+    <Compile Include="EM\ISY_PB.cs" />
+    <Compile Include="EM\ISY_SBBHDEVICETYPE.cs" />
+    <Compile Include="EM\ISY_SBBHMANUAL.cs" />
+    <Compile Include="EM\ISY_SBBINDPB.cs" />
+    <Compile Include="EM\ISY_STAFFIDBINDPB.cs" />
+    <Compile Include="EM\ISY_STAFF_EMTYPE.cs" />
+    <Compile Include="EM\ISY_XTBB.cs" />
+    <Compile Include="FICO\IFM_ElectricInvoice.cs" />
+    <Compile Include="FIVES\ICHECK_INFO.cs" />
+    <Compile Include="FIVES\ICHECK_INFODETAIL.cs" />
+    <Compile Include="FIVES\ISTAFF_DEP.cs" />
+    <Compile Include="FIVES\ISY_CHECKDETAILCATEGROY.cs" />
+    <Compile Include="FIVES\ISY_CHECKDETAILS.cs" />
+    <Compile Include="FIVES\ISY_CHECKGROUP.cs" />
+    <Compile Include="FIVES\ISY_CHECKGROUP_DEPARTMENT.cs" />
+    <Compile Include="FIVES\ISY_CHECKGROUP_STAFF.cs" />
+    <Compile Include="FIVES\ISY_CHECKPOINT.cs" />
+    <Compile Include="FIVES\ISY_CHECKPOINTCATEGROY.cs" />
+    <Compile Include="FIVES\ISY_CHECKPOINT_CHECKDETAIL.cs" />
+    <Compile Include="FIVES\ISY_CHECKPOINT_POINTCATEGROY.cs" />
+    <Compile Include="FIVES\ISY_DEPTPUSHRY.cs" />
+    <Compile Include="FIVES\ISY_DICT.cs" />
+    <Compile Include="FIVES\ISY_POINTCATEGROYDETAIL.cs" />
+    <Compile Include="FIVES\ISY_PRINCIPALCATEGROY.cs" />
+    <Compile Include="FIVES\ISY_RELATIONSHIPBIND.cs" />
+    <Compile Include="FIVES\ISY_STAFF_DEP.cs" />
+    <Compile Include="FIVES\ISY_STATION.cs" />
+    <Compile Include="FIVES\ISY_TYPE.cs" />
+    <Compile Include="Account\IAccess.cs" />
+    <Compile Include="Account\IAuthorization.cs" />
+    <Compile Include="Account\IPurchaser.cs" />
+    <Compile Include="Account\IVendor.cs" />
+    <Compile Include="BC\IBarCode.cs" />
+    <Compile Include="CRM\IBC_CHTT.cs" />
+    <Compile Include="CRM\IBC_CHTT_FAKE.cs" />
+    <Compile Include="CRM\IBC_FXCH.cs" />
+    <Compile Include="CRM\IBC_PMLIST.cs" />
+    <Compile Include="CRM\IBF_BFDJ.cs" />
+    <Compile Include="CRM\IBF_BFJH.cs" />
+    <Compile Include="CRM\IBF_BFJHMX.cs" />
+    <Compile Include="CRM\IBF_BFQD.cs" />
+    <Compile Include="CRM\ICRM_BF.cs" />
+    <Compile Include="CRM\ICRM_HD.cs" />
+    <Compile Include="CRM\ICRM_HG.cs" />
+    <Compile Include="CRM\ICRM_KH.cs" />
+    <Compile Include="CRM\ICRM_KQ.cs" />
+    <Compile Include="CRM\ICRM_KQ_Report.cs" />
+    <Compile Include="CRM\ICRM_Login.cs" />
+    <Compile Include="CRM\ICRM_OA.cs" />
+    <Compile Include="CRM\ICRM_OA_FLOW.cs" />
+    <Compile Include="CRM\ICRM_PENDING.cs" />
+    <Compile Include="CRM\IHD_NKAMDMX.cs" />
+    <Compile Include="CRM\IHD_NKAMDTT.cs" />
+    <Compile Include="CRM\IHD_NKAXTMX.cs" />
+    <Compile Include="CRM\IHD_NKAXTTT.cs" />
+    <Compile Include="CRM\IHD_ZDF.cs" />
+    <Compile Include="CRM\IHD_ZYCXYMX.cs" />
+    <Compile Include="CRM\IHD_ZYCXYTT.cs" />
+    <Compile Include="CRM\IHG_BZGZSJ.cs" />
+    <Compile Include="CRM\IHG_DEPT.cs" />
+    <Compile Include="CRM\IHG_DICT.cs" />
+    <Compile Include="CRM\IHG_DUTY.cs" />
+    <Compile Include="CRM\IHG_KHLX.cs" />
+    <Compile Include="CRM\IHG_KQDZ.cs" />
+    <Compile Include="CRM\IHG_RIGHT.cs" />
+    <Compile Include="CRM\IHG_RIGHTGROUP.cs" />
+    <Compile Include="CRM\IHG_ROLE.cs" />
+    <Compile Include="CRM\IHG_RYKQ.cs" />
+    <Compile Include="CRM\IHG_STAFF.cs" />
+    <Compile Include="CRM\IHG_STAFFDUTY.cs" />
+    <Compile Include="CRM\IHG_STAFFKHLX.cs" />
+    <Compile Include="CRM\IHG_TYPE.cs" />
+    <Compile Include="CRM\IHG_WJJL.cs" />
+    <Compile Include="CRM\IKH_BF.cs" />
+    <Compile Include="CRM\IKH_DZ.cs" />
+    <Compile Include="CRM\IKH_GROUP.cs" />
+    <Compile Include="CRM\IKH_GROUP_KH.cs" />
+    <Compile Include="CRM\IKH_GROUP_STAFF.cs" />
+    <Compile Include="CRM\IKH_GROUP_XSQY.cs" />
+    <Compile Include="CRM\IKH_GXQY.cs" />
+    <Compile Include="CRM\IKH_HD.cs" />
+    <Compile Include="CRM\IKH_HZHB.cs" />
+    <Compile Include="CRM\IKH_HZHB_SAP.cs" />
+    <Compile Include="CRM\IKH_KH.cs" />
+    <Compile Include="CRM\IKH_KHBF.cs" />
+    <Compile Include="CRM\IKH_KHQTXX.cs" />
+    <Compile Include="CRM\IKH_KHXS.cs" />
+    <Compile Include="CRM\IKH_KHZZ.cs" />
+    <Compile Include="CRM\IKH_LXR.cs" />
+    <Compile Include="CRM\IKH_XSQYSJ.cs" />
+    <Compile Include="CRM\IKH_XSYWJZ.cs" />
+    <Compile Include="CRM\IKQ_CC.cs" />
+    <Compile Include="CRM\IKQ_GZRL.cs" />
+    <Compile Include="CRM\IKQ_GZRLMX.cs" />
+    <Compile Include="CRM\IKQ_QD.cs" />
+    <Compile Include="CRM\IKQ_YCKQSM.cs" />
+    <Compile Include="CRM\IKQ_YGQJ.cs" />
+    <Compile Include="CRM\IMSG_INVOICE.cs" />
+    <Compile Include="CRM\IMSG_NOTICE.cs" />
+    <Compile Include="CRM\IOA_TRANSMIT.cs" />
+    <Compile Include="CRM\ISAP_ORDER.cs" />
+    <Compile Include="CRM\IORDER_TT.cs" />
+    <Compile Include="CRM\IPRODUCT_GROUP.cs" />
+    <Compile Include="CRM\IPRODUCT_KHGROUP.cs" />
+    <Compile Include="CRM\IPRODUCT_PRODUCT.cs" />
+    <Compile Include="CRM\IPRODUCT_PRODUCTGROUP.cs" />
+    <Compile Include="CRM\IPRODUCT_WARN.cs" />
+    <Compile Include="CRM\ISAP_Report.cs" />
+    <Compile Include="CRM\ISYS_CS.cs" />
+    <Compile Include="CRM\IWX_OPENID.cs" />
+    <Compile Include="DEV\ITable.cs" />
+    <Compile Include="BC\IUser.cs" />
+    <Compile Include="BC\IEnqueue.cs" />
+    <Compile Include="FI\ICompany.cs" />
+    <Compile Include="Helper\IInsights_ApiRequest.cs" />
+    <Compile Include="Helper\IInsights_Config.cs" />
+    <Compile Include="HR\IADMINISTRATION_DORM.cs" />
+    <Compile Include="HR\IADMINISTRATION_YHRY.cs" />
+    <Compile Include="HR\IBOOK_BOOKINFO.cs" />
+    <Compile Include="HR\IDA_DAINFO.cs" />
+    <Compile Include="HR\IGS_GSSL.cs" />
+    <Compile Include="HR\IGS_LY.cs" />
+    <Compile Include="HR\IKQ_DEPTID_FZID.cs" />
+    <Compile Include="HR\IKQ_GSKQ.cs" />
+    <Compile Include="HR\IKQ_PBFZ.cs" />
+    <Compile Include="HR\IKQ_PBFZ_BZID.cs" />
+    <Compile Include="HR\IKQ_QJ.cs" />
+    <Compile Include="HR\IKQ_RYID_BZID.cs" />
+    <Compile Include="HR\IKQ_WCDJ.cs" />
+    <Compile Include="HR\IKQ_YCKQ.cs" />
+    <Compile Include="HR\IPX_PXZT.cs" />
+    <Compile Include="HR\IKQ_BD.cs" />
+    <Compile Include="HR\IKQ_BZ.cs" />
+    <Compile Include="HR\IKQ_BZ_BDID.cs" />
+    <Compile Include="HR\IKQ_DEPTKQ.cs" />
+    <Compile Include="HR\IKQ_JQGLMX.cs" />
+    <Compile Include="HR\IKQ_JQGL.cs" />
+    <Compile Include="HR\IKQ_KQINFO.cs" />
+    <Compile Include="HR\IROLE_DEPT.cs" />
+    <Compile Include="HR\IRY_BANKNO.cs" />
+    <Compile Include="HR\IRY_RYINFO.cs" />
+    <Compile Include="HR\IRY_RYINFO_RSDA.cs" />
+    <Compile Include="HR\ISY_CHANGEINFO.cs" />
+    <Compile Include="HR\ISY_DEPT.cs" />
+    <Compile Include="HR\ISY_DUTY.cs" />
+    <Compile Include="HR\ISY_GS.cs" />
+    <Compile Include="HR\ISY_MYINFO.cs" />
+    <Compile Include="HR\ISY_TYPE.cs" />
+    <Compile Include="HR\ISY_TYPEMX.cs" />
+    <Compile Include="HR\ISY_ZJH.cs" />
+    <Compile Include="HR\IXZGL_FFJL.cs" />
+    <Compile Include="HR\IXZGL_FFJLMX.cs" />
+    <Compile Include="HR\IXZGL_FFJLZD.cs" />
+    <Compile Include="HR\IXZGL_FLDA.cs" />
+    <Compile Include="HR\IXZGL_FLDATZ.cs" />
+    <Compile Include="HR\IXZGL_FLDATZMX.cs" />
+    <Compile Include="HR\IXZGL_FLFA.cs" />
+    <Compile Include="HR\IXZGL_FLFAMX.cs" />
+    <Compile Include="HR\IXZGL_JJFL_HEAD.cs" />
+    <Compile Include="HR\IXZGL_JJFL_HEARNAME.cs" />
+    <Compile Include="HR\IXZGL_JJFL_MX.cs" />
+    <Compile Include="HR\IXZGL_KKGL.cs" />
+    <Compile Include="HR\IXZGL_KKGLMX.cs" />
+    <Compile Include="HR\IXZGL_MBGL.cs" />
+    <Compile Include="HR\IXZGL_MBGLMX.cs" />
+    <Compile Include="HR\IXZGL_TAX_TAXSLMX.cs" />
+    <Compile Include="HR\IXZGL_XZDA.cs" />
+    <Compile Include="HR\IXZGL_XZDA_GZLB.cs" />
+    <Compile Include="HR\IXZGL_ZXFJKC.cs" />
+    <Compile Include="KQ\IKQinfo.cs" />
+    <Compile Include="LE\TRA\IPrice.cs" />
+    <Compile Include="LE\TRA\IRoute.cs" />
+    <Compile Include="LE\TRA\IDestination.cs" />
+    <Compile Include="LE\TRA\ICarrier.cs" />
+    <Compile Include="LE\TRA\ICity.cs" />
+    <Compile Include="LE\TRA\IFeedbackItem.cs" />
+    <Compile Include="LE\TRA\IComplaintItem.cs" />
+    <Compile Include="LE\TRA\IConsignmentNoteItem.cs" />
+    <Compile Include="LE\TRA\IComplaint.cs" />
+    <Compile Include="LE\TRA\IFeedback.cs" />
+    <Compile Include="LE\TRA\IPackage.cs" />
+    <Compile Include="LE\TRA\IGoods.cs" />
+    <Compile Include="LE\TRA\IReceiver.cs" />
+    <Compile Include="LE\TRA\IScreen.cs" />
+    <Compile Include="LE\TRA\ISender.cs" />
+    <Compile Include="LE\TRA\IUnit.cs" />
+    <Compile Include="MES\IBAT_PACKAGE.cs" />
+    <Compile Include="MES\IBAT_QLTY.cs" />
+    <Compile Include="MES\IBAT_QLTY_STAFF.cs" />
+    <Compile Include="MES\IBAT_QLTY_TMARK.cs" />
+    <Compile Include="MES\IBAT_REPORT.cs" />
+    <Compile Include="MES\IBAT_SPECS.cs" />
+    <Compile Include="MES\IBAT_SPECS_PERFOR.cs" />
+    <Compile Include="MES\IBAT_SPECS_SAMP.cs" />
+    <Compile Include="MES\IFB_QMP.cs" />
+    <Compile Include="MES\IMES_MM.cs" />
+    <Compile Include="MES\IMES_PLDH.cs" />
+    <Compile Include="MES\IMES_PP.cs" />
+    <Compile Include="MES\IMES_ROLE.cs" />
+    <Compile Include="MES\IMES_SYNC.cs" />
+    <Compile Include="MES\IMES_TPM.cs" />
+    <Compile Include="MES\IMM_CK.cs" />
+    <Compile Include="MES\IPD_GD.cs" />
+    <Compile Include="MES\IPD_GD_BOM.cs" />
+    <Compile Include="MES\IPD_SCRW.cs" />
+    <Compile Include="MES\IPD_TL.cs" />
+    <Compile Include="MES\IPD_TL_ERROR.cs" />
+    <Compile Include="MES\IPMM_MOULD.cs" />
+    <Compile Include="MES\IPMM_MTC.cs" />
+    <Compile Include="MES\IPMM_MTC_CAVE.cs" />
+    <Compile Include="MES\IPMM_MTC_REP.cs" />
+    <Compile Include="MES\IPMM_QR.cs" />
+    <Compile Include="MES\IPMM_STAFF.cs" />
+    <Compile Include="MES\IPMM_SYS.cs" />
+    <Compile Include="MES\IPUBLIC_FUNC.cs" />
+    <Compile Include="MES\IRIGHT_ROLE.cs" />
+    <Compile Include="MES\IROLE_ASSEMBLE.cs" />
+    <Compile Include="MES\IROLE_CK.cs" />
+    <Compile Include="MES\IROLE_GC.cs" />
+    <Compile Include="MES\IROLE_GZZX.cs" />
+    <Compile Include="MES\IROLE_RY_ASSEMBLE.cs" />
+    <Compile Include="MES\IROLR_GZZX_GW.cs" />
+    <Compile Include="MES\ISY_CHANGEINFO.cs" />
+    <Compile Include="MES\ISY_DCXH_COUNT.cs" />
+    <Compile Include="MES\ISY_EXCEPTION.cs" />
+    <Compile Include="MES\ISY_GC.cs" />
+    <Compile Include="MES\ISY_GZZX.cs" />
+    <Compile Include="MES\ISY_GZZX_SBH.cs" />
+    <Compile Include="MES\ISY_GZZX_SBH_WLLB.cs" />
+    <Compile Include="MES\ISY_GZZX_WLLB.cs" />
+    <Compile Include="MES\ISY_LANGUAGE_RETURN.cs" />
+    <Compile Include="MES\ISY_LANGUAGE_YM.cs" />
+    <Compile Include="MES\ISY_MACBB.cs" />
+    <Compile Include="MES\ISY_MACHINEINFO.cs" />
+    <Compile Include="MES\ISY_MATERIAL.cs" />
+    <Compile Include="MES\ISY_MATERIAL_BZCOUNT.cs" />
+    <Compile Include="MES\ISY_MATERIAL_GROUP.cs" />
+    <Compile Include="MES\ISY_PFDH.cs" />
+    <Compile Include="MES\ISY_PFDH_CHILD.cs" />
+    <Compile Include="MES\ISY_PFDH_WL.cs" />
+    <Compile Include="MES\ISY_PLDH.cs" />
+    <Compile Include="MES\ISY_PLDH_PH.cs" />
+    <Compile Include="MES\ISY_RYGH.cs" />
+    <Compile Include="MES\ISY_SCDATE_TH.cs" />
+    <Compile Include="MES\ISY_STAFF.cs" />
+    <Compile Include="MES\ISY_SYSCS.cs" />
+    <Compile Include="MES\ISY_TPM_SYNC.cs" />
+    <Compile Include="MES\ISY_TYPE.cs" />
+    <Compile Include="MES\ISY_TYPEMX.cs" />
+    <Compile Include="MES\ISY_TYPEMX_CHILD.cs" />
+    <Compile Include="MES\ISY_XTBB.cs" />
+    <Compile Include="MES\ISY_YERACOUNT.cs" />
+    <Compile Include="MES\ITM_CZR.cs" />
+    <Compile Include="MES\ITM_GL.cs" />
+    <Compile Include="MES\ITM_TMINFO.cs" />
+    <Compile Include="MES\ITM_WLPZ.cs" />
+    <Compile Include="MES\ITM_ZFDCMX.cs" />
+    <Compile Include="HR\IXZGL_ZDGLGL.cs" />
+    <Compile Include="MES\IZS_QJ_QJJL.cs" />
+    <Compile Include="MES\IZS_SY_CLPB.cs" />
+    <Compile Include="MES\IZS_SY_JL.cs" />
+    <Compile Include="MES\IZS_SY_KU.cs" />
+    <Compile Include="MES\IZS_SY_TL.cs" />
+    <Compile Include="MM\IMATERIALINFO.cs" />
+    <Compile Include="MSG\IMSGTYPE_WAY.cs" />
+    <Compile Include="MSG\IMSG_SENDWAY.cs" />
+    <Compile Include="MSG\IMSG_TYPE.cs" />
+    <Compile Include="MSG\ISEND_INFO.cs" />
+    <Compile Include="MSG\ISYS_STAFF.cs" />
+    <Compile Include="MSG\ISYS_SYSINFO.cs" />
+    <Compile Include="OA\IBPM.cs" />
+    <Compile Include="Master\ICustomer.cs" />
+    <Compile Include="FI\ITax.cs" />
+    <Compile Include="LE\TRA\IConsignmentNote.cs" />
+    <Compile Include="LE\IOutboundDelivery.cs" />
+    <Compile Include="Master\IMaterial.cs" />
+    <Compile Include="MM\IPurchaseOrder.cs" />
+    <Compile Include="MM\IPurchasingGroup.cs" />
+    <Compile Include="MM\IScheduleRequisition.cs" />
+    <Compile Include="Master\IVendor.cs" />
+    <Compile Include="OA\IAffair.cs" />
+    <Compile Include="OA\IAuthority.cs" />
+    <Compile Include="OA\ICRM_FLOW.cs" />
+    <Compile Include="OA\IFlow.cs" />
+    <Compile Include="OA\IMessage.cs" />
+    <Compile Include="Print\IControl.cs" />
+    <Compile Include="Print\ILayout.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PS\ICNFH.cs" />
+    <Compile Include="PS\IComponentMove.cs" />
+    <Compile Include="PS\INetWork.cs" />
+    <Compile Include="QM\IIngredient.cs" />
+    <Compile Include="QM\IQualityNotification.cs" />
+    <Compile Include="QM\IZSL_QMFG_RFC.cs" />
+    <Compile Include="RMS\IProduct.cs" />
+    <Compile Include="SAP\IZBCFUN.cs" />
+    <Compile Include="SAP\IZPSFUG.cs" />
+    <Compile Include="SD\ICLIENTINFO.cs" />
+    <Compile Include="SD\IReport.cs" />
+    <Compile Include="SD\ISalesOrder.cs" />
+    <Compile Include="SonlukRegex\ISonluk.cs" />
+    <Compile Include="SSO\IAuthorization.cs" />
+    <Compile Include="SSO\ITOKEN_TOKENIDINFO.cs" />
+    <Compile Include="SSO\IUser.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\Sonluk.Entities\Sonluk.Entities.csproj">
+      <Project>{55640e0b-7959-42c3-8c14-cfd3aafb46c4}</Project>
+      <Name>Sonluk.Entities</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

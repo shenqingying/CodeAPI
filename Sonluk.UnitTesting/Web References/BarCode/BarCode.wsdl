@@ -1,0 +1,300 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:types>
+    <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
+      <s:element name="CreateBarCode">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="code" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="format" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="width" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="height" type="s:int" />
+            <s:element minOccurs="1" maxOccurs="1" name="pure" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="CreateBarCodeResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="CreateBarCodeResult" type="s:base64Binary" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ZBCFUN_TBM_ZFTH">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="srwlm" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="tgwlm" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fcode" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ZBCFUN_TBM_ZFTHResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ZBCFUN_TBM_ZFTHResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SFLTBS">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="matnr" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="SFLTBSResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="SFLTBSResult" type="s:boolean" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="base64Binary" nillable="true" type="s:base64Binary" />
+      <s:element name="string" nillable="true" type="s:string" />
+      <s:element name="boolean" type="s:boolean" />
+    </s:schema>
+  </wsdl:types>
+  <wsdl:message name="CreateBarCodeSoapIn">
+    <wsdl:part name="parameters" element="tns:CreateBarCode" />
+  </wsdl:message>
+  <wsdl:message name="CreateBarCodeSoapOut">
+    <wsdl:part name="parameters" element="tns:CreateBarCodeResponse" />
+  </wsdl:message>
+  <wsdl:message name="ZBCFUN_TBM_ZFTHSoapIn">
+    <wsdl:part name="parameters" element="tns:ZBCFUN_TBM_ZFTH" />
+  </wsdl:message>
+  <wsdl:message name="ZBCFUN_TBM_ZFTHSoapOut">
+    <wsdl:part name="parameters" element="tns:ZBCFUN_TBM_ZFTHResponse" />
+  </wsdl:message>
+  <wsdl:message name="SFLTBSSoapIn">
+    <wsdl:part name="parameters" element="tns:SFLTBS" />
+  </wsdl:message>
+  <wsdl:message name="SFLTBSSoapOut">
+    <wsdl:part name="parameters" element="tns:SFLTBSResponse" />
+  </wsdl:message>
+  <wsdl:message name="CreateBarCodeHttpGetIn">
+    <wsdl:part name="code" type="s:string" />
+    <wsdl:part name="format" type="s:string" />
+    <wsdl:part name="width" type="s:string" />
+    <wsdl:part name="height" type="s:string" />
+    <wsdl:part name="pure" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateBarCodeHttpGetOut">
+    <wsdl:part name="Body" element="tns:base64Binary" />
+  </wsdl:message>
+  <wsdl:message name="ZBCFUN_TBM_ZFTHHttpGetIn">
+    <wsdl:part name="srwlm" type="s:string" />
+    <wsdl:part name="tgwlm" type="s:string" />
+    <wsdl:part name="fcode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ZBCFUN_TBM_ZFTHHttpGetOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SFLTBSHttpGetIn">
+    <wsdl:part name="matnr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SFLTBSHttpGetOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:message name="CreateBarCodeHttpPostIn">
+    <wsdl:part name="code" type="s:string" />
+    <wsdl:part name="format" type="s:string" />
+    <wsdl:part name="width" type="s:string" />
+    <wsdl:part name="height" type="s:string" />
+    <wsdl:part name="pure" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="CreateBarCodeHttpPostOut">
+    <wsdl:part name="Body" element="tns:base64Binary" />
+  </wsdl:message>
+  <wsdl:message name="ZBCFUN_TBM_ZFTHHttpPostIn">
+    <wsdl:part name="srwlm" type="s:string" />
+    <wsdl:part name="tgwlm" type="s:string" />
+    <wsdl:part name="fcode" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="ZBCFUN_TBM_ZFTHHttpPostOut">
+    <wsdl:part name="Body" element="tns:string" />
+  </wsdl:message>
+  <wsdl:message name="SFLTBSHttpPostIn">
+    <wsdl:part name="matnr" type="s:string" />
+  </wsdl:message>
+  <wsdl:message name="SFLTBSHttpPostOut">
+    <wsdl:part name="Body" element="tns:boolean" />
+  </wsdl:message>
+  <wsdl:portType name="BarCodeSoap">
+    <wsdl:operation name="CreateBarCode">
+      <wsdl:input message="tns:CreateBarCodeSoapIn" />
+      <wsdl:output message="tns:CreateBarCodeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ZBCFUN_TBM_ZFTH">
+      <wsdl:input message="tns:ZBCFUN_TBM_ZFTHSoapIn" />
+      <wsdl:output message="tns:ZBCFUN_TBM_ZFTHSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SFLTBS">
+      <wsdl:input message="tns:SFLTBSSoapIn" />
+      <wsdl:output message="tns:SFLTBSSoapOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="BarCodeHttpGet">
+    <wsdl:operation name="CreateBarCode">
+      <wsdl:input message="tns:CreateBarCodeHttpGetIn" />
+      <wsdl:output message="tns:CreateBarCodeHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ZBCFUN_TBM_ZFTH">
+      <wsdl:input message="tns:ZBCFUN_TBM_ZFTHHttpGetIn" />
+      <wsdl:output message="tns:ZBCFUN_TBM_ZFTHHttpGetOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SFLTBS">
+      <wsdl:input message="tns:SFLTBSHttpGetIn" />
+      <wsdl:output message="tns:SFLTBSHttpGetOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="BarCodeHttpPost">
+    <wsdl:operation name="CreateBarCode">
+      <wsdl:input message="tns:CreateBarCodeHttpPostIn" />
+      <wsdl:output message="tns:CreateBarCodeHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ZBCFUN_TBM_ZFTH">
+      <wsdl:input message="tns:ZBCFUN_TBM_ZFTHHttpPostIn" />
+      <wsdl:output message="tns:ZBCFUN_TBM_ZFTHHttpPostOut" />
+    </wsdl:operation>
+    <wsdl:operation name="SFLTBS">
+      <wsdl:input message="tns:SFLTBSHttpPostIn" />
+      <wsdl:output message="tns:SFLTBSHttpPostOut" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BarCodeSoap" type="tns:BarCodeSoap">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateBarCode">
+      <soap:operation soapAction="http://tempuri.org/CreateBarCode" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ZBCFUN_TBM_ZFTH">
+      <soap:operation soapAction="http://tempuri.org/ZBCFUN_TBM_ZFTH" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SFLTBS">
+      <soap:operation soapAction="http://tempuri.org/SFLTBS" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BarCodeSoap12" type="tns:BarCodeSoap">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="CreateBarCode">
+      <soap12:operation soapAction="http://tempuri.org/CreateBarCode" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ZBCFUN_TBM_ZFTH">
+      <soap12:operation soapAction="http://tempuri.org/ZBCFUN_TBM_ZFTH" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SFLTBS">
+      <soap12:operation soapAction="http://tempuri.org/SFLTBS" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BarCodeHttpGet" type="tns:BarCodeHttpGet">
+    <http:binding verb="GET" />
+    <wsdl:operation name="CreateBarCode">
+      <http:operation location="/CreateBarCode" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ZBCFUN_TBM_ZFTH">
+      <http:operation location="/ZBCFUN_TBM_ZFTH" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SFLTBS">
+      <http:operation location="/SFLTBS" />
+      <wsdl:input>
+        <http:urlEncoded />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BarCodeHttpPost" type="tns:BarCodeHttpPost">
+    <http:binding verb="POST" />
+    <wsdl:operation name="CreateBarCode">
+      <http:operation location="/CreateBarCode" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ZBCFUN_TBM_ZFTH">
+      <http:operation location="/ZBCFUN_TBM_ZFTH" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="SFLTBS">
+      <http:operation location="/SFLTBS" />
+      <wsdl:input>
+        <mime:content type="application/x-www-form-urlencoded" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:mimeXml part="Body" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="BarCode">
+    <wsdl:port name="BarCodeSoap" binding="tns:BarCodeSoap">
+      <soap:address location="http://192.168.0.218/API/BC/BarCode.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BarCodeSoap12" binding="tns:BarCodeSoap12">
+      <soap12:address location="http://192.168.0.218/API/BC/BarCode.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BarCodeHttpGet" binding="tns:BarCodeHttpGet">
+      <http:address location="http://192.168.0.218/API/BC/BarCode.asmx" />
+    </wsdl:port>
+    <wsdl:port name="BarCodeHttpPost" binding="tns:BarCodeHttpPost">
+      <http:address location="http://192.168.0.218/API/BC/BarCode.asmx" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

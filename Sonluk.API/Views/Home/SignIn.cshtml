@@ -1,0 +1,54 @@
+﻿@{
+    ViewBag.Title = "SignIn";
+    Layout = "~/Views/Shared/_Doc.cshtml";
+}
+
+@{
+    if (Session["token"] != null && Session["token"].ToString() != "")
+    {
+        <div class="sl-block">
+            <h1>您已登录</h1>
+        </div>
+        <div class="sl-block">
+            @if (ViewBag.Url != "")
+            {
+                <a class="layui-btn" href="@ViewBag.Url">返回之前页面</a>
+            }
+            else
+            {
+                <a class="layui-btn" href="@Url.Action("List", "Doc")">返回API列表</a>
+            }
+            <a class="layui-btn" href="@Url.Action("Logout", "Home")">退出</a>
+        </div>
+    }
+    else
+    {
+        if (ViewBag.Infor == "Logout")
+        {
+            <div class="sl-block">
+                <h1>您已退出</h1>
+            </div>
+            <div class="sl-block">
+                @if (ViewBag.Url != "")
+                {
+                    <a class="layui-btn" href="@ViewBag.Url">返回之前页面</a>
+                }
+                else
+                {
+                    <a class="layui-btn" href="@Url.Action("List", "Doc")">返回API列表</a>
+                }
+                <a class="layui-btn" href="@Url.Action("Login", "Home")">登陆</a>
+            </div>
+        }
+        else
+        {
+            <div class="sl-block">
+                <h1>访问该页面需要登陆</h1>
+            </div>
+            <div class="sl-block">
+                <a class="layui-btn" href="@Url.Action("List", "Doc")">返回API列表</a>
+                <a class="layui-btn" href="@Url.Action("Login", "Home")">登陆</a>
+            </div>
+        }
+    }
+}

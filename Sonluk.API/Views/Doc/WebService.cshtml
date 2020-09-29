@@ -1,0 +1,49 @@
+﻿@{
+    ViewBag.Title = "Sonluk Web Service";
+    ViewBag.Logo = "Sonluk Web Service";
+    Layout = "~/Views/Shared/_Doc.cshtml";
+}
+
+<style>
+    .module {
+        font-family: 'Microsoft YaHei', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        margin-top: 10px;
+        margin-left: 10px;
+        margin-bottom: 10px;
+    }
+
+    .module-title {
+        font-weight: bold;
+        /*padding-left:4px;*/
+    }
+
+    .module-items {
+        height: auto;
+        overflow: hidden;
+    }
+
+    .module-item {
+        margin-left: 1em;
+        width: 200px;
+        float: left;
+    }
+
+    a:hover {
+        text-decoration: none;
+        color: #000;
+    }
+
+    a:link {
+        text-decoration: none;
+        color: black;
+    }
+
+    a:visited {
+        text-decoration: none;
+        color: #000;
+    }
+</style>
+
+<div>
+    @Html.Partial("~/Views/Shared/Partial_WS.cshtml")
+</div>

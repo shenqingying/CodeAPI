@@ -1,0 +1,149 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{FE5537E4-71EE-4EE9-B680-7A9918A76FB8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Sonluk.DataAccess.SAP</RootNamespace>
+    <AssemblyName>Sonluk.DataAccess.SAP</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <SccProjectName>
+    </SccProjectName>
+    <SccLocalPath>
+    </SccLocalPath>
+    <SccAuxPath>
+    </SccAuxPath>
+    <SccProvider>
+    </SccProvider>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\x64\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <OutputPath>bin\x64\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="sapnco, Version=3.0.0.42, Culture=neutral, PublicKeyToken=50436dca5c7f7d23, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\SAP.NCO.3.0.16\sapnco.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="sapnco_utils, Version=3.0.0.42, Culture=neutral, PublicKeyToken=50436dca5c7f7d23, processorArchitecture=AMD64">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\SAP.NCO.3.0.16\sapnco_utils.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Account\Authorization.cs" />
+    <Compile Include="Account\Purchaser.cs" />
+    <Compile Include="Account\Vendor.cs" />
+    <Compile Include="BC\BarCode.cs" />
+    <Compile Include="BC\DRF.cs" />
+    <Compile Include="BC\User.cs" />
+    <Compile Include="BC\Enqueue.cs" />
+    <Compile Include="CRM\KH_HZHB.cs" />
+    <Compile Include="CRM\SAP_ORDER.cs" />
+    <Compile Include="CRM\SAP_Report.cs" />
+    <Compile Include="DEV\Table.cs" />
+    <Compile Include="EM\EM_MISSION.cs" />
+    <Compile Include="FI\Company.cs" />
+    <Compile Include="FI\Tax.cs" />
+    <Compile Include="LE\OutboundDelivery.cs" />
+    <Compile Include="Master\Customer.cs" />
+    <Compile Include="Master\Material.cs" />
+    <Compile Include="Master\Vendor.cs" />
+    <Compile Include="MES\MES_MM.cs" />
+    <Compile Include="MES\MES_PLDH.cs" />
+    <Compile Include="MES\MES_PP.cs" />
+    <Compile Include="MES\MES_TPM.cs" />
+    <Compile Include="MM\MATERIALINFO.cs" />
+    <Compile Include="MM\PurchaseOrder.cs" />
+    <Compile Include="MM\PurchasingGroup.cs" />
+    <Compile Include="MM\ScheduleRequisition.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PS\CNFH.cs" />
+    <Compile Include="PS\ComponentMove.cs" />
+    <Compile Include="PS\NetWork.cs" />
+    <Compile Include="PS\ZPSFUG.cs" />
+    <Compile Include="QM\Ingredient.cs" />
+    <Compile Include="QM\QualityNotification.cs" />
+    <Compile Include="QM\ZSL_QMFG_RFC.cs" />
+    <Compile Include="SD\CLIENTINFO.cs" />
+    <Compile Include="SD\Report.cs" />
+    <Compile Include="SD\SalesOrder.cs" />
+    <Compile Include="Utility\Destination.cs" />
+    <Compile Include="Utility\RFC.cs" />
+    <Compile Include="ZBC01\ZBCFUN.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Sonluk.Entities\Sonluk.Entities.csproj">
+      <Project>{55640e0b-7959-42c3-8c14-cfd3aafb46c4}</Project>
+      <Name>Sonluk.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sonluk.IDataAccess\Sonluk.IDataAccess.csproj">
+      <Project>{55a86883-8648-4a5a-92d9-2ed9fabdf9aa}</Project>
+      <Name>Sonluk.IDataAccess</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Sonluk.Utility\Sonluk.Utility.csproj">
+      <Project>{7de29cdc-77e2-48ad-8494-a2785e1833de}</Project>
+      <Name>Sonluk.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

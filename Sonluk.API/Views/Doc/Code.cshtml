@@ -1,0 +1,396 @@
+﻿@{
+    Layout = "~/Views/Shared/_Doc.cshtml";
+}
+
+<div class="sl-block">
+    <h1>API消息代码对照表</h1>
+</div>
+
+<div class="sl-block">
+    <button class="layui-btn" onclick="newMessage()">新增消息</button>
+</div>
+
+<div class="sl-block">
+    <table class="layui-table layui-hide" id="crossReferences" lay-filter="crossReferences"></table>
+</div>
+
+<div class="sl-block">
+    <a class="layui-btn" href="@ViewBag.back">返回列表</a>
+</div>
+
+<div id="div_modify" class="layui-form layui-form-modify" hidden style="padding:30px 30px 0 30px">
+    <button id="btn_div_modify" lay-submit="" hidden></button>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">消息代码：</label>
+            <div class="layui-input-inline">
+                <input type="text" id="layerCode" class="layui-input layui-disabled" disabled>
+            </div>
+            <label class="layui-form-label">消息级别：</label>
+            <div class="layui-input-inline">
+                <select id="layerType" lay-verify="required"></select>
+            </div>
+        </div>
+    </div>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <label class="layui-form-label">消息内容：</label>
+            <div class="layui-input-inline" style="width:500px;">
+                <input type="text" id="layerMessage" class="layui-input" lay-verify="required">
+            </div>
+        </div>
+    </div>
+    <div id="layerAddTrans">
+        <hr>
+        <button class="layui-btn" onclick="newTrans()">新增翻译</button>
+        <table class="layui-table layui-hide" id="transMessages" lay-filter="transMessages"></table>
+    </div>
+</div>
+
+<div id="div_modify_son" class="layui-form layui-form-modify" hidden style="padding:30px 30px 0 30px">
+    <button id="btn_div_modify_son" lay-submit="" hidden></button>
+    <div class="layui-form-item">
+        <div class="layui-inline">
+            <div class="layui-input-inline" style="width:100px;">
+                <select id="layerLang" lay-verify="required"></select>
+            </div>
+            <div class="layui-input-inline" style="width:300px;">
+                <input type="text" id="layerTrans" class="layui-input" placeholder="请输入翻译内容" lay-verify="required">
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/html" id="toolbar">
+    <button class="layui-btn" onclick="allInit()">重新搜索</button>
+    <button class="layui-btn" onclick="searchCode()">模糊查询</button>
+    <div class="layui-input-inline">
+        <input type="text" id="searchCondition" class="layui-input" placeholder="请输入查询内容">
+    </div>
+    <div class="layui-input-inline" style="width:100px;">
+        <select id="searchType">
+            <option value="all">所有类别</option>
+            <option value="code">消息代码</option>
+            <option value="type">消息级别</option>
+            <option value="message">消息内容</option>
+        </select>
+    </div>
+</script>
+
+<script type="text/html" id="operate">
+    {{#  if(d.code < 10000){ }}
+    <span>内置消息</span>
+    {{#  } else  { }}
+    <a class="layui-btn layui-btn-xs" lay-event="modify">编辑</a>
+    {{#  } }}
+</script>
+
+<script type="text/html" id="operate_son">
+    <a class="layui-btn layui-btn-xs" lay-event="modify">编辑</a>
+</script>
+
+<script type="text/html" id="lang">
+    {{#  for(let item in list.lang){ if(d.SYLANGUAGEID == list.lang[item].ID){ }}
+    <span>{{list.lang[item].MXNAME}}</span>
+    {{# break; } } }}
+</script>
+
+@section scripts{
+    <script>
+        var cache = "";
+        var openCode = "";
+        var list = {
+            lang: [],
+            type: []
+        }
+        var pageCache = 1;
+        var limitCache = 10;
+        var $ = layui.jquery;
+
+        allInit();
+
+        layui.table.on('tool(crossReferences)', function (obj) {
+            if (obj.event === 'modify') {
+                openCode = obj.data.supply[0];
+                layerInit(obj.event, obj.data);
+            }
+        });
+
+        layui.table.on('tool(transMessages)', function (obj) {
+            if (obj.event === 'modify') {
+                layerSonInit(obj.event, obj.data);
+            }
+        });
+
+        function searchCode() {
+            var newData = [];
+            var searchType = $("#searchType").val();
+            var searchCondition = $("#searchCondition").val();
+            if (searchType == "all") {
+                for (let index in cache) {
+                    if (cache[index].code.indexOf(searchCondition) != -1 || cache[index].type.indexOf(searchCondition) != -1 || cache[index].message.indexOf(searchCondition) != -1) newData.push(cache[index]);
+                }
+            }
+            else {
+                for (let index in cache) {
+                    if (cache[index][searchType].indexOf(searchCondition) != -1) newData.push(cache[index]);
+                }
+            }
+            tableInit(newData);
+            $("#searchType").val(searchType);
+            $("#searchCondition").val(searchCondition);
+            layui.form.render();
+        };
+
+        function allInit() {
+            pageCache = 1;
+            listInit();
+            cacheInit(function () { tableInit(cache) });
+            $("#searchType").val("all");
+            $("#searchCondition").val("");
+            layui.form.render();
+        };
+
+        function newMessage() {
+            layerInit();
+        };
+
+        function newTrans() {
+            layerSonInit();
+        };
+
+        function cacheInit(callback) {
+            $.ajax({
+                url: "../API/Helper/Msg/ReadMsgs?ptoken=" + getCookies("token"),
+                contentType: "application/json",
+                success: function (data) {
+                    if (data.success) {
+                        cache = data.data;
+                        callback();
+                    }
+                }
+            });
+        };
+
+        function tableInit(data) {
+            var newPage = Math.ceil(data.length / limitCache);
+            if (newPage < pageCache) pageCache = Number(newPage);
+            layui.table.render({
+                elem: '#crossReferences',
+                height: 'full-350',
+                data: data,
+                toolbar: '#toolbar',
+                cols: [[
+                    { field: 'code', title: '消息代码', width: 100, align: "center" },
+                    { field: 'type', title: '消息级别', width: 100, align: "center" },
+                    { field: 'message', title: '消息内容' },
+                    { toolbar: '#operate', title: '操作', width: 120, align: "center", fixed: 'right' }
+                ]],
+                page: {
+                    curr: pageCache,
+                    limit: limitCache,
+                    limits: [10, 20, 30, 50, 100, 200, 300, 500, 1000]
+                },
+                done: function (res, curr, count) {
+                    pageCache = curr;
+                    limitCache = $("div[lay-id='crossReferences'] .layui-laypage-limits").find("option:selected").val();
+                }
+            });
+        }
+
+        function tableTransInit(msgId) {
+            msgId = msgId || 0;
+            $.ajax({
+                url: "../API/Helper/Msg/ReadMsgDetails?ptoken=" + getCookies("token") + "&msgId=" + msgId,
+                contentType: "application/json",
+                success: function (data) {
+                    if (data.success) {
+                        layui.table.render({
+                            elem: '#transMessages',
+                            height: '277',
+                            data: data.data,
+                            cols: [[
+                                { templet: '#lang', title: '语言', width: 100, align: "center" },
+                                { field: 'MSGMXTEXT', title: '翻译' },
+                                { toolbar: '#operate_son', title: '操作', width: 120, align: "center", fixed: 'right' }
+                            ]],
+                            page: {
+                                limit: 5,
+                                limits: [5]
+                            }
+                        });
+                    }
+                }
+            });
+        };
+
+        function layerSonInit(event, data) {
+            event = event || "";
+            data = data || "";
+            var title = "新增";
+            var func = "CreateMsgDetail";
+            if (event == "modify") {
+                title = "修改";
+                func = "UpdateMsgDetail";
+            }
+            layui.layer.open({
+                skin: 'select_out',
+                type: 1,
+                shade: 0,
+                btn: ['保存', '取消'],
+                area: ['500px', '360px'],
+                content: $('#div_modify_son'),
+                title: title,
+                moveOut: true,
+                success: function (layero, index) {
+                    if (event == "modify") {
+                        $('#layerTrans').val(data.MSGMXTEXT);
+                        $('#layerLang').val(data.SYLANGUAGEID);
+                    }
+                    else {
+                        $('#layerLang').val("");
+                        $('#layerTrans').val("");
+                    }
+                    layui.form.render();
+                },
+                yes: function (index, layero) {
+                    $("#btn_div_modify_son")[0].click();
+                    var postData = {
+                        id: data.MSGMXID || openCode,
+                        lang: $('#layerLang').val(),
+                        message: $('#layerTrans').val(),
+                        fullId: ""
+                    };
+                    if (postData.lang == "" || postData.message == "") return;
+                    if (event == "modify") postData.fullId = "&id=" + postData.id;
+                    else postData.fullId = "&msgId=" + postData.id
+                    $.ajax({
+                        type: "POST",
+                        url: "../API/Helper/Msg/" + func + "?lang=" + postData.lang + "&message=" + postData.message + "&ptoken=" + getCookies("token") + postData.fullId,
+                        contentType: "application/json",
+                        success: function (adata) {
+                            if (adata.success) {
+                                layer.msg(title + "成功！");
+                                tableTransInit(postData.id);
+                                layer.close(index);
+                            }
+                            else layer.alert(title + "失败，原因：" + adata.messages[0].message);
+                        }
+                    });
+                }
+            });
+        };
+
+        function layerInit(event, data) {
+            event = event || "";
+            data = data || "";
+            var title = "新增";
+            var func = "CreateMsg";
+            var high = "400px";
+            if (event == "modify") {
+                title = "修改";
+                func = "UpdateMsg";
+                high = "600px";
+            }
+            layui.layer.open({
+                skin: 'select_out',
+                type: 1,
+                shade: 0,
+                btn: ['保存', '取消'],
+                area: ['800px', high],
+                content: $('#div_modify'),
+                title: title,
+                moveOut: true,
+                success: function (layero, index) {
+                    if (event == "modify") {
+                        $("#layerAddTrans").show();
+                        $('#layerCode').val(data.code);
+                        $('#layerMessage').val(data.message);
+                        $('#layerType').val(data.supply[1]);
+                        tableTransInit(openCode);
+                    }
+                    else {
+                        $("#layerAddTrans").hide();
+                        $('#layerCode').val("");
+                        $('#layerMessage').val("");
+                        $('#layerType').val("");
+                    }
+                    layui.form.render();
+                },
+                yes: function (index, layero) {
+                    $("#btn_div_modify")[0].click();
+                    var postData = {
+                        id: data.supply === undefined ? "" : "&id=" + data.supply[0],
+                        msgName: $('#layerMessage').val(),
+                        typeId: $('#layerType').val(),
+                    };
+                    if (postData.msgName == "" || postData.typeId == "") return;
+                    $.ajax({
+                        type: "POST",
+                        url: "../API/Helper/Msg/" + func + "?typeId=" + postData.typeId + "&msgName=" + postData.msgName + "&ptoken=" + getCookies("token") + postData.id,
+                        contentType: "application/json",
+                        success: function (data) {
+                            if (data.success) {
+                                layer.msg(title + "成功！");
+                                tableReload();
+                                layer.close(index);
+                            }
+                            else layer.alert(title + "失败，原因：" + data.messages[0].message);
+                        }
+                    });
+                }
+            });
+        };
+
+        function listInit() {
+            $.ajax({
+                url: "../API/Helper/Dic/ReadTypemxs?typeId=34&ptoken=" + getCookies("token"),
+                contentType: "application/json",
+                success: function (data) {
+                    if (data.success) {
+                        list.type = data.data;
+                        $("#layerType").empty();
+                        $("#layerType").append(new Option("请选择", ""));
+                        $.each(data.data, function (index, item) {
+                            $("#layerType").append(new Option(item.MXNAME + " - " + item.MXREMARK, item.ID));
+                        });
+                    }
+                }
+            });
+            $.ajax({
+                url: "../API/Helper/Dic/ReadTypemxs?typeId=26&ptoken=" + getCookies("token"),
+                contentType: "application/json",
+                success: function (data) {
+                    if (data.success) {
+                        list.lang = data.data;
+                        $("#layerLang").empty();
+                        $("#layerLang").append(new Option("选择语言", ""));
+                        $.each(data.data, function (index, item) {
+                            $("#layerLang").append(new Option(item.MXNAME, item.ID));
+                        });
+                    }
+                }
+            });
+        }
+
+        function getCookies(cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        };
+
+        function tableReload() {
+            cacheInit(function () { searchCode() });
+        }
+    </script>
+}

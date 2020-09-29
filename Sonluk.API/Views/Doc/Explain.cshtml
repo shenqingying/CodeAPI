@@ -1,0 +1,212 @@
+﻿@{
+    Layout = "~/Views/Shared/_Doc.cshtml";
+}
+
+<div class="sl-block">
+    <h1>@ViewBag.func@ViewBag.status</h1>
+    <h3><span id="apiAddress" onclick="copyOwn()">@ViewBag.address</span></h3>
+</div>
+
+<div class="sl-block">
+    <fieldset><legend>请求参数</legend></fieldset>
+    <table class="layui-table layui-hide" id="inQuery"></table>
+    <table class="layui-table layui-hide" id="inHeader"></table>
+    <table class="layui-table layui-hide" id="inBody"></table>
+</div>
+
+<div class="sl-block">
+    <fieldset><legend>响应参数</legend></fieldset>
+    <table class="layui-table layui-hide" id="outHeader"></table>
+    <table class="layui-table layui-hide" id="outBody"></table>
+</div>
+
+<div class="sl-block">
+    <fieldset><legend>详细信息</legend></fieldset>
+    <p>请求方法：@ViewBag.method</p>
+    <p>创建人：@ViewBag.creator</p>
+    <p>文档最后更新日期：@ViewBag.date</p>
+    <p>Api最后更新日期：@ViewBag.apiDate</p>
+    <p>详细描述：@ViewBag.lms</p>
+</div>
+
+<div class="sl-block">
+    <a class="layui-btn" href="@ViewBag.back">返回列表</a>
+</div>
+
+@section scripts{
+    <script>
+        var $ = layui.jquery;
+        var inQueryData = {};
+        var inHeaderData = {};
+        var inBodyData = {};
+        var outHeaderData = {};
+        var outBodyData = {};
+        var tempData = {};
+
+        var tip_index = 0;
+        document.getElementById("apiAddress").onmouseenter = function (e) {
+            tip_index = layui.layer.tips("点击复制", "#apiAddress", { tips: [2, '#009688'], time: 0 });
+        };
+        document.getElementById("apiAddress").onmouseleave = function (e) {
+            layui.layer.close(tip_index);
+        };
+
+        function copyOwn() {
+            var text = document.getElementById("apiAddress").innerText;
+            var input = document.createElement('input');
+            input.setAttribute('id', 'copyInput');
+            input.setAttribute('value', text);
+            document.getElementsByTagName('body')[0].appendChild(input);
+            document.getElementById('copyInput').select();
+            if (document.execCommand('copy')) {
+                layui.layer.msg("复制成功!", {
+                    time: 800,
+                    skin: '',
+                    icon: 6
+                });
+            }
+            document.getElementById('copyInput').remove();
+        }
+
+        $.ajax({ type: "GET", url: "@Html.Raw(ViewBag.api)" }).done(function (data) {
+            if (typeof data.temp === "object") tempData = data.temp;
+            inQueryData = format(data.inQuery);
+            inHeaderData = format(data.inHeader);
+            inBodyData = format(data.inBody);
+            outHeaderData = format(data.outHeader);
+            outBodyData = format(data.outBody);
+
+            if (inQueryData.length > 0) {
+                layui.treeTable.render({
+                    elem: '#inQuery',
+                    data: inQueryData,
+                    tree: {
+                        iconIndex: 0
+                    },
+                    cols: [
+                        { field: 'name', title: '地址栏参数', width: '320px' },
+                        { field: 'explain', title: '参数说明' }
+                    ]
+                });
+            }
+
+            if (inHeaderData.length > 0) {
+                layui.treeTable.render({
+                    elem: '#inHeader',
+                    data: inHeaderData,
+                    tree: {
+                        iconIndex: 0
+                    },
+                    cols: [
+                        { field: 'name', title: '额外请求头参数', width: '320px' },
+                        { field: 'explain', title: '额外请求头参数说明' }
+                    ]
+                });
+            }
+
+            if (inBodyData.length > 0) {
+                layui.treeTable.render({
+                    elem: '#inBody',
+                    data: inBodyData,
+                    tree: {
+                        iconIndex: 0
+                    },
+                    cols: [
+                        { field: 'name', title: '主体参数', width: '200px' },
+                        { field: 'type', title: '参数类型', width: '120px', align: "center" },
+                        { field: 'explain', title: '参数说明' }
+                    ]
+                });
+            }
+
+            if (outHeaderData.length > 0) {
+                layui.treeTable.render({
+                    elem: '#outHeader',
+                    data: outHeaderData,
+                    tree: {
+                        iconIndex: 0
+                    },
+                    cols: [
+                        { field: 'name', title: '额外响应头参数', width: '320px' },
+                        { field: 'explain', title: '额外响应头参数说明' }
+                    ]
+                });
+            }
+
+            if (outBodyData.length > 0) {
+                layui.treeTable.render({
+                    elem: '#outBody',
+                    data: outBodyData,
+                    tree: {
+                        iconIndex: 0
+                    },
+                    cols: [
+                        { field: 'name', title: '主体参数', width: '200px' },
+                        { field: 'type', title: '参数类型', width: '120px', align: "center" },
+                        { field: 'explain', title: '参数说明' }
+                    ]
+                });
+            }
+        });
+
+        function format(input, father) {
+            father = father || "";
+            var son = 0;
+            var output = [];
+            for (prop in input) {
+                son++;
+                if (typeof input[prop] !== "object") {
+                    output.push({
+                        id: father + son,
+                        name: prop,
+                        type: input[prop].split('|')[0],
+                        explain: input[prop].replace(input[prop].split('|')[0] + "|", ""),
+                        children: []
+                    });
+                }
+                else {
+                    if (father.indexOf('_') === -1 && (prop === "data" || prop === "messages")) {
+                        var type = "Object";
+                        var explain = "对象，具体内容请打开树形列表";
+                        var next = input[prop];
+                        if (input[prop] instanceof Array) {
+                            type = "List";
+                            explain = "数组，具体内容请打开树形列表";
+                            next = input[prop][0];
+                        }
+                        if (prop === "data") explain = tempData.outBody.data.split('|')[1] + explain;
+                        else explain = "【标准主体参数】返回消息" + explain;
+                        output.push({
+                            id: father + son,
+                            name: prop,
+                            type: type,
+                            explain: explain,
+                            children: format(next, son + "_")
+                        });
+                    }
+                    else {
+                        if (input[prop] instanceof Array) {
+                            output.push({
+                                id: father + son,
+                                name: prop,
+                                type: "List",
+                                explain: "数组，具体内容请打开树形列表",
+                                children: format(input[prop][0], son + "_")
+                            });
+                        }
+                        else {
+                            output.push({
+                                id: father + son,
+                                name: prop,
+                                type: "Object",
+                                explain: "对象，具体内容请打开树形列表",
+                                children: format(input[prop], son + "_")
+                            });
+                        }
+                    }
+                }
+            }
+            return output
+        }
+    </script>
+}

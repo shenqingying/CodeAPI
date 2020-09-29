@@ -1,0 +1,251 @@
+﻿@{
+    Layout = "~/Views/Shared/_Doc.cshtml";
+}
+
+<div class="sl-block">
+    <h1>OA模板对照表</h1>
+</div>
+
+<div class="sl-block">
+    <table class="layui-table layui-hide" id="OATemplate" lay-filter="OATemplate"></table>
+</div>
+
+<div class="sl-block">
+    <a class="layui-btn" href="@ViewBag.back">返回列表</a>
+</div>
+
+<div id="div_detail" class="layui-form layui-form-modify" hidden style="padding:30px 30px 0 30px">
+    <div class="layui-form-item" id="OAXml"></div>
+</div>
+
+<div id="div_detail_c" class="layui-form layui-form-modify" hidden style="padding:30px 30px 0 30px"></div>
+
+<script type="text/html" id="toolbar">
+    <label class="">其他模板：</label>
+    <div class="layui-input-inline">
+        <input type="text" id="searchTemplateCode" class="layui-input" placeholder="请输入模板号">
+    </div>
+    <button class="layui-btn" onclick="openTemplate($('#searchTemplateCode').val(),$('#searchTemplateCode').val())">查看</button>
+</script>
+
+<script type="text/html" id="operate">
+    <a lay-event="detail" style="cursor:pointer;">{{d.CSNAME}}</a>
+</script>
+
+@section scripts{
+    <script>
+        var $ = layui.jquery;
+        var templateCache = {};
+
+        layui.table.on('tool(OATemplate)', function (obj) {
+            if (obj.event === 'detail') {
+                openTemplate(obj.data.CS, obj.data.CSNAME);
+            }
+        });
+
+        layui.table.render({
+            elem: '#OATemplate',
+            height: 'full-290',
+            toolbar: '#toolbar',
+            data: [
+                { ID: "4", CSNAME: "请假模版", CS: "10001" },
+                { ID: "5", CSNAME: "出差模版", CS: "10002" },
+                { ID: "6", CSNAME: "出差核销模版", CS: "10004" },
+                { ID: "7", CSNAME: "异常考勤说明模版", CS: "0" },
+                { ID: "8", CSNAME: "经销商审批模版", CS: "10009" },
+                { ID: "9", CSNAME: "终端网点审批模版", CS: "10005" },
+                { ID: "10", CSNAME: "LKA审批模版", CS: "10006" },
+                { ID: "11", CSNAME: "直销商审批模版", CS: "10007" },
+                { ID: "12", CSNAME: "异常考勤说明模版", CS: "10008" },
+                { ID: "13", CSNAME: "招待费申请模版", CS: "10011" },
+                { ID: "14", CSNAME: "LKA年度费用申请模版", CS: "10012" },
+                { ID: "15", CSNAME: "堵头海报费用申请模版", CS: "10013" },
+                { ID: "16", CSNAME: "特殊陈列费申请模版", CS: "10014" },
+                { ID: "17", CSNAME: "店招费用申请模版", CS: "10015" },
+                { ID: "18", CSNAME: "客户投诉模版", CS: "10016" },
+                { ID: "19", CSNAME: "门店补损费模版", CS: "10017" },
+                { ID: "20", CSNAME: "直营卖场年度费用申请模版", CS: "10018" },
+                { ID: "21", CSNAME: "直营卖场堆头海报费模板", CS: "10019" },
+                { ID: "22", CSNAME: "直营卖场特殊陈列费模板", CS: "10020" },
+                { ID: "23", CSNAME: "直营卖场促销员申请模版", CS: "10021" },
+                { ID: "24", CSNAME: "促销活动申请模板", CS: "10022" },
+                { ID: "25", CSNAME: "堆头海报促销装申请模板", CS: "10023" }
+            ],
+            cols: [[
+                { field: 'ID', title: 'ID', width: 80, align: "center" },
+                { field: 'CSNAME', title: '模板名称（点击查看最新模板）', width: 300, templet: '#operate' },
+                { field: 'CS', title: '模板号', width: 100, align: "center" },
+            ]],
+            page: {
+                limit: 10,
+                limits: [10, 20]
+            }
+        });
+
+        function getCookies(cname) {
+            var name = cname + "=";
+            var decodedCookie = decodeURIComponent(document.cookie);
+            var ca = decodedCookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') {
+                    c = c.substring(1);
+                }
+                if (c.indexOf(name) == 0) {
+                    return c.substring(name.length, c.length);
+                }
+            }
+            return "";
+        };
+
+        function addBlock(obj) {
+            var block = document.createElement("div");
+            block.setAttribute("class", "sl-block sl-block-layer");
+            block.append(obj);
+            return block;
+        }
+
+        function addP(obj) {
+            return obj;
+        }
+
+        function copyText(text, success) {
+            var input = document.createElement('input');
+            input.setAttribute('id', 'copyInput');
+            input.setAttribute('value', text);
+            document.getElementsByTagName('body')[0].appendChild(input);
+            document.getElementById('copyInput').select();
+            if (document.execCommand('copy')) {
+                success();
+            }
+            document.getElementById('copyInput').remove();
+        }
+
+        function openTemplate(code, title) {
+            var index = layui.layer.load(1, { shade: 0.3 });
+            $.ajax({
+                url: "../API/CRM/OA/ReadTemplate?ptoken=" + getCookies("token") + "&code=" + code,
+                type: "GET",
+                success: function (data) {
+                    if (data.success) {
+                        var xml = document.createElement("div");
+                        xml.innerHTML = data.data;
+                        layui.layer.open({
+                            skin: 'select_out',
+                            type: 1,
+                            shade: 0,
+                            btn: ['生成C#代码', '关闭'],
+                            area: ['800px', '600px'],
+                            content: $('#div_detail'),
+                            title: title,
+                            moveOut: true,
+                            success: function (layero, index) {
+                                var oaXml = document.createElement("div");
+                                templateCache = {
+                                    form: [],
+                                    subform: {}
+                                };
+
+                                var title1 = document.createElement("h2");
+                                title1.innerHTML = "模板数据表名：";
+                                oaXml.append(addBlock(title1));
+
+                                var formName = document.createElement("p");
+                                formName.innerHTML = xml.querySelector("dataproperty[propertyname='formName']").innerHTML;
+                                oaXml.append(addBlock(formName));
+
+                                var title2 = document.createElement("h2");
+                                title2.innerHTML = "主表键："
+                                oaXml.append(addBlock(title2));
+
+                                var form2 = document.createElement("div");
+                                xml.querySelectorAll("datapojo[type='FormExport'] > dataproperty[propertyname='definitions'] dataproperty[propertyname='displayName']").forEach(function (child) {
+                                    var childson = document.createElement("p");
+                                    childson.innerHTML = child.innerHTML;
+                                    form2.append(childson);
+                                    templateCache.form.push(child.innerHTML);
+                                });
+                                oaXml.append(addBlock(form2));
+
+                                var title3 = document.createElement("h2");
+                                title3.innerHTML = "子表键："
+                                oaXml.append(addBlock(title3));
+
+                                var form3 = document.createElement("div");
+                                var num = 1;
+                                xml.querySelectorAll("dataproperty[propertyname='values'] datapojo[type='SubordinateFormExport']").forEach(function (child) {
+                                    var title3son = document.createElement("h3");
+                                    title3son.innerHTML = "子表" + num + "："
+                                    templateCache.subform["subForm" + num] = [];
+                                    form3.append(addBlock(title3son));
+                                    child.querySelectorAll("dataproperty[propertyname='definitions'] dataproperty[propertyname='displayName']").forEach(function (childchild) {
+                                        var childson = document.createElement("p");
+                                        childson.innerHTML = childchild.innerHTML;
+                                        form3.append(childson);
+                                        templateCache.subform["subForm" + num].push(childchild.innerHTML);
+                                    });
+                                    num++;
+                                });
+                                oaXml.append(addBlock(form3));
+
+                                document.getElementById("OAXml").innerHTML = "";
+                                document.getElementById("OAXml").append(oaXml);
+                                layui.form.render();
+                            },
+                            yes: function (index, layero) {
+                                var cstext = document.createElement("pre");
+                                cstext.setAttribute("class", "layui-code");
+                                cstext.setAttribute("lay-title", "C#");
+                                for (let key in templateCache.subform) {
+                                    cstext.append(addP("List<Dictionary<string, object>> " + key + " = new List<Dictionary<string, object>>();\n\r"));
+                                }
+                                for (let key in templateCache.subform) {
+                                    cstext.append(addP("for (int i = 0; i < 0; i++)\n\r"));
+                                    cstext.append(addP("{\n\r"));
+                                    cstext.append(addP("    " + key + ".Add(new Dictionary<string, object>\n\r"));
+                                    cstext.append(addP("    {\n\r"));
+                                    for (let keyson in templateCache.subform[key]) {
+                                        cstext.append(addP("        { \"" + templateCache.subform[key][keyson] + "\", \"\" },\n\r"));
+                                    }
+                                    cstext.append(addP("    });\n\r"));
+                                    cstext.append(addP("}\n\r"));
+                                }
+                                cstext.append(addP("Dictionary<string, object> mainForm = new Dictionary<string, object>\n\r"));
+                                cstext.append(addP("{\n\r"));
+                                for (let key in templateCache.form) {
+                                    cstext.append(addP("    { \"" + templateCache.form[key] + "\", \"\" },\n\r"));
+                                }
+                                for (let key in templateCache.subform) {
+                                    cstext.append(addP("    { \"" + key + "\", " + key + " },\n\r"));
+                                }
+                                cstext.append(addP("};"));
+
+                                document.getElementById("div_detail_c").innerHTML = "";
+                                document.getElementById("div_detail_c").append(cstext);
+
+                                layui.layer.open({
+                                    skin: 'select_out',
+                                    type: 1,
+                                    shade: 0,
+                                    btn: ['关闭'],
+                                    area: ['800px', '500px'],
+                                    content: $("#div_detail_c"),
+                                    title: "C#代码",
+                                    moveOut: true,
+                                    success: function () {
+                                        layui.code();
+                                    }
+                                });
+                            }
+                        });
+                    }
+                    else {
+                        layui.layer.alert(data.messages[0].message);
+                    }
+                }
+            }).always(function () {
+                layui.layer.close(index);
+            });
+        }
+    </script>
+}

@@ -1,0 +1,25 @@
+{
+  "inQuery": {
+    "id": "TYPEMX表的ID",
+    "typeId": "TYPEMX表的TYPEID",
+    "mxName": "TYPEMX表的MXNAME",
+    "factoryCode": "工厂号"
+  },
+  "outBody": [
+    {
+      "ID": "int|TYPEMX表的ID",
+      "TYPEID": "int|TYPEMX表的TYPEID",
+      "TYPENAME": "string|TYPEMX表的TYPENAME",
+      "MXNAME": "string|TYPEMX表的MXNAME",
+      "MXNO": "string|TYPEMX表的MXNO",
+      "MXREMARK": "string|TYPEMX表的MXREMARK",
+      "GC": "string|工厂号",
+      "MAXVALUE": "string|TYPEMX表的MAXVALUE",
+      "MINVALUE": "string|TYPEMX表的MINVALUE"
+    }
+  ],
+  "sms": "查询数据字典信息",
+  "lms": "查询数据字典信息。",
+  "creator": "xur",
+  "date": "2020/5/28 8:30"
+}

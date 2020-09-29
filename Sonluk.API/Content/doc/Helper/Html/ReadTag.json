@@ -1,0 +1,12 @@
+{
+  "inQuery": {
+    "input": "网页地址",
+    "tag": "要获取的元素标签"
+  },
+  "outBody": "string|包含所有指定标签的内容",
+  "sms": "根据url获取url所在页面的指定标签内容",
+  "lms": "根据url获取url所在页面的指定标签内容。",
+  "creator": "xur",
+  "method": "GET",
+  "date": "2020/5/19 11:30"
+}

@@ -1,0 +1,27 @@
+﻿using Sonluk.Entities.HR;
+using Sonluk.Entities.MES;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Text;
+
+namespace Sonluk.IDataAccess.HR
+{
+    public interface IXZGL_FFJLMX
+    {
+        MES_RETURN INSERT(HR_XZGL_FFJLMX model, DataTable dt);
+        MES_RETURN UPDATE(HR_XZGL_FFJLMX model, int LB);
+        HR_XZGL_FFJLMX_SELECT SELECT(HR_XZGL_FFJLMX model, int LB);
+        MES_RETURN FORMULA_JS(HR_XZGL_FFJLMX model, int LB);
+        MES_RETURN FORMULA_JS_TZ(HR_XZGL_FFJLMX model, int LB);
+        MES_RETURN AUTO_ADD_TO_FFJLMX_OTHER(HR_XZGL_FFJLMX model, int LB);
+        HR_XZGL_FFJLMX_SELECT SELECT_GSREPORT(HR_XZGL_FFJLMX model);
+        HR_XZGL_FFJLMX_SELECT SELECT_FFMXREPORT(HR_XZGL_FFJLMX model);
+        HR_XZGL_FFJLMX_SELECT SELECT_GZXJSDREPORT(HR_XZGL_FFJLMX model);
+        HR_XZGL_FFJLMX_SELECT SELECT_FFMXGZDREPORT(HR_XZGL_FFJLMX model);
+        HR_XZGL_FFJLMX_SELECT SELECT_FFMXGZHZREPORT(HR_XZGL_FFJLMX model);
+        HR_XZGL_FFJLMX_SELECT SELECT_FFMXTXFREPORT(HR_XZGL_FFJLMX model, int LB);
+        HR_XZGL_FFJLMX_SELECT SELECT_GUOSHUIREPORT(HR_XZGL_FFJLMX model);
+    }
+}

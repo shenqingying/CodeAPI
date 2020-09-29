@@ -1,0 +1,10 @@
+{
+  "inBody": {
+    "blob": "array|二进制数组"
+  },
+  "outBody": "string|二维码内容",
+  "sms": "将二维码转为字符串",
+  "lms": "将二维码转为字符串。",
+  "method": "POST",
+  "date": "2020/5/19 11:30"
+}

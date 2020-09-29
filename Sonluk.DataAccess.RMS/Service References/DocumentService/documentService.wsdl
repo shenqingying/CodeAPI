@@ -1,0 +1,1196 @@
+<?xml version="1.0" encoding="utf-8"?>
+<wsdl:definitions xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns="http://impl.document.services.v3x.seeyon.com" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:ax213="http://services.v3x.seeyon.com/xsd" xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:ax216="http://domain.edoc.v3x.seeyon.com/xsd" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:axis2="www.seeyon.com" xmlns:ns1="http://org.apache.axis2/xsd" targetNamespace="www.seeyon.com" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+  <wsdl:documentation>This is the test webservice for Spring/Axis2 Integration</wsdl:documentation>
+  <wsdl:types>
+    <xs:schema attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://domain.edoc.v3x.seeyon.com/xsd">
+      <xs:complexType name="EdocSignReceipt">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="opinion" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="receipient" nillable="true" type="xs:string" />
+          <xs:element minOccurs="0" name="signTime" type="xs:long" />
+          <xs:element minOccurs="0" name="signUnit" nillable="true" type="xs:string" />
+        </xs:sequence>
+      </xs:complexType>
+    </xs:schema>
+    <xs:schema xmlns:ax215="http://services.v3x.seeyon.com/xsd" xmlns:ax217="http://domain.edoc.v3x.seeyon.com/xsd" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://impl.document.services.v3x.seeyon.com">
+      <xs:import namespace="http://services.v3x.seeyon.com/xsd" />
+      <xs:import namespace="http://domain.edoc.v3x.seeyon.com/xsd" />
+      <xs:complexType name="Exception">
+        <xs:sequence>
+          <xs:element minOccurs="0" name="Exception" nillable="true" type="xs:anyType" />
+        </xs:sequence>
+      </xs:complexType>
+      <xs:element name="ServiceException">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="ServiceException" nillable="true" type="ax215:ServiceException" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="processEdocReceive">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="receiveId" type="xs:long" />
+            <xs:element minOccurs="0" name="loginName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="recNo" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="processEdocReceiveResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="processEdocSend">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="edocSendId" type="xs:long" />
+            <xs:element minOccurs="0" name="loginName" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="processEdocSendResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="updateEdocState">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="tokenId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="edocSendId" type="xs:long" />
+            <xs:element minOccurs="0" name="accountId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="accountName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="state" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="updateEdocStateResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="exportBbs">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="bbsId" type="xs:long" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="exportBbsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="exportBulletin">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="ticketId" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="bulltinId" type="xs:long" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="exportBulletinResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="exportBulletinByDateTime">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="ticket" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="accountName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="beginDateTime" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="endDateTime" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="exportBulletinByDateTimeResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="exportEdoc">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="documentId" type="xs:long" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="exportEdocResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="exportFlow">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="flowId" type="xs:long" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="exportFlowResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="exportFlow2">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="flowId" type="xs:long" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="exportFlow2Response">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="exportGroupBulletin">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="ticket" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="firstNum" type="xs:int" />
+            <xs:element minOccurs="0" name="pageSize" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="exportGroupBulletinResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="exportGroupNews">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="ticket" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="firstNum" type="xs:int" />
+            <xs:element minOccurs="0" name="pageSize" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="exportGroupNewsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="exportNews">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="ticket" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="newsId" type="xs:long" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="exportNewsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="exportRecentAccountBulletin">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="accountName" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="ticket" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="firstNum" type="xs:int" />
+            <xs:element minOccurs="0" name="pageSize" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="exportRecentAccountBulletinResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="exportRecentAccountBulletinByAccountId">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="accountId" type="xs:long" />
+            <xs:element minOccurs="0" name="ticket" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="firstNum" type="xs:int" />
+            <xs:element minOccurs="0" name="pageSize" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="exportRecentAccountBulletinByAccountIdResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="exportRecentNews">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="accountId" type="xs:long" />
+            <xs:element minOccurs="0" name="ticket" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="firstNum" type="xs:int" />
+            <xs:element minOccurs="0" name="pageSize" type="xs:int" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="exportRecentNewsResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="exportResearch">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="researchId" type="xs:long" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="exportResearchResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="exportOfflineFormModel">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="s_affairId" type="xs:long" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="exportOfflineFormModelResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" maxOccurs="unbounded" name="return" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="importEdoc">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="xml" nillable="true" type="xs:string" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="importEdocResponse">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="return" type="xs:long" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+      <xs:element name="signEdoc">
+        <xs:complexType>
+          <xs:sequence>
+            <xs:element minOccurs="0" name="token" nillable="true" type="xs:string" />
+            <xs:element minOccurs="0" name="edocSendId" type="xs:long" />
+            <xs:element minOccurs="0" name="receipt" nillable="true" type="ax217:EdocSignReceipt" />
+          </xs:sequence>
+        </xs:complexType>
+      </xs:element>
+    </xs:schema>
+    <xs:schema xmlns:ax214="http://impl.document.services.v3x.seeyon.com" attributeFormDefault="qualified" elementFormDefault="qualified" targetNamespace="http://services.v3x.seeyon.com/xsd">
+      <xs:import namespace="http://impl.document.services.v3x.seeyon.com" />
+      <xs:complexType name="ServiceException">
+        <xs:complexContent mixed="false">
+          <xs:extension base="ax214:Exception">
+            <xs:sequence>
+              <xs:element minOccurs="0" name="errorNumber" type="xs:long" />
+              <xs:element minOccurs="0" name="message" nillable="true" type="xs:string" />
+            </xs:sequence>
+          </xs:extension>
+        </xs:complexContent>
+      </xs:complexType>
+    </xs:schema>
+  </wsdl:types>
+  <wsdl:message name="exportGroupNewsRequest">
+    <wsdl:part name="parameters" element="ns:exportGroupNews" />
+  </wsdl:message>
+  <wsdl:message name="exportGroupNewsResponse">
+    <wsdl:part name="parameters" element="ns:exportGroupNewsResponse" />
+  </wsdl:message>
+  <wsdl:message name="ServiceException">
+    <wsdl:part name="parameters" element="ns:ServiceException" />
+  </wsdl:message>
+  <wsdl:message name="exportRecentNewsRequest">
+    <wsdl:part name="parameters" element="ns:exportRecentNews" />
+  </wsdl:message>
+  <wsdl:message name="exportRecentNewsResponse">
+    <wsdl:part name="parameters" element="ns:exportRecentNewsResponse" />
+  </wsdl:message>
+  <wsdl:message name="exportFlow2Request">
+    <wsdl:part name="parameters" element="ns:exportFlow2" />
+  </wsdl:message>
+  <wsdl:message name="exportFlow2Response">
+    <wsdl:part name="parameters" element="ns:exportFlow2Response" />
+  </wsdl:message>
+  <wsdl:message name="exportBbsRequest">
+    <wsdl:part name="parameters" element="ns:exportBbs" />
+  </wsdl:message>
+  <wsdl:message name="exportBbsResponse">
+    <wsdl:part name="parameters" element="ns:exportBbsResponse" />
+  </wsdl:message>
+  <wsdl:message name="exportOfflineFormModelRequest">
+    <wsdl:part name="parameters" element="ns:exportOfflineFormModel" />
+  </wsdl:message>
+  <wsdl:message name="exportOfflineFormModelResponse">
+    <wsdl:part name="parameters" element="ns:exportOfflineFormModelResponse" />
+  </wsdl:message>
+  <wsdl:message name="exportNewsRequest">
+    <wsdl:part name="parameters" element="ns:exportNews" />
+  </wsdl:message>
+  <wsdl:message name="exportNewsResponse">
+    <wsdl:part name="parameters" element="ns:exportNewsResponse" />
+  </wsdl:message>
+  <wsdl:message name="exportBulletinByDateTimeRequest">
+    <wsdl:part name="parameters" element="ns:exportBulletinByDateTime" />
+  </wsdl:message>
+  <wsdl:message name="exportBulletinByDateTimeResponse">
+    <wsdl:part name="parameters" element="ns:exportBulletinByDateTimeResponse" />
+  </wsdl:message>
+  <wsdl:message name="exportGroupBulletinRequest">
+    <wsdl:part name="parameters" element="ns:exportGroupBulletin" />
+  </wsdl:message>
+  <wsdl:message name="exportGroupBulletinResponse">
+    <wsdl:part name="parameters" element="ns:exportGroupBulletinResponse" />
+  </wsdl:message>
+  <wsdl:message name="exportEdocRequest">
+    <wsdl:part name="parameters" element="ns:exportEdoc" />
+  </wsdl:message>
+  <wsdl:message name="exportEdocResponse">
+    <wsdl:part name="parameters" element="ns:exportEdocResponse" />
+  </wsdl:message>
+  <wsdl:message name="updateEdocStateRequest">
+    <wsdl:part name="parameters" element="ns:updateEdocState" />
+  </wsdl:message>
+  <wsdl:message name="updateEdocStateResponse">
+    <wsdl:part name="parameters" element="ns:updateEdocStateResponse" />
+  </wsdl:message>
+  <wsdl:message name="exportResearchRequest">
+    <wsdl:part name="parameters" element="ns:exportResearch" />
+  </wsdl:message>
+  <wsdl:message name="exportResearchResponse">
+    <wsdl:part name="parameters" element="ns:exportResearchResponse" />
+  </wsdl:message>
+  <wsdl:message name="importEdocRequest">
+    <wsdl:part name="parameters" element="ns:importEdoc" />
+  </wsdl:message>
+  <wsdl:message name="importEdocResponse">
+    <wsdl:part name="parameters" element="ns:importEdocResponse" />
+  </wsdl:message>
+  <wsdl:message name="exportBulletinRequest">
+    <wsdl:part name="parameters" element="ns:exportBulletin" />
+  </wsdl:message>
+  <wsdl:message name="exportBulletinResponse">
+    <wsdl:part name="parameters" element="ns:exportBulletinResponse" />
+  </wsdl:message>
+  <wsdl:message name="processEdocReceiveRequest">
+    <wsdl:part name="parameters" element="ns:processEdocReceive" />
+  </wsdl:message>
+  <wsdl:message name="processEdocReceiveResponse">
+    <wsdl:part name="parameters" element="ns:processEdocReceiveResponse" />
+  </wsdl:message>
+  <wsdl:message name="signEdocRequest">
+    <wsdl:part name="parameters" element="ns:signEdoc" />
+  </wsdl:message>
+  <wsdl:message name="exportRecentAccountBulletinByAccountIdRequest">
+    <wsdl:part name="parameters" element="ns:exportRecentAccountBulletinByAccountId" />
+  </wsdl:message>
+  <wsdl:message name="exportRecentAccountBulletinByAccountIdResponse">
+    <wsdl:part name="parameters" element="ns:exportRecentAccountBulletinByAccountIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="exportRecentAccountBulletinRequest">
+    <wsdl:part name="parameters" element="ns:exportRecentAccountBulletin" />
+  </wsdl:message>
+  <wsdl:message name="exportRecentAccountBulletinResponse">
+    <wsdl:part name="parameters" element="ns:exportRecentAccountBulletinResponse" />
+  </wsdl:message>
+  <wsdl:message name="processEdocSendRequest">
+    <wsdl:part name="parameters" element="ns:processEdocSend" />
+  </wsdl:message>
+  <wsdl:message name="processEdocSendResponse">
+    <wsdl:part name="parameters" element="ns:processEdocSendResponse" />
+  </wsdl:message>
+  <wsdl:message name="exportFlowRequest">
+    <wsdl:part name="parameters" element="ns:exportFlow" />
+  </wsdl:message>
+  <wsdl:message name="exportFlowResponse">
+    <wsdl:part name="parameters" element="ns:exportFlowResponse" />
+  </wsdl:message>
+  <wsdl:portType name="documentServicePortType">
+    <wsdl:operation name="exportGroupNews">
+      <wsdl:input wsaw:Action="urn:exportGroupNews" message="axis2:exportGroupNewsRequest" />
+      <wsdl:output wsaw:Action="urn:exportGroupNewsResponse" message="axis2:exportGroupNewsResponse" />
+      <wsdl:fault wsaw:Action="urn:exportGroupNewsServiceException" name="ServiceException" message="axis2:ServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="exportRecentNews">
+      <wsdl:input wsaw:Action="urn:exportRecentNews" message="axis2:exportRecentNewsRequest" />
+      <wsdl:output wsaw:Action="urn:exportRecentNewsResponse" message="axis2:exportRecentNewsResponse" />
+      <wsdl:fault wsaw:Action="urn:exportRecentNewsServiceException" name="ServiceException" message="axis2:ServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="exportFlow2">
+      <wsdl:input wsaw:Action="urn:exportFlow2" message="axis2:exportFlow2Request" />
+      <wsdl:output wsaw:Action="urn:exportFlow2Response" message="axis2:exportFlow2Response" />
+      <wsdl:fault wsaw:Action="urn:exportFlow2ServiceException" name="ServiceException" message="axis2:ServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="exportBbs">
+      <wsdl:input wsaw:Action="urn:exportBbs" message="axis2:exportBbsRequest" />
+      <wsdl:output wsaw:Action="urn:exportBbsResponse" message="axis2:exportBbsResponse" />
+      <wsdl:fault wsaw:Action="urn:exportBbsServiceException" name="ServiceException" message="axis2:ServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="exportOfflineFormModel">
+      <wsdl:input wsaw:Action="urn:exportOfflineFormModel" message="axis2:exportOfflineFormModelRequest" />
+      <wsdl:output wsaw:Action="urn:exportOfflineFormModelResponse" message="axis2:exportOfflineFormModelResponse" />
+      <wsdl:fault wsaw:Action="urn:exportOfflineFormModelServiceException" name="ServiceException" message="axis2:ServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="exportNews">
+      <wsdl:input wsaw:Action="urn:exportNews" message="axis2:exportNewsRequest" />
+      <wsdl:output wsaw:Action="urn:exportNewsResponse" message="axis2:exportNewsResponse" />
+      <wsdl:fault wsaw:Action="urn:exportNewsServiceException" name="ServiceException" message="axis2:ServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="exportBulletinByDateTime">
+      <wsdl:input wsaw:Action="urn:exportBulletinByDateTime" message="axis2:exportBulletinByDateTimeRequest" />
+      <wsdl:output wsaw:Action="urn:exportBulletinByDateTimeResponse" message="axis2:exportBulletinByDateTimeResponse" />
+      <wsdl:fault wsaw:Action="urn:exportBulletinByDateTimeServiceException" name="ServiceException" message="axis2:ServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="exportGroupBulletin">
+      <wsdl:input wsaw:Action="urn:exportGroupBulletin" message="axis2:exportGroupBulletinRequest" />
+      <wsdl:output wsaw:Action="urn:exportGroupBulletinResponse" message="axis2:exportGroupBulletinResponse" />
+      <wsdl:fault wsaw:Action="urn:exportGroupBulletinServiceException" name="ServiceException" message="axis2:ServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="exportEdoc">
+      <wsdl:input wsaw:Action="urn:exportEdoc" message="axis2:exportEdocRequest" />
+      <wsdl:output wsaw:Action="urn:exportEdocResponse" message="axis2:exportEdocResponse" />
+      <wsdl:fault wsaw:Action="urn:exportEdocServiceException" name="ServiceException" message="axis2:ServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="updateEdocState">
+      <wsdl:input wsaw:Action="urn:updateEdocState" message="axis2:updateEdocStateRequest" />
+      <wsdl:output wsaw:Action="urn:updateEdocStateResponse" message="axis2:updateEdocStateResponse" />
+      <wsdl:fault wsaw:Action="urn:updateEdocStateServiceException" name="ServiceException" message="axis2:ServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="exportResearch">
+      <wsdl:input wsaw:Action="urn:exportResearch" message="axis2:exportResearchRequest" />
+      <wsdl:output wsaw:Action="urn:exportResearchResponse" message="axis2:exportResearchResponse" />
+      <wsdl:fault wsaw:Action="urn:exportResearchServiceException" name="ServiceException" message="axis2:ServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="importEdoc">
+      <wsdl:input wsaw:Action="urn:importEdoc" message="axis2:importEdocRequest" />
+      <wsdl:output wsaw:Action="urn:importEdocResponse" message="axis2:importEdocResponse" />
+      <wsdl:fault wsaw:Action="urn:importEdocServiceException" name="ServiceException" message="axis2:ServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="exportBulletin">
+      <wsdl:input wsaw:Action="urn:exportBulletin" message="axis2:exportBulletinRequest" />
+      <wsdl:output wsaw:Action="urn:exportBulletinResponse" message="axis2:exportBulletinResponse" />
+      <wsdl:fault wsaw:Action="urn:exportBulletinServiceException" name="ServiceException" message="axis2:ServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="processEdocReceive">
+      <wsdl:input wsaw:Action="urn:processEdocReceive" message="axis2:processEdocReceiveRequest" />
+      <wsdl:output wsaw:Action="urn:processEdocReceiveResponse" message="axis2:processEdocReceiveResponse" />
+      <wsdl:fault wsaw:Action="urn:processEdocReceiveServiceException" name="ServiceException" message="axis2:ServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="signEdoc">
+      <wsdl:input wsaw:Action="urn:signEdoc" message="axis2:signEdocRequest" />
+      <wsdl:fault wsaw:Action="urn:signEdocServiceException" name="ServiceException" message="axis2:ServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="exportRecentAccountBulletinByAccountId">
+      <wsdl:input wsaw:Action="urn:exportRecentAccountBulletinByAccountId" message="axis2:exportRecentAccountBulletinByAccountIdRequest" />
+      <wsdl:output wsaw:Action="urn:exportRecentAccountBulletinByAccountIdResponse" message="axis2:exportRecentAccountBulletinByAccountIdResponse" />
+      <wsdl:fault wsaw:Action="urn:exportRecentAccountBulletinByAccountIdServiceException" name="ServiceException" message="axis2:ServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="exportRecentAccountBulletin">
+      <wsdl:input wsaw:Action="urn:exportRecentAccountBulletin" message="axis2:exportRecentAccountBulletinRequest" />
+      <wsdl:output wsaw:Action="urn:exportRecentAccountBulletinResponse" message="axis2:exportRecentAccountBulletinResponse" />
+      <wsdl:fault wsaw:Action="urn:exportRecentAccountBulletinServiceException" name="ServiceException" message="axis2:ServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="processEdocSend">
+      <wsdl:input wsaw:Action="urn:processEdocSend" message="axis2:processEdocSendRequest" />
+      <wsdl:output wsaw:Action="urn:processEdocSendResponse" message="axis2:processEdocSendResponse" />
+      <wsdl:fault wsaw:Action="urn:processEdocSendServiceException" name="ServiceException" message="axis2:ServiceException" />
+    </wsdl:operation>
+    <wsdl:operation name="exportFlow">
+      <wsdl:input wsaw:Action="urn:exportFlow" message="axis2:exportFlowRequest" />
+      <wsdl:output wsaw:Action="urn:exportFlowResponse" message="axis2:exportFlowResponse" />
+      <wsdl:fault wsaw:Action="urn:exportFlowServiceException" name="ServiceException" message="axis2:ServiceException" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="documentServiceSoap11Binding" type="axis2:documentServicePortType">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="exportGroupNews">
+      <soap:operation soapAction="urn:exportGroupNews" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportFlow2">
+      <soap:operation soapAction="urn:exportFlow2" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportRecentNews">
+      <soap:operation soapAction="urn:exportRecentNews" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportBbs">
+      <soap:operation soapAction="urn:exportBbs" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportOfflineFormModel">
+      <soap:operation soapAction="urn:exportOfflineFormModel" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportBulletinByDateTime">
+      <soap:operation soapAction="urn:exportBulletinByDateTime" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportNews">
+      <soap:operation soapAction="urn:exportNews" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportEdoc">
+      <soap:operation soapAction="urn:exportEdoc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportGroupBulletin">
+      <soap:operation soapAction="urn:exportGroupBulletin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateEdocState">
+      <soap:operation soapAction="urn:updateEdocState" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportResearch">
+      <soap:operation soapAction="urn:exportResearch" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="importEdoc">
+      <soap:operation soapAction="urn:importEdoc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="processEdocReceive">
+      <soap:operation soapAction="urn:processEdocReceive" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportBulletin">
+      <soap:operation soapAction="urn:exportBulletin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportRecentAccountBulletinByAccountId">
+      <soap:operation soapAction="urn:exportRecentAccountBulletinByAccountId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="signEdoc">
+      <soap:operation soapAction="urn:signEdoc" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:fault name="ServiceException">
+        <soap:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportRecentAccountBulletin">
+      <soap:operation soapAction="urn:exportRecentAccountBulletin" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="processEdocSend">
+      <soap:operation soapAction="urn:processEdocSend" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportFlow">
+      <soap:operation soapAction="urn:exportFlow" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="documentServiceSoap12Binding" type="axis2:documentServicePortType">
+    <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="exportGroupNews">
+      <soap12:operation soapAction="urn:exportGroupNews" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap12:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportFlow2">
+      <soap12:operation soapAction="urn:exportFlow2" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap12:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportRecentNews">
+      <soap12:operation soapAction="urn:exportRecentNews" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap12:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportBbs">
+      <soap12:operation soapAction="urn:exportBbs" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap12:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportOfflineFormModel">
+      <soap12:operation soapAction="urn:exportOfflineFormModel" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap12:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportBulletinByDateTime">
+      <soap12:operation soapAction="urn:exportBulletinByDateTime" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap12:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportNews">
+      <soap12:operation soapAction="urn:exportNews" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap12:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportEdoc">
+      <soap12:operation soapAction="urn:exportEdoc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap12:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportGroupBulletin">
+      <soap12:operation soapAction="urn:exportGroupBulletin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap12:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="updateEdocState">
+      <soap12:operation soapAction="urn:updateEdocState" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap12:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportResearch">
+      <soap12:operation soapAction="urn:exportResearch" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap12:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="importEdoc">
+      <soap12:operation soapAction="urn:importEdoc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap12:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="processEdocReceive">
+      <soap12:operation soapAction="urn:processEdocReceive" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap12:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportBulletin">
+      <soap12:operation soapAction="urn:exportBulletin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap12:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportRecentAccountBulletinByAccountId">
+      <soap12:operation soapAction="urn:exportRecentAccountBulletinByAccountId" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap12:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="signEdoc">
+      <soap12:operation soapAction="urn:signEdoc" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:fault name="ServiceException">
+        <soap12:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportRecentAccountBulletin">
+      <soap12:operation soapAction="urn:exportRecentAccountBulletin" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap12:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="processEdocSend">
+      <soap12:operation soapAction="urn:processEdocSend" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap12:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="exportFlow">
+      <soap12:operation soapAction="urn:exportFlow" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceException">
+        <soap12:fault use="literal" name="ServiceException" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="documentServiceHttpBinding" type="axis2:documentServicePortType">
+    <http:binding verb="POST" />
+    <wsdl:operation name="exportGroupNews">
+      <http:operation location="documentService/exportGroupNews" />
+      <wsdl:input>
+        <mime:content part="exportGroupNews" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="exportGroupNews" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="exportFlow2">
+      <http:operation location="documentService/exportFlow2" />
+      <wsdl:input>
+        <mime:content part="exportFlow2" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="exportFlow2" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="exportRecentNews">
+      <http:operation location="documentService/exportRecentNews" />
+      <wsdl:input>
+        <mime:content part="exportRecentNews" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="exportRecentNews" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="exportBbs">
+      <http:operation location="documentService/exportBbs" />
+      <wsdl:input>
+        <mime:content part="exportBbs" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="exportBbs" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="exportOfflineFormModel">
+      <http:operation location="documentService/exportOfflineFormModel" />
+      <wsdl:input>
+        <mime:content part="exportOfflineFormModel" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="exportOfflineFormModel" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="exportBulletinByDateTime">
+      <http:operation location="documentService/exportBulletinByDateTime" />
+      <wsdl:input>
+        <mime:content part="exportBulletinByDateTime" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="exportBulletinByDateTime" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="exportNews">
+      <http:operation location="documentService/exportNews" />
+      <wsdl:input>
+        <mime:content part="exportNews" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="exportNews" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="exportEdoc">
+      <http:operation location="documentService/exportEdoc" />
+      <wsdl:input>
+        <mime:content part="exportEdoc" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="exportEdoc" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="exportGroupBulletin">
+      <http:operation location="documentService/exportGroupBulletin" />
+      <wsdl:input>
+        <mime:content part="exportGroupBulletin" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="exportGroupBulletin" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="updateEdocState">
+      <http:operation location="documentService/updateEdocState" />
+      <wsdl:input>
+        <mime:content part="updateEdocState" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="updateEdocState" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="exportResearch">
+      <http:operation location="documentService/exportResearch" />
+      <wsdl:input>
+        <mime:content part="exportResearch" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="exportResearch" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="importEdoc">
+      <http:operation location="documentService/importEdoc" />
+      <wsdl:input>
+        <mime:content part="importEdoc" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="importEdoc" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="processEdocReceive">
+      <http:operation location="documentService/processEdocReceive" />
+      <wsdl:input>
+        <mime:content part="processEdocReceive" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="processEdocReceive" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="exportBulletin">
+      <http:operation location="documentService/exportBulletin" />
+      <wsdl:input>
+        <mime:content part="exportBulletin" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="exportBulletin" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="exportRecentAccountBulletinByAccountId">
+      <http:operation location="documentService/exportRecentAccountBulletinByAccountId" />
+      <wsdl:input>
+        <mime:content part="exportRecentAccountBulletinByAccountId" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="exportRecentAccountBulletinByAccountId" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="signEdoc">
+      <http:operation location="documentService/signEdoc" />
+      <wsdl:input>
+        <mime:content part="signEdoc" type="text/xml" />
+      </wsdl:input>
+    </wsdl:operation>
+    <wsdl:operation name="exportRecentAccountBulletin">
+      <http:operation location="documentService/exportRecentAccountBulletin" />
+      <wsdl:input>
+        <mime:content part="exportRecentAccountBulletin" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="exportRecentAccountBulletin" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="processEdocSend">
+      <http:operation location="documentService/processEdocSend" />
+      <wsdl:input>
+        <mime:content part="processEdocSend" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="processEdocSend" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="exportFlow">
+      <http:operation location="documentService/exportFlow" />
+      <wsdl:input>
+        <mime:content part="exportFlow" type="text/xml" />
+      </wsdl:input>
+      <wsdl:output>
+        <mime:content part="exportFlow" type="text/xml" />
+      </wsdl:output>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:service name="documentService">
+    <wsdl:port name="documentServiceHttpSoap11Endpoint" binding="axis2:documentServiceSoap11Binding">
+      <soap:address location="http://192.168.0.168:80/seeyon/services/documentService.documentServiceHttpSoap11Endpoint/" />
+    </wsdl:port>
+    <wsdl:port name="documentServiceHttpSoap12Endpoint" binding="axis2:documentServiceSoap12Binding">
+      <soap12:address location="http://192.168.0.168:80/seeyon/services/documentService.documentServiceHttpSoap12Endpoint/" />
+    </wsdl:port>
+    <wsdl:port name="documentServiceHttpEndpoint" binding="axis2:documentServiceHttpBinding">
+      <http:address location="http://192.168.0.168:80/seeyon/services/documentService.documentServiceHttpEndpoint/" />
+    </wsdl:port>
+  </wsdl:service>
+</wsdl:definitions>

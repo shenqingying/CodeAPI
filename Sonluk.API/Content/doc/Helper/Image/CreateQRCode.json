@@ -1,0 +1,14 @@
+{
+  "inBody": {
+    "code": "string|要转换成二维码的字符串",
+    "format": "string|默认传“QRCODE”",
+    "width": "int|二维码图片宽度",
+    "height": "int|二维码图片高度",
+    "pure": "int|默认传1"
+  },
+  "outBody": "byte[]|二维码图片二进制流",
+  "sms": "将字符串转换为二维码图片二进制流",
+  "lms": "将字符串转换为二维码图片二进制流。",
+  "method": "POST",
+  "date": "2020/5/19 11:30"
+}

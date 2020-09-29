@@ -1,0 +1,13 @@
+{
+  "inBody": {
+    "type": "string|加密类型",
+    "key": "string|加密密钥",
+    "data": "string|待加密数据"
+  },
+  "outBody": "string|加密后的数据",
+  "method": "POST",
+  "sms": "通过Key加密数据",
+  "lms": "通过Key加密数据，有不同的加密类型，目前有：DES。",
+  "creator": "xur",
+  "date": "2020/5/9 09:18"
+}

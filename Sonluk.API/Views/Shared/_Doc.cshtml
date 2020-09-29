@@ -1,0 +1,128 @@
+﻿@{
+    if (ViewBag.Title == null || ViewBag.Title == "") { ViewBag.Title = "Sonluk API"; }
+    if (ViewBag.Logo == null || ViewBag.Logo == "") { ViewBag.Logo = "Sonluk API"; }
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>@ViewBag.Title</title>
+    <link href="~/sonluk.ico" rel="shortcut icon" type="image/x-icon" />
+    <link href="~/Scripts/layui/css/layui.css" rel="stylesheet" />
+    <link id="ew-tree-table-css" href="~/Scripts/layui/css/treeTable.css" rel="stylesheet" />
+    <style>
+        .apiAddress span {
+            cursor: pointer;
+        }
+
+        .sl-block {
+            padding: 10px;
+        }
+
+            .sl-block h1 {
+                color: #009688;
+            }
+
+            .sl-block h3 {
+                padding: 10px;
+                color: #009688;
+            }
+
+            .sl-block p {
+                padding: 5px 50px 0px 50px;
+                line-height: 30px;
+            }
+
+            .sl-block fieldset {
+                border: none;
+                padding: 0;
+                border-top: 1px solid #eee;
+            }
+
+            .sl-block legend {
+                margin-left: 20px;
+                padding: 0 10px;
+                font-size: 20px;
+                font-weight: 300;
+            }
+
+            .sl-block p > span:nth-of-type(n+2) {
+                text-indent: 25px;
+                display: block;
+            }
+
+        .sl-block-layer h2 {
+            color: #009688;
+        }
+
+        .sl-block-layer h3 {
+            padding: 0px;
+            color: #009688;
+        }
+
+        .sl-block-layer p {
+            padding-bottom: 0px;
+            padding-top: 0px;
+            line-height: 22px;
+        }
+
+        #apiAddress {
+            padding: 10px 5px 10px 10px;
+            font-size: 18px;
+            color: #009688;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body class="layui-layout-body">
+    <div class="layui-layout layui-layout-admin">
+        <div class="layui-header">
+            <div class="layui-logo" style="font-weight:bold;"><a href="@Url.Action("List", "Doc")" style="color:#009688">@ViewBag.Logo</a></div>
+            <ul class="layui-nav layui-layout-right">
+                @{
+                    if (Session["token"] != null && Session["token"].ToString() != "")
+                    {
+                        <li class="layui-nav-item"><a href="@Url.Action("Logout", "Home")" lid="c_logout">退出</a></li>
+                    }
+                    else
+                    {
+                        <li class="layui-nav-item"><a href="@Url.Action("Login", "Home")" lid="c_logout">登陆</a></li>
+                    }
+                }
+            </ul>
+        </div>
+        <div class="layui-side layui-bg-black">
+            <div class="layui-side-scroll">
+                <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+                <ul class="layui-nav layui-nav-tree" lay-filter="test">
+                    @Html.Raw(ViewBag.nav)
+                </ul>
+            </div>
+        </div>
+        <div class="layui-body">
+            <div id="detail" style="padding: 15px;">
+                @RenderBody()
+            </div>
+        </div>
+        <div class="layui-footer" lid="c_copyright">
+            © copyright by 双鹿电池-信息管理部 <a href="http://www.beian.miit.gov.cn">浙ICP备13023860号-3</a>
+        </div>
+    </div>
+    <script src="~/Scripts/layui/layui.all.js"></script>
+    <script src="~/Scripts/layui/treeTable.js"></script>
+    @RenderSection("scripts", required: false)
+    <script>
+        document.querySelectorAll(".sl-block p").forEach(function (element) {
+            element.querySelectorAll("span:nth-of-type(n+2)").forEach(function (childElement) {
+                childElement.style["text-indent"] = element.querySelector("span").offsetWidth + "px";
+            });
+        });
+    </script>
+</body>
+
+</html>

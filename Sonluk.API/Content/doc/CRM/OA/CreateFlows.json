@@ -1,0 +1,20 @@
+{
+  "inQuery": {
+    "code": "模板号"
+  },
+  "inBody": {
+    "ids": "List&lt;string&gt;|查询数据的id集"
+  },
+  "outBody": {
+    "ID": "int|",
+    "Success": "bool|",
+    "Key": "string|",
+    "Value": "string|",
+    "Status": "int|"
+  },
+  "sms": "通过ID查询数据并发起流程",
+  "lms": "通过ID查询数据并发起流程。",
+  "creator": "xur",
+  "method": "POST",
+  "date": "2020/5/19 11:30"
+}

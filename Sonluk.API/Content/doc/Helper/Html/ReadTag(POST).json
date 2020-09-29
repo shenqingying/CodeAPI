@@ -1,0 +1,15 @@
+{
+  "inBody": {
+    "input": "string|内容（根据不同的获取方式进行不同处理）",
+    "tag": "string|要获取的元素标签",
+    "type": "string|获取方式，目前有“url”（input为url，通过url获取内容），“html”（input直接传输内容）"
+  },
+  "outBody": "string|包含所有指定标签的内容",
+  "sms": "截取内容中的指定标签内容",
+  "lms": "截取内容中的指定标签内容。",
+  "creator": "xur",
+  "method": "POST",
+  "title": "ReadTag",
+  "route": "Helper/Html/ReadTag",
+  "date": "2020/5/19 11:30"
+}

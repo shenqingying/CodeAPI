@@ -1,0 +1,86 @@
+﻿@{
+    Layout = "~/Views/Shared/_Doc.cshtml";
+}
+
+<div class="sl-block">
+    <h1>API设计指导书</h1>
+</div>
+
+<div class="sl-block">
+    <fieldset><legend>1.1 API路径</legend></fieldset>
+    <p>所有API存放于~/Area中，具体路径为~/Area/区域/Controller/控制器.cs。</p>
+</div>
+
+<div class="sl-block">
+    <fieldset><legend>1.2 API命名</legend></fieldset>
+    <p>以下所有命名（除了表名）均为英文翻译，只允许两种写法：首字母缩写用大写（示例：MES），单词或缩写用首字母大写（示例：ReadTablePro）。</p>
+    <p>区域：即为系统名（如MES、CRM等），通用方法的区域名为：Helper。</p>
+    <p>控制器：即为模块名，对应系统下的模块（模块即为具有某些相同特征的多个方法集合，根据特征命名模块，两个特征的含义不能存在交叉）。</p>
+    <p>方法：即为方法名。方法名命名规则为：操作名 + 对象（示例：ReadTable），如果没有对象的话则只写操作名（这是一种特殊的操作名，不应该属于表操作，只可能有两种情况，一种是表示操作该模块，一种是该模块下只存在一种该操作），如果对象为表的话使用去除系统名以及模块名之后的表名，如果表名包含英文单词，应首字母大写，如果该方法涉及表中多条数据（或者即可能单条也可能多条），则需要在表名后面加“s”。操作名已写于下方。</p>
+    <p>
+        <span>已定的操作名：</span>表操作（也可用于非表操作）：Create（增）、Read（查）、Update（改）、Delete（删）；
+        <span>其他操作：Download（下载文件），Upload（上传文件）。</span>
+    </p>
+    <p>全名示例：Helper/FastRead/ReadTable。</p>
+</div>
+
+<div class="sl-block">
+    <fieldset><legend>1.3 API请求和响应</legend></fieldset>
+    <p>启用验证：在API方法上放上特性类[ApiAuthorize]即可对该方法启用验证，在API类上放上特性类[ApiAuthorize]即可对该类下所有方法启用验证（如果在此情况下，想要让某个方法不启用验证，在该方法上放上特性类[AllowAnonymous]即可），请确保url参数或header中（Sonluk-Token）包含ptoken以通过验证。</p>
+    <p>
+        <span>请求获取：</span>在API方法接收参数中写上对应参数名和参数类型即可获取url中的参数，ptoken也可通过此方法获取；
+        <span>在API方法接收参数中写上对应参数名和参数类型并在参数类型前加上[FromBody]，即可获取整个主体数据；</span>
+        <span>在API内部使用HttpContext.Current.Request.Headers获取请求中的header；</span>
+        <span>在API内部使用HttpContext.Current.Request.Files获取上传的文件。</span>
+    </p>
+    <p>响应规范：如果该API使用标准格式，则在API内部需使用ApiRetrun进行消息交互，并且仅使用ApiRetrun中的success，code和data，其余信息在发送响应之前通过code获取（在API方法上放上特性类[ApiRetrun]即可自动获取code的完整信息，在API类上放上特性类[ApiRetrun]即可对该类下所有方法自动获取code的完整信息，请确保API的返回的是ApiRetrun）。</p>
+    <p>具体格式参照API帮助文档中的标准请求格式，标准下载请求格式等。</p>
+</div>
+
+<div class="sl-block">
+    <fieldset><legend>2.1 API描述文件路径</legend></fieldset>
+    <p>所有API描述存放于~/Content/Doc中，具体路径为~/Content/Doc/系统名/模块名/方法名.json。</p>
+    <p>如果遇到乱码，请确保文件以UTF-8编码保存。</p>
+</div>
+
+<div class="sl-block">
+    <fieldset><legend>2.2 API描述中的Json写法</legend></fieldset>
+    <p>inHeader：传入请求中的额外请求头参数，将Json粘贴于此，那么Json中的key即为请求头名，value即为对key的说明。如果unique为false，则会增加一个ptoken的key。</p>
+    <p>inQuery：传入请求中的地址栏参数，将Json粘贴于此，那么Json中的key即为地址栏参数名，value即为对key的说明。如果unique为false，则会增加一个ptoken的key。</p>
+    <p>inBody：传入请求中的主体，将该Json粘贴于此，value中写上对key的说明（value分成两个部分，第一部分为参数类型，第二部分为文本说明，用“|”隔开），即可在描述页看到。</p>
+    <p>outHeader：传出响应中的额外响应头参数，将Json粘贴于此，那么Json中的key即为响应头名，value即为对key的说明。</p>
+    <p>outBody：传出响应中的主体，将该Json粘贴于此，value中写上对key的说明（value分成两个部分，第一部分为参数类型，第二部分为文本说明，用“|”隔开），即可在描述页看到。如果unique为false，则该Json会套入ApiReturn中的data。</p>
+    <p>unique：如果unique为false或不写，inHeader和inQuery会增加标准参数，outBody会套入ApiReturn中的data。</p>
+    <p>sms：简短描述说明，请不要以标点符号结尾。</p>
+    <p>lms：详细描述说明，请以标点符号结尾。</p>
+    <p>method：适用该API的请求方法。</p>
+    <p>date：填写API的最后改动时间，格式为：“yyyy/mm/dd h:m:s”（可以省略日和时间），填写的时间将作为北京时间自动转化为服务器所属时区时间。如果格式不符则直接显示所写内容，并且无法自动判断API是否为最新。</p>
+    <p>title：自定义标题，未填写则以Json文件名作为标题。</p>
+    <p>route：自定义路由，格式为：“区域/控制器/方法”，未填写则以Json文件相对路径作为相对地址。</p>
+    <p>address：自定义API绝对地址（无视route值），未填写则以Json文件相对路径作为相对地址。</p>
+    <p>creator：填写API创建人。</p>
+</div>
+
+<div class="sl-block">
+    <fieldset><legend>3.1 次要：表的命名建议</legend></fieldset>
+    <p>表名尽量使用英文翻译，英文描述尽量符合单条数据集合的含义（示例：如果一张表中的每条数据都包含了一种电池的各种信息，那么该表应该命名为BatteryInfor，而不是BatteryInforList）。</p>
+</div>
+
+<div class="sl-block">
+    <fieldset><legend>3.2 次要：API传入请求建议</legend></fieldset>
+    <p>如果您想使用REST风格的API，那么设计时请遵循以下规则。</p>
+    <p>命名规则：参考1.2，但去除操作名。</p>
+    <p>
+        <span>请求类型：</span>使用GET请求进行查询操作，查询条件放入地址栏参数；
+        <span>使用POST请求进行新增操作，将新增内容放入请求主体，将额外条件放入地址栏参数；</span>
+        <span>使用PUT请求进行全面修改操作，将所有内容包括未修改的内容都放入请求主体，将查询条件放入地址栏参数；</span>
+        <span>使用PATCH请求进行部分修改操作，将修改的内容放入请求主体，将查询条件放入地址栏参数；</span>
+        <span>使用DELETE请求进行删除操作，将查询条件放入地址栏参数；</span>
+    </p>
+    <p>内部规范：请确保使用GET、PUT以及DELETE请求的API具有幂等性。</p>
+    <p>兼容性：如果遇到请求类型不支持，则用POST请求代替不支持的查询，并在请求头中添加Sonluk-Method，通过Sonluk-Method获取请求类型。</p>
+</div>
+
+<div class="sl-block">
+    <a class="layui-btn" href="@ViewBag.back">返回列表</a>
+</div>

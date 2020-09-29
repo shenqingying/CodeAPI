@@ -1,0 +1,92 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+  有关如何配置 ASP.NET 应用程序的详细信息，请访问
+  http://go.microsoft.com/fwlink/?LinkId=169433
+  -->
+
+<configuration>
+  <configSections>
+    <sectionGroup name="SAP.Middleware.Connector">
+      <sectionGroup name="ClientSettings">
+        <section name="DestinationConfiguration" type="SAP.Middleware.Connector.RfcDestinationConfiguration, sapnco" />
+      </sectionGroup>
+    </sectionGroup>
+  </configSections>
+  <SAP.Middleware.Connector>
+    <ClientSettings>
+      <DestinationConfiguration>
+        <destinations>
+          <add NAME="SonlukPrd" CLIENT="701" LANG="zh" ASHOST="192.168.0.5" SYSNR="00" POOL_SIZE="10" MAX_POOL_SIZE="100" IDLE_TIMEOUT="3600" />
+        </destinations>
+      </DestinationConfiguration>
+    </ClientSettings>
+  </SAP.Middleware.Connector>
+  <connectionStrings>
+    <add name="Oracle" connectionString="Data Source=(DESCRIPTION=(ADDRESS=(PROTOCOL=TCP)(HOST=192.168.0.166)(PORT=1521))(CONNECT_DATA=(SID=ZYMIS)));User Id=Sonluk;Password=Sonluk;" />
+  </connectionStrings>
+  <appSettings>
+    <add key="SAPAssembly" value="Sonluk.SAPDA" />
+    <add key="SAP_User" value="9A008E11C49FB7D3" />
+    <add key="SAP_Password" value="BB2501525147269CC6E1991210917FDF" />
+    <add key="SQLServerAssembly" value="Sonluk.SQLServerDA" />
+    <add key="OracleAssembly" value="Sonluk.OracleDA" />
+    <add key="OracleUser" value="49754f8ae963dd9d" />
+    <add key="OraclePassword" value="49754f8ae963dd9d" />
+    <add key="SAP_User_PRD" value="FEFD874D81E5EDC7" />
+    <add key="SAP_Password_PRD" value="5EA31148B599B642487EEA6436B197C0" />
+    <add key="webpages:Version" value="2.0.0.0" />
+    <add key="webpages:Enabled" value="false" />
+    <add key="PreserveLoginUrl" value="true" />
+    <add key="ClientValidationEnabled" value="true" />
+    <add key="UnobtrusiveJavaScriptEnabled" value="true" />
+  </appSettings>
+
+  <system.web>
+    <compilation debug="true" targetFramework="4.0" />
+    <pages>
+      <namespaces>
+        <add namespace="System.Web.Helpers" />
+        <add namespace="System.Web.Mvc" />
+        <add namespace="System.Web.Mvc.Ajax" />
+        <add namespace="System.Web.Mvc.Html" />
+        <add namespace="System.Web.Routing" />
+        <add namespace="System.Web.WebPages" />
+      </namespaces>
+    </pages>
+    <httpRuntime executionTimeout="3600" />
+    <webServices>
+      <protocols>
+        <add name="HttpPost" />
+        <add name="HttpGet" />
+      </protocols>
+    </webServices>
+  </system.web>
+
+  <system.webServer>
+    <validation validateIntegratedModeConfiguration="false" />
+
+    <modules runAllManagedModulesForAllRequests="true" />
+
+    <handlers>
+      <remove name="ExtensionlessUrlHandler-ISAPI-4.0_32bit" />
+      <remove name="ExtensionlessUrlHandler-ISAPI-4.0_64bit" />
+      <remove name="ExtensionlessUrlHandler-Integrated-4.0" />
+      <add name="ExtensionlessUrlHandler-ISAPI-4.0_32bit" path="*." verb="GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS" modules="IsapiModule" scriptProcessor="%windir%\Microsoft.NET\Framework\v4.0.30319\aspnet_isapi.dll" preCondition="classicMode,runtimeVersionv4.0,bitness32" responseBufferLimit="0" />
+      <add name="ExtensionlessUrlHandler-ISAPI-4.0_64bit" path="*." verb="GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS" modules="IsapiModule" scriptProcessor="%windir%\Microsoft.NET\Framework64\v4.0.30319\aspnet_isapi.dll" preCondition="classicMode,runtimeVersionv4.0,bitness64" responseBufferLimit="0" />
+      <add name="ExtensionlessUrlHandler-Integrated-4.0" path="*." verb="GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS" type="System.Web.Handlers.TransferRequestHandler" preCondition="integratedMode,runtimeVersionv4.0" />
+    </handlers>
+  </system.webServer>
+  <runtime>
+    <assemblyBinding xmlns="urn:schemas-microsoft-com:asm.v1">
+      <dependentAssembly>
+        <assemblyIdentity name="System" publicKeyToken="b77a5c561934e089" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-4.0.0.0" newVersion="4.0.0.0" />
+      </dependentAssembly>
+      <dependentAssembly>
+        <assemblyIdentity name="Newtonsoft.Json" publicKeyToken="30ad4fe6b2a6aeed" culture="neutral" />
+        <bindingRedirect oldVersion="0.0.0.0-6.0.0.0" newVersion="6.0.0.0" />
+      </dependentAssembly>
+    </assemblyBinding>
+  </runtime>
+
+</configuration>

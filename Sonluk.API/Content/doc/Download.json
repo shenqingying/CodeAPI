@@ -1,0 +1,19 @@
+{
+  "inQuery": {
+    "ptoken": "【标准下载地址栏参数】发送请求时附带的验证token"
+  },
+  "inHeader": {
+    "Sonluk-Token": "【标准下载额外头参数】发送请求时附带的token，如果地址栏token不存在则验证该token"
+  },
+  "inBody": {},
+  "outHeader": {},
+  "outBody": {
+    "stream": "stream|【标准下载主体参数】直接返回数据流"
+  },
+  "sms": "该请求为标准下载请求格式，大部分下载请求都遵循此格式",
+  "lms": "该请求为标准下载请求格式，大部分下载请求都遵循此格式！",
+  "method": "GET 或 POST",
+  "date": "2020/5/6 15:22",
+  "title": "标准下载请求格式",
+  "temp": {}
+}
